@@ -1,0 +1,79 @@
+## tutorial の　response に関して
+2021-03-13 16:48:30 [asyncio] DEBUG: Using proactor: IocpProactor
+In [1]: response.css('div.quote small.author::text').extract_first()
+Out[1]: 'Albert Einstein'
+
+In [2]: response
+Out[2]: <200 http://quotes.toscrape.com>
+
+In [3]: str(response)
+Out[3]: '<200 http://quotes.toscrape.com>'
+    
+ # log of seijiyama
+PS C:\Users\miyak\For_git> cd seijiyama
+PS C:\Users\miyak\For_git\seijiyama> scrapy genspider seijiyama seijiyama.jp/area/card/3718/eFI5fe/M?S=lctfq0pcp
+
+Cannot create a spider with the same name as your project
+PS C:\Users\miyak\For_git\seijiyama> scrapy genspider seiji seijiyama.jp/area/card/3718/eFI5fe/M?S=lctfq0pcph
+Created spider 'seiji' using template 'basic' in module:
+  seijiyama.spiders.seiji
+PS C:\Users\miyak\For_git\seijiyama>
+
+In [4]: str(response).sprit("<")
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-4-529cc4a2e971> in <module>
+----> 1 str(response).sprit("<")
+
+AttributeError: 'str' object has no attribute 'sprit'
+
+In [5]: str(response).strip()
+Out[5]: '<200 http://quotes.toscrape.com>'
+
+In [6]: str(response).strip()
+Out[6]: '<200 http://quotes.toscrape.com>'
+
+In [7]: str(response).strip().strip()
+Out[7]: '<200 http://quotes.toscrape.com>'
+
+In [8]: str(response)
+Out[8]: '<200 http://quotes.toscrape.com>'
+
+In [9]: str(response).lstrip('<200')
+Out[9]: ' http://quotes.toscrape.com>'
+
+In [10]: str(response).lstrip('<200 ').rstrip('>')
+Out[10]: 'http://quotes.toscrape.com'
+
+##scrapy 処理まとめ
+NameError                                 Traceback (most recent call last)
+<ipython-input-6-e77abcbc04e5> in <module>
+----> 1 response.css("#smp-table-14040 > tbody > tr.smp-row-4.smp-row-data > td.smp-cell-data.smp-cell-4-1.smp-cell.smp-cell-row-4.smp-cell-col-1::t
+ext"),extract()
+
+NameError: name 'extract' is not defined
+
+In [7]: response.css("#smp-table-14040 > tbody > tr.smp-row-4.smp-row-data > td.smp-cell-data.smp-cell-4-1.smp-cell.smp-cell-row-4.smp-cell-col-1::
+   ...: text").extract()
+Out[7]: []
+
+In [8]: response.xpath("//*[@id="smp-table-14040"]/tbody/tr[4]/td[1]").extract()
+  File "<ipython-input-8-3aa36bed8d2f>", line 1
+    response.xpath("//*[@id="smp-table-14040"]/tbody/tr[4]/td[1]").extract()
+                             ^
+SyntaxError: invalid syntax
+
+
+In [9]: response.xpath('//*[@id="smp-table-14040"]/tbody/tr[4]/td[1]').extract()
+Out[9]: []
+
+In [10]: response.xpath('//*[@id="smp-table-14040"]/tbody/tr[4]/td[1]/text()').extract()
+Out[10]: []
+
+In [11]: response.xpath('//*[@id="smp-table-14040"]/tbody/tr/td/text()').extract()
+Out[11]: []
+
+In [12]: response.xpath('//div[@id="personlist"]/tbody/tr/td/text()').extract()
+
+
+
