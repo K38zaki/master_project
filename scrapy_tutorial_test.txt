@@ -75,5 +75,7 @@ Out[11]: []
 
 In [12]: response.xpath('//div[@id="personlist"]/tbody/tr/td/text()').extract()
 
+# controling by shell
+PS C:\Users\miyak\For_git\tutorial> scrapy shell http://quotes.toscrape.com
 
 
