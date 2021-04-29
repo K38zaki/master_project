@@ -9,6 +9,9 @@ class SeijiSpider(scrapy.Spider):
     start_urls = ['http://seijiyama.jp/area/card/3718/eFI5fe/M?S=lctfq0pcph']
 
     def parse(self, response):
-        pass
+        item = SeijiyamaItem()
+        item['result'] = response.css('table::text').extract()
+        return item
+    
             #sp_list > div.personlist > form
         
