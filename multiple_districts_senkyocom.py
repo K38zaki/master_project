@@ -31,7 +31,9 @@ def str_find(str_all,str_pati):
 
 variables_list = ["ele_ymd","election","prefecture","municipality","district","name_kanji","name_kana","age","gen","status","job","circle","win","n_votes","voting_ymd","year","month","day","voting_rate","seats_target","n_candidates","competitive_ratio","kokuji_ymd","all_voter","male_all_voter","female_all_voter","change_all_voter","reason","pre_v_rate","pre_seats_t","pre_n_cand","pre_compe_rate"]
 
-with open('test_by_otaru.csv', 'w', newline='') as file:
+csv_name = ""
+
+with open(csv_name, 'w', newline='') as file:
     writer = csv.writer(file,delimiter=',')
     writer.writerow(variables_list)
 
@@ -62,51 +64,26 @@ for muni_id in range(len(found_url)):
     
 url_l
 
-#if prefecture
-
-#elif seirei-sitei-toshi or multiple_races
-
-#else
-
-### set information about district
-district = "無し"
-
 ## 2層目
 
-current_muni = url_l[3]
+current_muni = url_l[1]
 soup = move_page(current_muni[2])
 found_url = soup.find_all("td", {"class": "left"}) #classで抜き出す部分を指定,url
 url_muni = [found_url[i].contents[0].get('href') for i in range(len(found_url))]
 
-
-## 3層目
-
-
-start = time.time()
-
-soup = move_page(url_muni[1])
+## 3-1層目
+soup = move_page(url_muni[0])
 
 
-### the name of election, prefecture, municipality (base information)
+### 選挙レベル（not 選挙区レベル）のデータを収集
+### the name of election, prefecture, municipality,  (base information)
 
 ele_name_ymd = soup.find("h1",{"class":"p_local_senkyo_ttl column_ttl"}).text.replace("\n","").replace(" ","")
 ele_name = ele_name_ymd[:str_find(ele_name_ymd,"挙")+1]
 pref_name = soup.find("p",{"class":"column_ttl_small"}).text
 muni_name = current_muni[0]
-base_inf_l = [ele_name_ymd, ele_name, pref_name, muni_name,]
-
-
-
-### find candidate data
-
-cand_names = soup.find_all("h2",{"class":"m_senkyo_result_data_ttl"})
-job_l = soup.find_all("p",{"class":"m_senkyo_result_data_para small"})
-age_gen_inc_l = list(filter(lambda x: x not in job_l,soup.find_all("p",{"class":"m_senkyo_result_data_para"})))
-win_nvote_l = soup.find_all("td",{"class":"left"})
-circle_l = [i.text for i in soup.find_all("p",{"class":"m_senkyo_result_data_circle"})]
-
-
-
+base_inf_l = [ele_name_ymd, ele_name, pref_name, muni_name]
+    
 ### find and make election_level data
 
 election_data = [i.text for i in soup.select("table.m_senkyo_data > tbody > tr > td")]  
@@ -124,44 +101,68 @@ day = int(y_m_d[str_find(y_m_d,"月")+1:str_find(y_m_d,"日")])
 vote_ymd = y_m_d.replace("年","").replace("月","").replace("日","")
 
 ##### n_cand, n_seet
-seat_cand = election_data[election_des.index("定数/候補者数")]
-n_seat = int(seat_cand[:str_find(seat_cand,"/")])
-n_cand = int(seat_cand[str_find(seat_cand,"/")+1:])
-compe_rate = n_cand/n_seat
+if "定数/候補者数" in election_des:
+    seat_cand = election_data[election_des.index("定数/候補者数")]
+    n_seat = int(seat_cand[:str_find(seat_cand,"/")])
+    n_cand = int(seat_cand[str_find(seat_cand,"/")+1:])
+    compe_rate = n_cand/n_seat
+else:
+    n_seat = np.nam
+    n_cand = np.nan
+    compe_rate = np.nan
 
 ##### kokuji_date
-kokuji = election_data[election_des.index("告示日")]
-kokuji = kokuji.replace("年","").replace("月","").replace("日","")
+if "告示日" in election_des:
+    kokuji = election_data[election_des.index("告示日")]
+    kokuji = kokuji.replace("年","").replace("月","").replace("日","")
+else:
+    kokuji = np.nan
 
 ##### about number of voters
-voters = election_data[election_des.index("有権者数")]
-n_yukensya = int(voters[:str_find(voters,"人")])
-d_yukensya = int(voters[str_find(voters,"り")+1:str_find(voters,"男")-1]) if "前回" in voters else np.nan
-male_yukensya = int(voters[str_find(voters,"男")+2:str_find(voters,"女")-1])
-fema_yukensya = int(voters[str_find(voters,"女")+2:-1])
-male_yukensya = np.nan if male_yukensya == 0 else male_yukensya
-fema_yukensya = np.nan if fema_yukensya == 0 else fele_yukensya
-
+if "有権者数" in election_des:
+    voters = election_data[election_des.index("有権者数")]
+    n_yukensya = int(voters[:str_find(voters,"人")])
+    d_yukensya = int(voters[str_find(voters,"り")+1:str_find(voters,"男")-1]) if "前回" in voters else np.nan
+    male_yukensya = int(voters[str_find(voters,"男")+2:str_find(voters,"女")-1])
+    fema_yukensya = int(voters[str_find(voters,"女")+2:-1])
+    male_yukensya = np.nan if male_yukensya == 0 else male_yukensya
+    fema_yukensya = np.nan if fema_yukensya == 0 else fele_yukensya
+else:
+    n_yukensya = np.nan
+    d_yukensya = np.nan
+    male_yukensya = np.nan
+    fema_yukensya = np.nan
+    
 
 ##### vote_rate
-vote_rate = election_data[election_des.index("投票率")]
-try:
-    vote_rate = vote_rate[:str_find(vote_rate,"%")]
-except:
-    vote_rate = vote_rate[:str_find(vote_rate,"％")]
-vote_rate = np.nan if vote_rate == "-" else float(vote_rate)
-
+if "投票率" in election_des:
+    vote_rate = election_data[election_des.index("投票率")]
+    try:
+        vote_rate = vote_rate[:str_find(vote_rate,"%")]
+    except:
+        vote_rate = vote_rate[:str_find(vote_rate,"％")]
+    vote_rate = np.nan if vote_rate == "-" else float(vote_rate)
+else:
+    vote_rate = np.nan
+    
 
 ##### reason
-reason = election_data[election_des.index("事由・ポイント")]
+if "事由・ポイント" in election_des:
+    reason = election_data[election_des.index("事由・ポイント")]
+else:
+    reason = np.nan
 
 ##### about previous election
-vote_rate_pre = election_data[election_des.index("前回投票率")]
-try:
-    vote_rate_pre = vote_rate_pre[:str_find(vote_rate_pre,"%")]
-except:
-    vote_rate_pre = vote_rate_pre[:str_find(vote_rate_pre,"％")]
-vote_rate_pre = np.nan if vote_rate_pre == "-" else float(vote_rate_pre)
+if "前回投票率" in election_des:
+    vote_rate_pre = election_data[election_des.index("前回投票率")]
+    try:
+        vote_rate_pre = vote_rate_pre[:str_find(vote_rate_pre,"%")]
+    except:
+        vote_rate_pre = vote_rate_pre[:str_find(vote_rate_pre,"％")]
+    vote_rate_pre = np.nan if vote_rate_pre == "-" else float(vote_rate_pre)
+else:
+    vote_rate_pre = np.nan
+    
 
 if "前回の候補者数/定数" in election_des:
     pre_seat_cand = election_data[election_des.index("前回の候補者数/定数")]
@@ -182,7 +183,45 @@ else:
 
 elec_data_l = [vote_ymd,year,month,day,vote_rate,n_seat,n_cand,compe_rate,kokuji,n_yukensya,male_yukensya,fema_yukensya,d_yukensya,reason,vote_rate_pre,n_seat_pre,n_cand_pre,pre_compe_rate]
 
+    
+### 判定(複数選挙区か、単一選挙区か)
+senkyokus = soup.find_all("div",{"class":"m_senkyo_local_link_left"})
+senkyoku_name = [i.text for i in senkyokus]
+senkyoku_test = ["区" in i for i in senkyoku_name]
+if (True in senkyoku_test) == True:
+    #### 複数選挙区・政令指定都市
+    print(current_muni[0],"multiple districts")
+    
 
+    #### 選挙区ごとの URL を取得
+    senkyoku_urls = [i.parent.get("href") for i in senkyokus]
+    print(senkyoku_urls)
+    print(senkyoku_name)
+    print(base_inf_l)
+
+    for i in range(len(senkyoku_name)):
+        soup = move_page(senkyoku_urls[i])
+        district = senkyoku_name[i]
+        
+
+else:
+    ## 単一選挙区
+    print(current_muni[0],"single districts")
+    district = "無し"
+    
+    ## 以下、通常の procedure
+
+## 3-2層目
+soup = move_page(senkyoku_urls[0])
+soup = move_page("https://go2senkyo.com/local/senkyo/6989")
+
+### find candidate data
+
+cand_names = soup.find_all("h2",{"class":"m_senkyo_result_data_ttl"})
+job_l = soup.find_all("p",{"class":"m_senkyo_result_data_para small"})
+age_gen_inc_l = list(filter(lambda x: x not in job_l,soup.find_all("p",{"class":"m_senkyo_result_data_para"})))
+win_nvote_l = soup.find_all("td",{"class":"left"})
+circle_l = [i.text for i in soup.find_all("p",{"class":"m_senkyo_result_data_circle"})]
 
 
 
@@ -219,9 +258,9 @@ if (len(cand_names) == len(job_l) == len(age_gen_inc_l) == len(win_nvote_l) == l
         id_lv_data_l.append(id_lv_data)
         
     ### make data
-    with open('test_by_otaru.csv', 'a', newline='') as file:
-        writer = csv.writer(file,delimiter=',')
-        writer.writerows(id_lv_data_l)
+    ### with open(csv_name, 'a', newline='') as file:
+        ## writer = csv.writer(file,delimiter=',')
+        ## writer.writerows(id_lv_data_l)
     
 else:
     print(ele_name_ymd,"inconsistent cols of cand data",
@@ -271,3 +310,9 @@ print(ele_name_ymd,":",elapsed_time)
 df = pd.read_csv("test_by_otaru.csv",encoding="shift-jis")
 df.loc[:21,"n_votes"]
 df["n_votes"]
+
+
+# else (政令指定都市・複数選挙区でない)
+
+### set information about district
+#district = "無し"
