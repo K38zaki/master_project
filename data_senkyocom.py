@@ -1,7 +1,8 @@
-from selenium import webdriver
+#from selenium import webdriver
 
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.ui import Select
+#from selenium.common.exceptions import NoSuchElementException
+#from selenium.webdriver.support.ui import Select
+from urllib import request
 from bs4 import BeautifulSoup
 import pandas as pd
 import numpy as np
@@ -11,11 +12,11 @@ import time
 
 def initial_set(csv_name):
     
-    global driver
+    #global driver
     global inconsistent_l
     
     inconsistent_l = []
-    driver = webdriver.Chrome(executable_path="C:\Program Files\chromedriver")
+    #driver = webdriver.Chrome(executable_path="C:\Program Files\chromedriver")
     
     variables_list = ["ele_ymd","election","prefecture","municipality","district","name_kanji","name_kana","age","gen","status","job","circle","win","n_votes","voting_ymd","year","month","day","kokuji_ymd","e_voting_rate","e_seats_target","e_n_candidates","e_competitive_ratio","e_all_voter","e_male_all_voter","e_female_all_voter","e_change_all_voter","e_reason","e_pre_v_rate","e_pre_seats_t","e_pre_n_cand","e_pre_compe_rate","d_voting_rate","d_seats_target","d_n_candidates","d_competitive_ratio","d_all_voter","d_male_all_voter","d_female_all_voter","d_change_all_voter","d_reason","d_pre_v_rate","d_pre_seats_t","d_pre_n_cand","d_pre_compe_rate"]
     
@@ -23,10 +24,13 @@ def initial_set(csv_name):
     
 
 def move_page(url_str):
-    driver.get(url_str)
+    #driver.get(url_str)
     #element = driver.find_element_by_class_name("m_senkyo_local_list_right")
-    html = driver.page_source.encode('utf-8')
-    soup = BeautifulSoup(html, 'html.parser')
+    #html = driver.page_source.encode('utf-8')
+    #soup = BeautifulSoup(html, 'html.parser')
+    response = request.urlopen(url_str)
+    soup = BeautifulSoup(response)
+    response.close()
     return soup
 
 
@@ -227,16 +231,37 @@ def collect_ele_or_dist_lv(lv_type):
     #### components of only ele_lv
     if lv_type == "election":
         ##### y_m_d
-        y_m_d = election_data[election_des.index("投票日")]
-        year = int(y_m_d[:str_find(y_m_d,"年")])
-        month = int(y_m_d[str_find(y_m_d,"年")+1:str_find(y_m_d,"月")])
-        day = int(y_m_d[str_find(y_m_d,"月")+1:str_find(y_m_d,"日")])
-        vote_ymd = y_m_d.replace("年","").replace("月","").replace("日","")
+        if "投票日" in election_des:
+            y_m_d = election_data[election_des.index("投票日")]
+            try:
+                year = int(y_m_d[:str_find(y_m_d,"年")])
+            except:
+                year = np.nan
+            try:
+                month = int(y_m_d[str_find(y_m_d,"年")+1:str_find(y_m_d,"月")])
+            except:
+                month = np.nan
+            try:
+                day = int(y_m_d[str_find(y_m_d,"月")+1:str_find(y_m_d,"日")])
+            except:
+                day = np.nan
+            try:
+                vote_ymd = y_m_d.replace("年","").replace("月","").replace("日","")
+            except:
+                vote_ymd = y_m_d
+        else:
+            year = np.nan
+            month = np.nan
+            day = np.nan
+            vote_ymd = np.nan
 
         ##### kokuji_date
         if "告示日" in election_des:
             kokuji = election_data[election_des.index("告示日")]
-            kokuji = kokuji.replace("年","").replace("月","").replace("日","")
+            try:
+                kokuji = kokuji.replace("年","").replace("月","").replace("日","")
+            except:
+                pass
         else:
             kokuji = np.nan
         
@@ -252,6 +277,8 @@ def collect_ele_or_dist_lv(lv_type):
         return None
     
 def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
+    global inconsistent_l
+    
     cand_names = soup.find_all("h2",{"class":"m_senkyo_result_data_ttl"})
     job_l = soup.find_all("p",{"class":"m_senkyo_result_data_para small"})
     age_gen_inc_l = list(filter(lambda x: x not in job_l,soup.find_all("p",{"class":"m_senkyo_result_data_para"})))
@@ -259,58 +286,109 @@ def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
     circle_l = [i.text for i in soup.find_all("p",{"class":"m_senkyo_result_data_circle"})]
 
     ### make candidate data
-    if (len(cand_names) == len(job_l) == len(age_gen_inc_l) == len(win_nvote_l) == len(win_nvote_l) == len(circle_l)) == True:
-        print(district,"columns of cand data: consistent")
+    if (len(cand_names) == len(job_l) == len(age_gen_inc_l) == len(win_nvote_l) == len(win_nvote_l)) == True:
+        
+        if (len(circle_l) == len(cand_names)) == True:
+            print(district,"columns of cand data: consistent")
+            
+            id_lv_data_l_l = []
+            
+            for cand_id in range(len(cand_names)):
+                ##### names
+                kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
+                kana = cand_names[cand_id].contents[1].contents[1].text
 
-        id_lv_data_l_l = []
-        for cand_id in range(len(cand_names)):
-            ##### names
-            kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
-            kana = cand_names[cand_id].contents[1].contents[1].text
+                ##### age, gen, inc
+                age_gen_inc = age_gen_inc_l[cand_id].text
+                try:
+                    age = int(age_gen_inc[:str_find(age_gen_inc,"(")].replace("歳",""))
+                except:
+                    age = np.nan
+                try:
+                    gen = age_gen_inc[str_find(age_gen_inc,"(")+1]
+                except:
+                    gen = np.nan
+                try:
+                    inc = age_gen_inc[str_find(age_gen_inc,"(")+3:].replace(" ","")
+                except:
+                    inc = np.nan
+                job = job_l[cand_id].text
 
-            ##### age, gen, inc
-            age_gen_inc = age_gen_inc_l[cand_id].text
-            try:
-                age = int(age_gen_inc[:str_find(age_gen_inc,"(")].replace("歳",""))
-            except:
-                age = np.nan
-            try:
-                gen = age_gen_inc[str_find(age_gen_inc,"(")+1]
-            except:
-                gen = np.nan
-            try:
-                inc = age_gen_inc[str_find(age_gen_inc,"(")+3:].replace(" ","")
-            except:
-                inc = np.nan
-            job = job_l[cand_id].text
+                #### win, number of votes
+                win = "red" in str(soup.find_all("td",{"class":"left"})[cand_id])
+                try:
+                    vote = float(soup.find_all("td",{"class":"right"})
+                        [cand_id].text.replace("\n","").replace("票","").replace(",",""))
+                except: 
+                    vote = np.nan
+                circle = circle_l[cand_id]
+                
+                #### append to over_all_list
+                id_lv_data_l = base_inf_l + [district] + [kanji,kana,age,gen,inc,job,circle,win,vote] + elec_data_l + dist_data_l
+                
+                id_lv_data_l_l.append(id_lv_data_l)
+                
+            return id_lv_data_l_l
+        
+        else:
+            print(district,"cols of cand data: inconsistent for circle",len(cand_names),len(job_l),len(age_gen_inc_l),len(win_nvote_l),len(win_nvote_l),len(circle_l))
+               
+            inconsistent_l.append([base_inf_l[0],district,[len(cand_names),len(job_l),len(age_gen_inc_l),len(win_nvote_l),len(win_nvote_l),len(circle_l)]])
+            
+            id_lv_data_l_l = []
+            
+            for cand_id in range(len(cand_names)):
+                ##### names
+                kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
+                kana = cand_names[cand_id].contents[1].contents[1].text
 
-            #### circle
-            circle = circle_l[cand_id]
+                ##### age, gen, inc
+                age_gen_inc = age_gen_inc_l[cand_id].text
+                try:
+                    age = int(age_gen_inc[:str_find(age_gen_inc,"(")].replace("歳",""))
+                except:
+                    age = np.nan
+                try:
+                    gen = age_gen_inc[str_find(age_gen_inc,"(")+1]
+                except:
+                    gen = np.nan
+                try:
+                    inc = age_gen_inc[str_find(age_gen_inc,"(")+3:].replace(" ","")
+                except:
+                    inc = np.nan
+                job = job_l[cand_id].text
 
-            #### win, number of votes
-            win = "red" in str(soup.find_all("td",{"class":"left"})[cand_id])
-            try:
-                vote = float(soup.find_all("td",{"class":"right"})
-                    [cand_id].text.replace("\n","").replace("票","").replace(",",""))
-            except: 
-                vote = np.nan
-            #### append to over_all_list
-            id_lv_data_l = base_inf_l + [district] + [kanji,kana,age,gen,inc,job,circle,win,vote] + elec_data_l + dist_data_l
-            id_lv_data_l_l.append(id_lv_data_l)
-        return id_lv_data_l_l
+                #### win, number of votes
+                win = "red" in str(soup.find_all("td",{"class":"left"})[cand_id])
+                try:
+                    vote = float(soup.find_all("td",{"class":"right"})
+                        [cand_id].text.replace("\n","").replace("票","").replace(",",""))
+                except: 
+                    vote = np.nan
+                    
+                circle = np.nan
+                
+                id_lv_data_l = base_inf_l + [district] + [kanji,kana,age,gen,inc,job,circle,win,vote] + elec_data_l + dist_data_l
+                
+                id_lv_data_l_l.append(id_lv_data_l)
+                
+            return id_lv_data_l_l
     
     else:
-        global inconsistent_l
-        print(district,"inconsistent cols of cand data",
-              len(cand_names),len(job_l),len(age_gen_inc_l),len(win_nvote_l),len(win_nvote_l),len(circle_l))
-        inconsistent_l.append([base_inf_l[0],district])
+        
+        print(district,"cols of cand data: inconsistent for all",len(cand_names),len(job_l),len(age_gen_inc_l),len(win_nvote_l),len(win_nvote_l),len(circle_l))
+        
+        inconsistent_l.append([base_inf_l[0],district,[len(cand_names),len(job_l),len(age_gen_inc_l),len(win_nvote_l),len(win_nvote_l),len(circle_l)]])
+        
         id_lv_data_l_l = []
+        
         for cand_id in range(len(cand_names)):
             ##### names
             kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
             kana = cand_names[cand_id].contents[1].contents[1].text
             id_lv_data_l = base_inf_l + [district] + [kanji,kana] +[np.nan]*7 + elec_data_l + dist_data_l
             id_lv_data_l_l.append(id_lv_data_l)
+        
         return id_lv_data_l_l
 
     
@@ -323,7 +401,7 @@ def make_data_for_ele(csv_name):
     
     ### 判定(実施済み選挙 or 未実施)
     #### 選挙はすでに実施された　→　データ収集を実行
-    if ("予想" not in base_inf_l[0]) == True:
+    if (("予想" not in base_inf_l[0]) and ("任期満了" not in base_inf_l[0])) == True:
         
         ##### 選挙レベルデータの収集
         elec_data_l = collect_ele_or_dist_lv(lv_type="election")
@@ -377,26 +455,14 @@ def make_data_for_muni(muni_l,muni_num,elec_type,csv_name):
         make_data_for_ele(csv_name)
 
 ### 県ごと市町村議会のデータ作成
-def make_data_for_pref(pref_num,elec_type,csv_name):
+def make_data_for_pref(pref_num,elec_type):
     start = time.time()
-    initial_set(csv_name)
+    initial_set("data/"+str(elec_type)+"_pref_"+str(pref_num)+".csv")
     url_pref_l = get_municipalities(pref_num)
     for i in range(1,len(url_pref_l)):
         print(time.time() - start)
-        make_data_for_muni(url_pref_l,i,elec_type,csv_name)
-    
-   
-    
-    
-    
-
-
-    
-    
-   
-        
-    
-    
-
-
-    
+        make_data_for_muni(url_pref_l,i,elec_type,"data/"+str(elec_type)+"_pref_"+str(pref_num)+".csv")
+    global inconsistent_l
+    write_csv_rows("omitted_lists/omitted_l_p"+str(pref_num)+".csv",inconsistent_l)
+    print("Complete!:pref",)
+  
