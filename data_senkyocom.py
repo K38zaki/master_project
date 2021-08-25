@@ -89,7 +89,10 @@ def get_elections(muni_l,muni_num,elec_type):
 
 def collect_basic_info():
     ele_name_ymd = soup.find("h1",{"class":"p_local_senkyo_ttl column_ttl"}).text.replace("\n","").replace(" ","")
-    ele_name = ele_name_ymd[:str_find(ele_name_ymd,"挙")+1]
+    try:
+        ele_name = ele_name_ymd[:str_find(ele_name_ymd,"挙")+1]
+    except:
+        ele_name = ele_name_ymd
     pref_name = soup.find("p",{"class":"column_ttl_small"}).text
     muni_name = current_muni[0]
     base_inf_l = [ele_name_ymd, ele_name, pref_name, muni_name]
@@ -295,8 +298,14 @@ def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
             
             for cand_id in range(len(cand_names)):
                 ##### names
-                kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
-                kana = cand_names[cand_id].contents[1].contents[1].text
+                try:
+                    kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
+                except:
+                    kanji = np.nan
+                try:
+                    kana = cand_names[cand_id].contents[1].contents[1].text
+                except:
+                    kana = np.nan
 
                 ##### age, gen, inc
                 age_gen_inc = age_gen_inc_l[cand_id].text
@@ -339,8 +348,14 @@ def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
             
             for cand_id in range(len(cand_names)):
                 ##### names
-                kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
-                kana = cand_names[cand_id].contents[1].contents[1].text
+                try:
+                    kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
+                except:
+                    kanji = np.nan
+                try:
+                    kana = cand_names[cand_id].contents[1].contents[1].text
+                except:
+                    kana = np.nan
 
                 ##### age, gen, inc
                 age_gen_inc = age_gen_inc_l[cand_id].text
@@ -384,8 +399,15 @@ def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
         
         for cand_id in range(len(cand_names)):
             ##### names
-            kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
-            kana = cand_names[cand_id].contents[1].contents[1].text
+            try:
+                kanji = cand_names[cand_id].contents[1].contents[0].replace("\n","").replace("\t","")
+            except:
+                kanji = np.nan
+            try:
+                kana = cand_names[cand_id].contents[1].contents[1].text
+            except:
+                kana = np.nan
+                
             id_lv_data_l = base_inf_l + [district] + [kanji,kana] +[np.nan]*7 + elec_data_l + dist_data_l
             id_lv_data_l_l.append(id_lv_data_l)
         
@@ -464,5 +486,5 @@ def make_data_for_pref(pref_num,elec_type):
         make_data_for_muni(url_pref_l,i,elec_type,"data/"+str(elec_type)+"_pref_"+str(pref_num)+".csv")
     global inconsistent_l
     write_csv_rows("omitted_lists/omitted_l_p"+str(pref_num)+".csv",inconsistent_l)
-    print("Complete!:pref",)
+    print("Complete!:pref_"+str(pref_num))
   
