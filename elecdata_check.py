@@ -6,28 +6,33 @@ len(pref_1["ele_ymd"].unique())
 pref_1["ele_ymd"].unique()
 pref_1["gen"]
 pref_1.columns
-
-## groupby()
-#選挙ごとの立候補者数
-pref_1.groupby("ele_ymd").size()
-
-#選挙ごとの当選者数
-pref_1.groupby("ele_ymd").sum()["win"]
-
-#選挙ごとの投票率
-pref_1.groupby("ele_ymd").mean()["e_voting_rate"] # →ダメ
-
 pref_1["id"] = pref_1.index
+
+## as it is (元csvからそのまま使える変数)　→　groupby().first()で取得してしまう
+
+#各選挙の一人目の候補者の情報
+pref_1.groupby("ele_ymd").first()
+
+#そのまま使う変数のリスト
+asitis_l = ['election', 'prefecture', 'municipality','voting_ymd', 'year', 'month', 'day', 'kokuji_ymd','e_voting_rate','e_seats_target','e_n_candidates','e_competitive_ratio', 'e_all_voter', 'e_male_all_voter','e_female_all_voter','e_change_all_voter', 'e_reason', 'e_pre_v_rate','e_pre_seats_t', 'e_pre_n_cand', 'e_pre_compe_rate']
+
+asitis_df = pref_1.groupby("ele_ymd").first()[asitis_l].reset_index()
+
 
 ## 選挙リストで for loop 
 #選挙リスト
 ele_ymd_l = pref_1["ele_ymd"].unique()
+
+target_df = pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]
 
 #選挙名＋年月日
 ele_ymd_l[0]
 
 #選挙名
 pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["election"][0]
+
+#欠損値判定
+pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]].isnull().any()
 
 #都道府県
 pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["prefecture"][0]
@@ -128,9 +133,15 @@ try:
 except:
     pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["e_voting_rate"][0]
     
-#選挙ごとの無投票ダミー
-no_voting = 1 if pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["e_voting_rate"][0] == "無投票" else 0
-    
+#選挙ごとの無投票変数
+#無投票ダミー
+#no_voting = 1 if pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["e_voting_rate"][0] == "無投票" else 0
+#無投票当選者の割合
+no_voting_ratio_win = pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]][pref_1["d_voting_rate"]=="無投票"].shape[0]/pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]].count()["id"]
+#無投票で決定の選挙区の割合
+no_voting_ratio_districs = (pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]].groupby("district").first()["d_voting_rate"] == "無投票").mean()
+
+
 #選挙ごとの有権者数
 pref_1[pref_1["ele_ymd"] == ele_ymd_l[0]]["e_all_voter"][0]
 
