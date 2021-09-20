@@ -3,14 +3,15 @@ import numpy as np
 import tabula
 
 
-dfs = tabula.read_pdf("salaries_pdfs/R2_kyuyo_1_05.pdf", stream=True, pages = '2-65',multiple_tables=True)
+dfs = tabula.read_pdf("salaries_pdfs/h30_kyuyo_1_08.pdf", stream=True, pages = '2-64',multiple_tables=True)
 dfs[0]
+
 dfs[1].iloc[0,0].replace(" ","")
 
 # 何行目から情報が載っているか、それが各シートで統一されているかチェック
 for i in range(0,64):
     if i % 2 == 0:
-        print(dfs[i].iloc[4:7,0])
+        print(dfs[i].iloc[3:7,1])
     else:
         pass
 ## → True
@@ -60,31 +61,31 @@ dfs[12].iloc[5:,:].shape[1]
 ## →　False
 
 #一般行政職・期末手当　以外
-for i in range(2,64):
+for i in range(2,63):
     if i % 2 == 0:
-        print(dfs[i].iloc[5:,:].shape[1],dfs[i].iloc[7,0].replace(" ",""))
-        if dfs[i].iloc[5:,:].shape[1] == 18:
-            print(dfs[i].iloc[7,2:4].str.split())
-            print(dfs[i].iloc[7,6:10].str.split())
+        print(dfs[i].iloc[5:,:].shape[1],dfs[i].iloc[7,1].replace(" ",""))
+        if dfs[i].iloc[5:,:].shape[1] == 19:
+            print(dfs[i].iloc[7,3:5])
+            print(dfs[i].iloc[7,7:11])
         else:
-            print(dfs[i].iloc[7,1:3].str.split())
-            print(dfs[i].iloc[7,5:9].str.split())
+            print(dfs[i].iloc[7,2:4])
+            print(dfs[i].iloc[7,6:10])
     else:
         pass
     
-# →　18列と17列のページで関数を変更
+# →　Ok,19列と18列のページで関数を変更
 
 #一般行政職・期末手当
 for i in range(2,64):
     if i % 2 == 0:
-        print(dfs[i].iloc[7,-1])
+        print(dfs[i].iloc[6,-2])
     else:
         pass
 
 ## →　OK
 
 #2シート目(奇数ページ)
-dfs[5]
+dfs[3]
 
 #自治体名
 #列数18
@@ -94,6 +95,7 @@ name_2 = [(str(this_df.iloc[i,0])+str(this_df.iloc[i,1])).replace("nan","").repl
 this_df = dfs[7][dfs[7].iloc[:,1].isnull() == False]
 name_2 = list(this_df.iloc[:,0].str.replace(" ",""))
 
+dfs[3].iloc[7,1][:dfs[3].iloc[7,1].find("市")+1]
 #変数
 #列数18
 var_df = this_df.iloc[:,3:]
