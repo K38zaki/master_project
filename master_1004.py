@@ -263,7 +263,7 @@ new_mas[new_mas["population"].isnull()]
 jinko.to_csv("jinko_all.csv")
 new_mas.to_csv("master_datas/master_0520_1004_v3.csv")
 
-#所得（とりあえず2019以降）
+#所得
 income = pd.read_csv("income_all.csv",index_col=0)
 master = pd.read_csv("master_datas/master_0520_1004_v3.csv",index_col=0)
 
@@ -346,11 +346,85 @@ master.loc[kari_m["taxed_income"].isnull(),"disappear_dummy"] = 1
 master.loc[kari_m["taxed_income"].isnull()]
 master.to_csv("master_datas/master_0520_1007_v1.csv")
 
+#1007
+income_l = pd.read_csv("income_all.csv",index_col=0).iloc[:,1:]
+master = pd.read_csv("master_datas/master_0520_1007_v1.csv",index_col=0)
+
+income_d = pd.read_csv("demographic_data/demo_disa/income_disa.csv",encoding="cp932")
+income_d.columns = income_d.iloc[0]
+income_d = income_d.iloc[1:]
+income_d = income_d.drop(["調査年 コード","地域 コード","/項目"],axis=1)
+income_d["income_nendo"] = income_d["調査年"].str.replace("年度","").astype("int64")
+income_d = income_d.drop("調査年",axis=1)
+income_d = pd.concat([income_d,income_d["income_name"].str.split(expand=True)],axis=1)
+income_d.columns = income_l.columns[:7]
+income_d["prefecture"] = income_d["prefecture"].str.replace("（旧）","")
+income_d["taxed_popu_kinto"] = income_d["taxed_popu_kinto"].replace("***",np.nan).astype("float64")
+income_d = income_d.astype({"taxed_income":"float64","taxed_popu_syotoku":"float64"})
+income_d["income_per_syotokuwari"] = income_d["taxed_income"]/income_d["taxed_popu_syotoku"]
+income_d["pres_pm"] = income_d["prefecture"] + income_d["municipality"]
+
+income_l = pd.concat([income_l,income_d],axis=0)
+income_l.to_csv("income_all.csv")
+
+kari_m = pd.merge(master,income_l,how="left",on=["pres_pm","income_nendo"])
+kari_m[kari_m["taxed_income"].isnull()]["ele_ID"].values
+master = kari_m
+master.to_csv("master_datas/master_0520_1007_v1.csv")
+
+#財政変数
+zaisei = pd.read_csv("zaisei_all.csv",index_col=0)
+zaisei.year.unique()
+zaisei[zaisei["municipality"]=="篠山市"]
+zaisei.iloc[:,2:7].dtypes
+
+#()を抜く
+import re
+zaisei["keijyo_syusi_ratio"].loc[zaisei["keijyo_syusi_ratio"].str.match(r'\(|\)')] = zaisei["keijyo_syusi_ratio"][zaisei["keijyo_syusi_ratio"].str.match(r'\(|\)')].agg(lambda x:re.sub("\(|\)", "", x))
+zaisei["zaiseiryoku_index"].loc[zaisei["zaiseiryoku_index"].str.match(r'\(|\)')] = zaisei["zaiseiryoku_index"][zaisei["zaiseiryoku_index"].str.match(r'\(|\)')].agg(lambda x:re.sub("\(|\)", "", x))
+zaisei[zaisei["municipality"]=="千代田区"]
+
+zaisei.iloc[:,2:7] = zaisei.iloc[:,2:7].replace('－',np.nan).replace('-',np.nan).astype("float64")
+zaisei["syorai_hutan_ratio"] = zaisei["syorai_hutan_ratio"].replace('－',np.nan).replace('-',np.nan).astype("float64")
+zaisei.dtypes
+
+zaisei["time_pm"] = zaisei["prefecture"] + zaisei["municipality"]
+zaisei["time_pm"] = zaisei["time_pm"].str.replace("ケ","ヶ")
+zaisei["time_pm"] = zaisei["time_pm"].str.replace("金ヶ崎","金ケ崎").str.replace("龍ヶ崎","龍ケ崎")
+
+zaisei = zaisei.rename({"year":"zaisei_nendo"},axis=1)
+zaisei[zaisei["zaiseiryoku_index"].isnull()]
+master["zaisei_nendo"] = master["nendo"]
+kari_m = pd.merge(master,zaisei.iloc[:,2:],how="left",on=["zaisei_nendo","time_pm"])
+
+kari_m[(kari_m["zaiseiryoku_index"].isnull()) & (kari_m["zaisei_nendo"] < 2020)]
+
+zaisei[zaisei["time_pm"] == "東京都桧原村"]
+zaisei[zaisei["time_pm"] == "長野県天竜村"]
+zaisei[zaisei["time_pm"] == "愛知県長久手市"] #2011は長久手町に
+zaisei[zaisei["time_pm"] == "島根県斐川町"]　#2011は欠損に
+zaisei[zaisei["time_pm"] == "石川県野々市市"] #2011は野々市市に
+zaisei["time_pm"] = zaisei["time_pm"].str.replace("桧原村","檜原村").str.replace("天竜村","天龍村")
+zaisei.loc[(zaisei["time_pm"] == "愛知県長久手市")&(zaisei["zaisei_nendo"] == 2011),"time_pm"] = "愛知県長久手町"
+zaisei.loc[(zaisei["time_pm"] == "石川県野々市市")&(zaisei["zaisei_nendo"] == 2011),"time_pm"] = "石川県野々市町"
 
 
 
-# →　後日
+demo_z =pd.read_csv("demographic_data/zaisei_variables_1.csv",encoding="cp932")
+demo_z[demo_z["Unnamed: 3"] == "福岡県 福岡市"]
 
+kari_m = pd.merge(master,zaisei.iloc[:,2:],how="left",on=["zaisei_nendo","time_pm"])
+
+kari_m[(kari_m["zaiseiryoku_index"].isnull()) & (kari_m["zaisei_nendo"] < 2020)] #2011年島根県斐川町のみ欠損
+
+master = kari_m
+master.to_csv("master_datas/master_0520_1007_v2.csv")
+zaisei.to_csv("zaisei_all.csv")
+
+
+
+
+#分析用切り出し
 first_half = master[master.columns[:61]]
 second_half = master[master.columns[2373:]]
 for_analy = pd.concat([first_half,second_half],axis=1)
