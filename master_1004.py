@@ -417,6 +417,7 @@ kari_m = pd.merge(master,zaisei.iloc[:,2:],how="left",on=["zaisei_nendo","time_p
 
 kari_m[(kari_m["zaiseiryoku_index"].isnull()) & (kari_m["zaisei_nendo"] < 2020)] #2011年島根県斐川町のみ欠損
 
+#特別区は経常収支比率と財政力指数の計算方法が他と異なるので注意
 master = kari_m
 master.to_csv("master_datas/master_0520_1007_v2.csv")
 zaisei.to_csv("zaisei_all.csv")
