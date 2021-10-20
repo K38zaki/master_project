@@ -277,7 +277,80 @@ master[master["pres_pm"] == "北海道泊村"].iloc[:,2373:].values
 master.groupby("pres_pm").count()["ele_ID"][master.groupby("pres_pm").count()["ele_ID"] == 1]
          
 master.to_csv("master_datas/master_0520_1012_v2.csv")
+         
+#menseki
+master = pd.read_csv("master_datas/master_0520_1012_v2.csv",index_col=0)
 
+master
+
+menseki = pd.read_csv("demographic_data/menseki_variables_alls.csv",index_col=0,encoding="cp932")
+menseki.columns = menseki.iloc[0]
+menseki = menseki.iloc[1:]
+menseki = menseki.reset_index(drop=True)
+menseki[menseki["地域"] == "島根県 出雲市"]
+master[master["municipality"] == "出雲市"]
+master[master["municipality"] == "松本市"]["population"]
+         
+menseki = menseki.drop(["地域 コード","/項目"],axis=1)
+menseki = pd.concat([menseki,menseki["地域"].str.split(expand=True)],axis=1)
+menseki.columns = ["menseki_nendo","menseki_name","all_menseki","canlive_menseki","prefecture","municipality"]
+menseki["prefecture"] = menseki["prefecture"].str.replace("（旧）","")
+menseki["municipality"] = menseki["municipality"].replace("丹波篠山市","篠山市")
+menseki["time_pm"] = menseki["prefecture"] + menseki["municipality"]
+menseki[menseki["time_pm"] == "長野県長野市"]
+menseki["menseki_nendo"] = menseki["menseki_nendo"].str.replace("年度","").astype("int64")
+menseki.loc[:,"all_menseki":"canlive_menseki"] = menseki.loc[:,"all_menseki":"canlive_menseki"].replace('***',np.nan).replace('-',np.nan).astype("float64")
+menseki["canlive_ratio_menseki"] = menseki["canlive_menseki"]/menseki["all_menseki"]
+menseki[menseki["canlive_ratio_menseki"].isnull()]
+master["meseki_nendo"] = master["nendo"]
+master = master.rename({"meseki_nendo":"menseki_nendo"},axis=1)
+master.loc[master["nendo"] == 2020,"menseki_nendo"] = 2019 #2020の面積・可住地は2019年のものを用いた
+
+menseki["time_pm"] = menseki["time_pm"].str.replace("ケ","ヶ").str.replace("金ヶ崎","金ケ崎").str.replace("龍ヶ崎","龍ケ崎")
+
+kari_m = pd.merge(master,menseki,how="left",on=["menseki_nendo","time_pm"])
+         
+kari_m[kari_m["all_menseki"].isnull()]         
+menseki[menseki["time_pm"] == "島根県斐川町"]
+         
+menseki_n = pd.read_csv("demographic_data/menseki_nakagawa.csv",encoding="cp932")
+menseki_n.columns = menseki_n.iloc[0]
+menseki_n = menseki_n.iloc[1:]
+menseki_n = menseki_n.drop(["調査年 コード","地域 コード","/項目"],axis=1)
+menseki_n = pd.concat([menseki_n,menseki_n["地域"].str.split(expand=True)],axis=1)
+menseki_n.columns = menseki.columns[:-2]
+menseki_n["menseki_nendo"] = menseki_n["menseki_nendo"].str.replace("年度","").astype("int64")
+menseki_n["prefecture"] = menseki_n["prefecture"].str.replace("（旧）","")
+menseki_n.loc[:,"all_menseki":"canlive_menseki"] = menseki_n.loc[:,"all_menseki":"canlive_menseki"].astype("float64")
+menseki_n["time_pm"] = menseki_n["prefecture"] + menseki_n["municipality"]
+menseki_n["canlive_ratio_menseki"] = menseki_n["canlive_menseki"]/menseki_n["all_menseki"]
+menseki_n
+         
+menseki = pd.concat([menseki,menseki_n],axis=0)
+menseki["time_pm"] = menseki["time_pm"].str.replace("檮原町","梼原町")
+kari_m = pd.merge(master,menseki,how="left",on=["menseki_nendo","time_pm"])
+kari_m[kari_m["all_menseki"].isnull()] #だいたい合併直後の市町村　→　よって翌年のデータを与える
+sasayama19 = menseki[(menseki["time_pm"] == "兵庫県篠山市")&(menseki["menseki_nendo"] == 2019)]
+sasayama19.loc[:,"time_pm"] = "兵庫県丹波篠山市"
+sasayama19.loc[:,"menseki_nendo"] = 2020       
+sasayama19
+master
+menseki = menseki.append(sasayama19)          
+master.loc[kari_m["all_menseki"].isnull(),"menseki_nendo"] = master.loc[kari_m["all_menseki"].isnull(),"menseki_nendo"]+1
+#基本、欠損の場合翌年度のデータということにする
+kari_m = pd.merge(master,menseki,how="left",on=["menseki_nendo","time_pm"])
+kari_m[kari_m["all_menseki"].isnull()]       
+master.loc[kari_m["all_menseki"].isnull(),"menseki_nendo"] = master.loc[kari_m["all_menseki"].isnull(),"menseki_nendo"]-2   #島根県斐川町の2011年の欠損のみ前年度のデータということにする   
+kari_m = pd.merge(master,menseki,how="left",on=["menseki_nendo","time_pm"])
+kari_m[kari_m["all_menseki"].isnull()] 
+master = kari_m
+master["sigaika_ratio_area"] = master["sigaika_area"]/master["all_menseki"]
+master["industrial_ratio_area"] = (master["industrial"] + master["industrial_only"])/master["all_menseki"]
+master["commerce_ratio_area"] = master["commerce"]/master["all_menseki"] 
+master[master["time_pm"] == "北海道泊村"]
+
+master.to_csv("master_datas/master_0520_1014_v1.csv")
+#合併年と選挙年が同時の場合、調査のタイミング次第で変数がズレているかもしれない問題
 #分析用切り出し
 master = pd.read_csv("master_datas/master_0520_1011_v1.csv",index_col=0)
 master.columns[:61]
