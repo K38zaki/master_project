@@ -349,6 +349,7 @@ master["industrial_ratio_area"] = (master["industrial"] + master["industrial_onl
 master["commerce_ratio_area"] = master["commerce"]/master["all_menseki"] 
 master[master["time_pm"] == "北海道泊村"]
 
+menseki.to_csv("menseki_all.csv")
 master.to_csv("master_datas/master_0520_1014_v1.csv")
 #合併年と選挙年が同時の場合、調査のタイミング次第で変数がズレているかもしれない問題
 #分析用切り出し
