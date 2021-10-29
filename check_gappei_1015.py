@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import datetime
 
+
 #各データの取得時点の確認（合併前か後か）
 master = pd.read_csv("master_datas/master_0520_1014_v1.csv",index_col=0)
 master[master["pres_pm"] == "宮城県石巻市"]["population"]
@@ -265,6 +266,7 @@ master = master.drop("income_nendo_y",axis=1)
 master.to_csv("master_datas/master_0520_1021_v2.csv")
 
 #投票率
+
 for i in master.index:
     if (master.loc[i,"voting_rate"] != "無投票"):
         master.loc[i,"voting_rate_isna"] = master.loc[i,"voting_rate"]
