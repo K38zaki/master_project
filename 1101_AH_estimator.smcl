@@ -1,0 +1,1333 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\miyak\theses_codes\1101_AH_estimator.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Nov 2021, 15:11:34
+
+{com}. do "C:\Users\miyak\AppData\Local\Temp\STD26b4_000000.tmp"
+{txt}
+{com}. ** Simple First Differenenced
+. *differenced equation (no constant)
+. reg D.compe_rate_adopt D.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo2 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}    21.06
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0572
+                                                {txt}Root MSE          =    {res} .14905
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1178882{col 40}{space 2} .0755624{col 51}{space 1}   -1.56{col 60}{space 3}0.119{col 68}{space 4}-.2660971{col 81}{space 3} .0303206
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0283331{col 40}{space 2}  .056594{col 51}{space 1}    0.50{col 60}{space 3}0.617{col 68}{space 4}-.0826709{col 81}{space 3} .1393371
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0279262{col 40}{space 2} .0027579{col 51}{space 1}  -10.13{col 60}{space 3}0.000{col 68}{space 4}-.0333356{col 81}{space 3}-.0225168
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1319807{col 40}{space 2} .3630892{col 51}{space 1}    0.36{col 60}{space 3}0.716{col 68}{space 4}-.5801864{col 81}{space 3} .8441477
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .7964906{col 40}{space 2} .5123484{col 51}{space 1}    1.55{col 60}{space 3}0.120{col 68}{space 4} -.208435{col 81}{space 3} 1.801416
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-28.82486{col 40}{space 2} 105.8493{col 51}{space 1}   -0.27{col 60}{space 3}0.785{col 68}{space 4}-236.4387{col 81}{space 3}  178.789
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6330598{col 40}{space 2} .0873069{col 51}{space 1}    7.25{col 60}{space 3}0.000{col 68}{space 4} .4618151{col 81}{space 3} .8043046
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1881435{col 40}{space 2} .2612829{col 51}{space 1}   -0.72{col 60}{space 3}0.472{col 68}{space 4}-.7006266{col 81}{space 3} .3243397
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3610967{col 40}{space 2} .3916126{col 51}{space 1}    0.92{col 60}{space 3}0.357{col 68}{space 4}-.4070165{col 81}{space 3}  1.12921
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2163978{col 40}{space 2} .0471889{col 51}{space 1}   -4.59{col 60}{space 3}0.000{col 68}{space 4}-.3089546{col 81}{space 3} -.123841
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0347193{col 40}{space 2} .0483195{col 51}{space 1}   -0.72{col 60}{space 3}0.473{col 68}{space 4}-.1294937{col 81}{space 3}  .060055
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0585461{col 40}{space 2} .0289209{col 51}{space 1}   -2.02{col 60}{space 3}0.043{col 68}{space 4}-.1152718{col 81}{space 3}-.0018204
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1357833{col 40}{space 2}  .172049{col 51}{space 1}   -0.79{col 60}{space 3}0.430{col 68}{space 4} -.473242{col 81}{space 3} .2016755
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1724392{col 40}{space 2} .1966996{col 51}{space 1}   -0.88{col 60}{space 3}0.381{col 68}{space 4}-.5582479{col 81}{space 3} .2133696
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.129938{col 40}{space 2} .2097992{col 51}{space 1}   -0.62{col 60}{space 3}0.536{col 68}{space 4}-.5414404{col 81}{space 3} .2815644
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0418752{col 40}{space 2} .2276927{col 51}{space 1}   -0.18{col 60}{space 3}0.854{col 68}{space 4}-.4884739{col 81}{space 3} .4047236
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2195295{col 40}{space 2} .3465301{col 51}{space 1}   -0.63{col 60}{space 3}0.526{col 68}{space 4}-.8992172{col 81}{space 3} .4601583
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1788463{col 40}{space 2} .4026719{col 51}{space 1}   -0.44{col 60}{space 3}0.657{col 68}{space 4}-.9686513{col 81}{space 3} .6109587
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1074691{col 40}{space 2} .4190517{col 51}{space 1}   -0.26{col 60}{space 3}0.798{col 68}{space 4}-.9294016{col 81}{space 3} .7144634
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0009938{col 40}{space 2} .4343078{col 51}{space 1}    0.00{col 60}{space 3}0.998{col 68}{space 4}-.8508623{col 81}{space 3} .8528498
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1581019{col 40}{space 2} .5510723{col 51}{space 1}   -0.29{col 60}{space 3}0.774{col 68}{space 4}-1.238981{col 81}{space 3} .9227772
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1233137{col 40}{space 2} .6113571{col 51}{space 1}   -0.20{col 60}{space 3}0.840{col 68}{space 4}-1.322436{col 81}{space 3} 1.075809
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0554762{col 40}{space 2} .6285214{col 51}{space 1}   -0.09{col 60}{space 3}0.930{col 68}{space 4}-1.288265{col 81}{space 3} 1.177312
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0456535{col 40}{space 2} .6430478{col 51}{space 1}    0.07{col 60}{space 3}0.943{col 68}{space 4}-1.215627{col 81}{space 3} 1.306934
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. reg D.compe_rate_adopt D.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo2 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}    14.19
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0574
+                                                {txt}Root MSE          =    {res} .14899
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1177164{col 40}{space 2}  .075544{col 51}{space 1}   -1.56{col 60}{space 3}0.119{col 68}{space 4}-.2658891{col 81}{space 3} .0304564
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0291246{col 40}{space 2} .0567567{col 51}{space 1}    0.51{col 60}{space 3}0.608{col 68}{space 4}-.0821985{col 81}{space 3} .1404478
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0279022{col 40}{space 2} .0027576{col 51}{space 1}  -10.12{col 60}{space 3}0.000{col 68}{space 4} -.033311{col 81}{space 3}-.0224934
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1248424{col 40}{space 2} .3634175{col 51}{space 1}    0.34{col 60}{space 3}0.731{col 68}{space 4}-.5879685{col 81}{space 3} .8376533
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .8118615{col 40}{space 2} .5133402{col 51}{space 1}    1.58{col 60}{space 3}0.114{col 68}{space 4}-.1950094{col 81}{space 3} 1.818732
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -71.3957{col 40}{space 2} 119.1854{col 51}{space 1}   -0.60{col 60}{space 3}0.549{col 68}{space 4}-305.1673{col 81}{space 3} 162.3759
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6125606{col 40}{space 2} .0833198{col 51}{space 1}    7.35{col 60}{space 3}0.000{col 68}{space 4} .4491363{col 81}{space 3} .7759849
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1834068{col 40}{space 2} .2625333{col 51}{space 1}   -0.70{col 60}{space 3}0.485{col 68}{space 4}-.6983424{col 81}{space 3} .3315289
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3682801{col 40}{space 2} .3919372{col 51}{space 1}    0.94{col 60}{space 3}0.348{col 68}{space 4}-.4004696{col 81}{space 3}  1.13703
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2173251{col 40}{space 2} .0472054{col 51}{space 1}   -4.60{col 60}{space 3}0.000{col 68}{space 4}-.3099144{col 81}{space 3}-.1247359
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0257537{col 40}{space 2} .0488352{col 51}{space 1}   -0.53{col 60}{space 3}0.598{col 68}{space 4}-.1215396{col 81}{space 3} .0700322
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0381576{col 40}{space 2} .0226531{col 51}{space 1}   -1.68{col 60}{space 3}0.092{col 68}{space 4}-.0825897{col 81}{space 3} .0062745
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.173794{col 40}{space 2} .1790484{col 51}{space 1}   -0.97{col 60}{space 3}0.332{col 68}{space 4}-.5249813{col 81}{space 3} .1773934
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2959169{col 40}{space 2} .2421469{col 51}{space 1}   -1.22{col 60}{space 3}0.222{col 68}{space 4}-.7708663{col 81}{space 3} .1790326
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2479998{col 40}{space 2} .2554948{col 51}{space 1}   -0.97{col 60}{space 3}0.332{col 68}{space 4}  -.74913{col 81}{space 3} .2531305
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1587526{col 40}{space 2} .2718687{col 51}{space 1}   -0.58{col 60}{space 3}0.559{col 68}{space 4}-.6919987{col 81}{space 3} .3744936
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3880681{col 40}{space 2} .3966646{col 51}{space 1}   -0.98{col 60}{space 3}0.328{col 68}{space 4} -1.16609{col 81}{space 3}  .389954
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4046509{col 40}{space 2} .4936897{col 51}{space 1}   -0.82{col 60}{space 3}0.413{col 68}{space 4}-1.372979{col 81}{space 3} .5636774
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3278512{col 40}{space 2} .5098904{col 51}{space 1}   -0.64{col 60}{space 3}0.520{col 68}{space 4}-1.327956{col 81}{space 3} .6722532
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2179809{col 40}{space 2} .5239091{col 51}{space 1}   -0.42{col 60}{space 3}0.677{col 68}{space 4}-1.245582{col 81}{space 3}   .80962
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4289482{col 40}{space 2} .6461762{col 51}{space 1}   -0.66{col 60}{space 3}0.507{col 68}{space 4}-1.696365{col 81}{space 3} .8384686
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4510918{col 40}{space 2} .7472601{col 51}{space 1}   -0.60{col 60}{space 3}0.546{col 68}{space 4}-1.916776{col 81}{space 3} 1.014592
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3777508{col 40}{space 2} .7643734{col 51}{space 1}   -0.49{col 60}{space 3}0.621{col 68}{space 4}-1.877001{col 81}{space 3} 1.121499
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2754456{col 40}{space 2} .7776651{col 51}{space 1}   -0.35{col 60}{space 3}0.723{col 68}{space 4}-1.800766{col 81}{space 3} 1.249875
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} .1867413{col 40}{space 2} .1632792{col 51}{space 1}    1.14{col 60}{space 3}0.253{col 68}{space 4}-.1335162{col 81}{space 3} .5069987
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. ** Anderson and Hsiao without lag of dependent
+. *differenced equation (no constant)
+. 
+. *first stage
+. reg D.lnsalary_am_kokuji L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+note: D.nendo14 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}     8.93
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.1028
+                                                {txt}Root MSE          =    {res} .04463
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}      D.lnsalary_am_kokuji{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2}-.0205342{col 40}{space 2} .0038077{col 51}{space 1}   -5.39{col 60}{space 3}0.000{col 68}{space 4}-.0280026{col 81}{space 3}-.0130657
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .081332{col 40}{space 2} .0347686{col 51}{space 1}    2.34{col 60}{space 3}0.019{col 68}{space 4} .0131366{col 81}{space 3} .1495275
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0001948{col 40}{space 2} .0012519{col 51}{space 1}    0.16{col 60}{space 3}0.876{col 68}{space 4}-.0022608{col 81}{space 3} .0026503
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2781748{col 40}{space 2} .1358212{col 51}{space 1}   -2.05{col 60}{space 3}0.041{col 68}{space 4}-.5445759{col 81}{space 3}-.0117737
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4159331{col 40}{space 2} .2356192{col 51}{space 1}   -1.77{col 60}{space 3}0.078{col 68}{space 4}-.8780791{col 81}{space 3} .0462128
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 54.26014{col 40}{space 2}  30.8928{col 51}{space 1}    1.76{col 60}{space 3}0.079{col 68}{space 4}-6.333322{col 81}{space 3} 114.8536
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0123477{col 40}{space 2} .0497284{col 51}{space 1}   -0.25{col 60}{space 3}0.804{col 68}{space 4}-.1098854{col 81}{space 3} .0851901
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1611143{col 40}{space 2} .1455942{col 51}{space 1}    1.11{col 60}{space 3}0.269{col 68}{space 4}-.1244558{col 81}{space 3} .4466844
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3308498{col 40}{space 2} .2210034{col 51}{space 1}    1.50{col 60}{space 3}0.135{col 68}{space 4}-.1026286{col 81}{space 3} .7643282
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0370327{col 40}{space 2} .0168082{col 51}{space 1}   -2.20{col 60}{space 3}0.028{col 68}{space 4}-.0700004{col 81}{space 3}-.0040649
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .001815{col 40}{space 2} .0171335{col 51}{space 1}    0.11{col 60}{space 3}0.916{col 68}{space 4}-.0317909{col 81}{space 3} .0354209
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0180918{col 40}{space 2} .0074167{col 51}{space 1}   -2.44{col 60}{space 3}0.015{col 68}{space 4} -.032639{col 81}{space 3}-.0035446
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2444186{col 40}{space 2} .1817345{col 51}{space 1}   -1.34{col 60}{space 3}0.179{col 68}{space 4}-.6008745{col 81}{space 3} .1120373
+{txt}{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2237967{col 40}{space 2} .1467608{col 51}{space 1}   -1.52{col 60}{space 3}0.127{col 68}{space 4}-.5116549{col 81}{space 3} .0640615
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1476163{col 40}{space 2} .1229258{col 51}{space 1}   -1.20{col 60}{space 3}0.230{col 68}{space 4}-.3887242{col 81}{space 3} .0934916
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1408943{col 40}{space 2} .1201763{col 51}{space 1}   -1.17{col 60}{space 3}0.241{col 68}{space 4}-.3766094{col 81}{space 3} .0948208
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1791136{col 40}{space 2} .1050265{col 51}{space 1}   -1.71{col 60}{space 3}0.088{col 68}{space 4}-.3851138{col 81}{space 3} .0268865
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1382557{col 40}{space 2} .0877974{col 51}{space 1}   -1.57{col 60}{space 3}0.116{col 68}{space 4}-.3104624{col 81}{space 3} .0339511
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0918139{col 40}{space 2} .0633221{col 51}{space 1}   -1.45{col 60}{space 3}0.147{col 68}{space 4}-.2160146{col 81}{space 3} .0323868
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0767397{col 40}{space 2}  .059836{col 51}{space 1}   -1.28{col 60}{space 3}0.200{col 68}{space 4}-.1941026{col 81}{space 3} .0406232
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1181995{col 40}{space 2}   .05113{col 51}{space 1}   -2.31{col 60}{space 3}0.021{col 68}{space 4}-.2184864{col 81}{space 3}-.0179125
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0711106{col 40}{space 2} .0389016{col 51}{space 1}   -1.83{col 60}{space 3}0.068{col 68}{space 4}-.1474126{col 81}{space 3} .0051915
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0139485{col 40}{space 2} .0120695{col 51}{space 1}   -1.16{col 60}{space 3}0.248{col 68}{space 4}-.0376217{col 81}{space 3} .0097246
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0446506{col 40}{space 2} .0372962{col 51}{space 1}   -1.20{col 60}{space 3}0.231{col 68}{space 4}-.1178038{col 81}{space 3} .0285027
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. test L1.lnsalary_am_kokuji=0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1641) ={res}   29.08
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. *iv
+. ivreg D.compe_rate_adopt (D.lnsalary_am_kokuji = L1.lnsalary_am_kokuji) D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes) 
+
+{txt}Instrumental variables (2SLS) regression        Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}    11.16
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}         .
+                                                {txt}Root MSE          =    {res} .15122
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .4444325{col 40}{space 2} .4794611{col 51}{space 1}    0.93{col 60}{space 3}0.354{col 68}{space 4}-.4959877{col 81}{space 3} 1.384853
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0425152{col 40}{space 2} .0605981{col 51}{space 1}    0.70{col 60}{space 3}0.483{col 68}{space 4}-.0763426{col 81}{space 3}  .161373
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0287263{col 40}{space 2} .0031098{col 51}{space 1}   -9.24{col 60}{space 3}0.000{col 68}{space 4}-.0348258{col 81}{space 3}-.0226267
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .4145424{col 40}{space 2} .4506136{col 51}{space 1}    0.92{col 60}{space 3}0.358{col 68}{space 4}-.4692959{col 81}{space 3} 1.298381
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .9622706{col 40}{space 2}  .540943{col 51}{space 1}    1.78{col 60}{space 3}0.075{col 68}{space 4}-.0987407{col 81}{space 3} 2.023282
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-36.78634{col 40}{space 2}  107.446{col 51}{space 1}   -0.34{col 60}{space 3}0.732{col 68}{space 4} -247.532{col 81}{space 3} 173.9594
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6199958{col 40}{space 2} .0912089{col 51}{space 1}    6.80{col 60}{space 3}0.000{col 68}{space 4} .4410978{col 81}{space 3} .7988938
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2746565{col 40}{space 2} .3179987{col 51}{space 1}   -0.86{col 60}{space 3}0.388{col 68}{space 4}-.8983826{col 81}{space 3} .3490696
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1349352{col 40}{space 2} .4421885{col 51}{space 1}    0.31{col 60}{space 3}0.760{col 68}{space 4}-.7323779{col 81}{space 3} 1.002248
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1995535{col 40}{space 2} .0492539{col 51}{space 1}   -4.05{col 60}{space 3}0.000{col 68}{space 4}-.2961606{col 81}{space 3}-.1029464
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0396824{col 40}{space 2} .0491882{col 51}{space 1}   -0.81{col 60}{space 3}0.420{col 68}{space 4}-.1361608{col 81}{space 3} .0567959
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0576257{col 40}{space 2} .0290916{col 51}{space 1}   -1.98{col 60}{space 3}0.048{col 68}{space 4}-.1146863{col 81}{space 3}-.0005651
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1324328{col 40}{space 2} .1763952{col 51}{space 1}    0.75{col 60}{space 3}0.453{col 68}{space 4}-.2135507{col 81}{space 3} .4784163
+{txt}{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0349816{col 40}{space 2} .1312319{col 51}{space 1}   -0.27{col 60}{space 3}0.790{col 68}{space 4}-.2923813{col 81}{space 3} .2224181
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0016975{col 40}{space 2} .1397238{col 51}{space 1}    0.01{col 60}{space 3}0.990{col 68}{space 4}-.2723582{col 81}{space 3} .2757532
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1045995{col 40}{space 2} .1575955{col 51}{space 1}    0.66{col 60}{space 3}0.507{col 68}{space 4}-.2045101{col 81}{space 3} .4137091
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0737599{col 40}{space 2}  .237004{col 51}{space 1}   -0.31{col 60}{space 3}0.756{col 68}{space 4} -.538622{col 81}{space 3} .3911021
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0272559{col 40}{space 2} .3010773{col 51}{space 1}   -0.09{col 60}{space 3}0.928{col 68}{space 4}-.6177922{col 81}{space 3} .5632804
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0335516{col 40}{space 2} .3160142{col 51}{space 1}    0.11{col 60}{space 3}0.915{col 68}{space 4} -.586282{col 81}{space 3} .6533853
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1588996{col 40}{space 2} .3379563{col 51}{space 1}    0.47{col 60}{space 3}0.638{col 68}{space 4}-.5039714{col 81}{space 3} .8217707
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.003415{col 40}{space 2} .4374642{col 51}{space 1}   -0.01{col 60}{space 3}0.994{col 68}{space 4}-.8614619{col 81}{space 3}  .854632
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0313715{col 40}{space 2} .5040497{col 51}{space 1}    0.06{col 60}{space 3}0.950{col 68}{space 4}-.9572769{col 81}{space 3}  1.02002
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0891369{col 40}{space 2} .5198827{col 51}{space 1}    0.17{col 60}{space 3}0.864{col 68}{space 4}-.9305665{col 81}{space 3}  1.10884
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2085588{col 40}{space 2} .5418361{col 51}{space 1}    0.38{col 60}{space 3}0.700{col 68}{space 4}-.8542044{col 81}{space 3} 1.271322
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 15 22}Instrumented:{space 2}D.lnsalary_am_kokuji{p_end}
+{p 0 15 22}Instruments:{space 3}D.ln_population D.n_seats_adopt D.population_elderly75_ratio D.population_child15_ratio D.ln_income_time_year D.ln_all_menseki D.canlive_ratio_menseki D.sigaika_ratio_area D.cand_ratio_musyozoku_pre D.touitsu_ele_dummy D.expired_dummy D.nendo1 D.nendo2 D.nendo3 D.nendo4 D.nendo5 D.nendo6 D.nendo7 D.nendo8 D.nendo9 D.nendo10 D.nendo11 D.nendo12 D.nendo13 D.nendo14 D.nendo15 L.lnsalary_am_kokuji{p_end}
+{hline 92}
+
+{com}. 
+. *differenced equation with constant (constantの解釈不能 →　時間の経過に伴う伸び？)
+. 
+. *first stage
+. reg D.lnsalary_am_kokuji L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo2 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}     6.71
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0772
+                                                {txt}Root MSE          =    {res} .04435
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}      D.lnsalary_am_kokuji{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2}-.0288654{col 40}{space 2} .0040001{col 51}{space 1}   -7.22{col 60}{space 3}0.000{col 68}{space 4}-.0367113{col 81}{space 3}-.0210195
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .125505{col 40}{space 2} .0359357{col 51}{space 1}    3.49{col 60}{space 3}0.000{col 68}{space 4} .0550203{col 81}{space 3} .1959897
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0002744{col 40}{space 2} .0012357{col 51}{space 1}   -0.22{col 60}{space 3}0.824{col 68}{space 4}-.0026981{col 81}{space 3} .0021492
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.195807{col 40}{space 2} .1301542{col 51}{space 1}   -1.50{col 60}{space 3}0.133{col 68}{space 4}-.4510927{col 81}{space 3} .0594787
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4467453{col 40}{space 2} .2343141{col 51}{space 1}   -1.91{col 60}{space 3}0.057{col 68}{space 4}-.9063315{col 81}{space 3} .0128409
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 19.60208{col 40}{space 2} 20.71045{col 51}{space 1}    0.95{col 60}{space 3}0.344{col 68}{space 4}-21.01961{col 81}{space 3} 60.22377
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0513037{col 40}{space 2} .0461578{col 51}{space 1}   -1.11{col 60}{space 3}0.267{col 68}{space 4} -.141838{col 81}{space 3} .0392307
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1697602{col 40}{space 2} .1458465{col 51}{space 1}    1.16{col 60}{space 3}0.245{col 68}{space 4}-.1163047{col 81}{space 3} .4558251
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .310581{col 40}{space 2} .2196263{col 51}{space 1}    1.41{col 60}{space 3}0.158{col 68}{space 4}-.1201964{col 81}{space 3} .7413583
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0410199{col 40}{space 2} .0168399{col 51}{space 1}   -2.44{col 60}{space 3}0.015{col 68}{space 4}-.0740498{col 81}{space 3}-.0079899
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0096986{col 40}{space 2} .0157235{col 51}{space 1}    0.62{col 60}{space 3}0.537{col 68}{space 4}-.0211416{col 81}{space 3} .0405389
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0003757{col 40}{space 2} .0056361{col 51}{space 1}   -0.07{col 60}{space 3}0.947{col 68}{space 4}-.0114305{col 81}{space 3} .0106791
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0140706{col 40}{space 2} .0436938{col 51}{space 1}   -0.32{col 60}{space 3}0.747{col 68}{space 4}-.0997721{col 81}{space 3} .0716308
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0080264{col 40}{space 2} .0441672{col 51}{space 1}   -0.18{col 60}{space 3}0.856{col 68}{space 4}-.0946564{col 81}{space 3} .0786037
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0037039{col 40}{space 2} .0444703{col 51}{space 1}    0.08{col 60}{space 3}0.934{col 68}{space 4}-.0835206{col 81}{space 3} .0909284
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0379037{col 40}{space 2} .0777144{col 51}{space 1}   -0.49{col 60}{space 3}0.626{col 68}{space 4}-.1903337{col 81}{space 3} .1145262
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0427841{col 40}{space 2} .0811357{col 51}{space 1}   -0.53{col 60}{space 3}0.598{col 68}{space 4}-.2019246{col 81}{space 3} .1163564
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0418145{col 40}{space 2} .0804486{col 51}{space 1}   -0.52{col 60}{space 3}0.603{col 68}{space 4}-.1996072{col 81}{space 3} .1159783
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0217593{col 40}{space 2} .0812477{col 51}{space 1}   -0.27{col 60}{space 3}0.789{col 68}{space 4}-.1811194{col 81}{space 3} .1376009
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0661796{col 40}{space 2} .1146984{col 51}{space 1}   -0.58{col 60}{space 3}0.564{col 68}{space 4}-.2911503{col 81}{space 3}  .158791
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0643657{col 40}{space 2} .1183935{col 51}{space 1}   -0.54{col 60}{space 3}0.587{col 68}{space 4} -.296584{col 81}{space 3} .1678526
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0521254{col 40}{space 2} .1176136{col 51}{space 1}   -0.44{col 60}{space 3}0.658{col 68}{space 4} -.282814{col 81}{space 3} .1785632
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0331969{col 40}{space 2} .1189065{col 51}{space 1}   -0.28{col 60}{space 3}0.780{col 68}{space 4}-.2664214{col 81}{space 3} .2000277
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0813654{col 40}{space 2} .1521638{col 51}{space 1}   -0.53{col 60}{space 3}0.593{col 68}{space 4}-.3798212{col 81}{space 3} .2170904
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} .2234154{col 40}{space 2} .0319381{col 51}{space 1}    7.00{col 60}{space 3}0.000{col 68}{space 4} .1607717{col 81}{space 3} .2860592
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. test L1.lnsalary_am_kokuji=0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1641) ={res}   52.07
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. *iv
+. ivreg D.compe_rate_adopt (D.lnsalary_am_kokuji = L1.lnsalary_am_kokuji) D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+
+{txt}Instrumental variables (2SLS) regression        Number of obs     = {res}     2,816
+                                                {txt}F(24, 1641)       =  {res}     8.97
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}         .
+                                                {txt}Root MSE          =    {res} .15455
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,642} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .7878274{col 40}{space 2} .2644662{col 51}{space 1}    2.98{col 60}{space 3}0.003{col 68}{space 4} .2691005{col 81}{space 3} 1.306554
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .051973{col 40}{space 2} .0628681{col 51}{space 1}    0.83{col 60}{space 3}0.409{col 68}{space 4}-.0713372{col 81}{space 3} .1752831
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0291902{col 40}{space 2} .0033017{col 51}{space 1}   -8.84{col 60}{space 3}0.000{col 68}{space 4}-.0356662{col 81}{space 3}-.0227143
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .5797799{col 40}{space 2} .4160868{col 51}{space 1}    1.39{col 60}{space 3}0.164{col 68}{space 4}-.2363371{col 81}{space 3} 1.395897
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 1.079021{col 40}{space 2} .5493922{col 51}{space 1}    1.96{col 60}{space 3}0.050{col 68}{space 4} .0014376{col 81}{space 3} 2.156605
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-84.75258{col 40}{space 2} 122.1396{col 51}{space 1}   -0.69{col 60}{space 3}0.488{col 68}{space 4}-324.3185{col 81}{space 3} 154.8134
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .5912647{col 40}{space 2} .0906428{col 51}{space 1}    6.52{col 60}{space 3}0.000{col 68}{space 4} .4134769{col 81}{space 3} .7690525
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3226647{col 40}{space 2} .3461431{col 51}{space 1}   -0.93{col 60}{space 3}0.351{col 68}{space 4}-1.001593{col 81}{space 3}  .356264
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0041682{col 40}{space 2} .4350717{col 51}{space 1}    0.01{col 60}{space 3}0.992{col 68}{space 4}-.8491862{col 81}{space 3} .8575225
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1902113{col 40}{space 2} .0496677{col 51}{space 1}   -3.83{col 60}{space 3}0.000{col 68}{space 4}  -.28763{col 81}{space 3}-.0927926
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0336332{col 40}{space 2} .0512182{col 51}{space 1}   -0.66{col 60}{space 3}0.511{col 68}{space 4}-.1340932{col 81}{space 3} .0668268
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0364187{col 40}{space 2} .0222031{col 51}{space 1}   -1.64{col 60}{space 3}0.101{col 68}{space 4}-.0799681{col 81}{space 3} .0071308
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1688771{col 40}{space 2} .1882663{col 51}{space 1}   -0.90{col 60}{space 3}0.370{col 68}{space 4}-.5381447{col 81}{space 3} .2003905
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2893799{col 40}{space 2} .2485442{col 51}{space 1}   -1.16{col 60}{space 3}0.244{col 68}{space 4}-.7768771{col 81}{space 3} .1981174
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2507702{col 40}{space 2}  .260084{col 51}{space 1}   -0.96{col 60}{space 3}0.335{col 68}{space 4}-.7609018{col 81}{space 3} .2593614
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1376116{col 40}{space 2} .2930849{col 51}{space 1}   -0.47{col 60}{space 3}0.639{col 68}{space 4}-.7124716{col 81}{space 3} .4372483
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3687131{col 40}{space 2} .4104054{col 51}{space 1}   -0.90{col 60}{space 3}0.369{col 68}{space 4}-1.173687{col 81}{space 3} .4362604
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3766433{col 40}{space 2} .5038007{col 51}{space 1}   -0.75{col 60}{space 3}0.455{col 68}{space 4}-1.364803{col 81}{space 3} .6115167
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3167964{col 40}{space 2} .5176711{col 51}{space 1}   -0.61{col 60}{space 3}0.541{col 68}{space 4}-1.332162{col 81}{space 3} .6985693
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1797171{col 40}{space 2} .5460008{col 51}{space 1}   -0.33{col 60}{space 3}0.742{col 68}{space 4}-1.250649{col 81}{space 3} .8912147
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3965212{col 40}{space 2} .6631489{col 51}{space 1}   -0.60{col 60}{space 3}0.550{col 68}{space 4}-1.697229{col 81}{space 3} .9041861
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4193844{col 40}{space 2} .7608873{col 51}{space 1}   -0.55{col 60}{space 3}0.582{col 68}{space 4}-1.911797{col 81}{space 3} 1.073028
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3621939{col 40}{space 2} .7758986{col 51}{space 1}   -0.47{col 60}{space 3}0.641{col 68}{space 4} -1.88405{col 81}{space 3} 1.159662
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2304167{col 40}{space 2} .8022655{col 51}{space 1}   -0.29{col 60}{space 3}0.774{col 68}{space 4}-1.803989{col 81}{space 3} 1.343155
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} .1890925{col 40}{space 2} .1615456{col 51}{space 1}    1.17{col 60}{space 3}0.242{col 68}{space 4}-.1277648{col 81}{space 3} .5059498
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 15 22}Instrumented:{space 2}D.lnsalary_am_kokuji{p_end}
+{p 0 15 22}Instruments:{space 3}D.ln_population D.n_seats_adopt D.population_elderly75_ratio D.population_child15_ratio D.ln_income_time_year D.ln_all_menseki D.canlive_ratio_menseki D.sigaika_ratio_area D.cand_ratio_musyozoku_pre D.touitsu_ele_dummy D.expired_dummy D.nendo1 D.nendo2 D.nendo3 D.nendo4 D.nendo5 D.nendo6 D.nendo7 D.nendo8 D.nendo9 D.nendo10 D.nendo11 D.nendo12 D.nendo13 D.nendo14 D.nendo15 L.lnsalary_am_kokuji{p_end}
+{hline 92}
+
+{com}. 
+. ** Anderson and Hsiao
+. *differenced equation (no constant)
+. 
+. *first stage
+. reg LD.compe_rate_adopt L2.compe_rate_adopt L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo2 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}   109.76
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.5371
+                                                {txt}Root MSE          =    {res} .11523
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}       LD.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}L2. {c |}{col 28}{res}{space 2} -.858013{col 40}{space 2} .0194433{col 51}{space 1}  -44.13{col 60}{space 3}0.000{col 68}{space 4}-.8961494{col 81}{space 3}-.8198765
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2} .1063067{col 40}{space 2} .0067932{col 51}{space 1}   15.65{col 60}{space 3}0.000{col 68}{space 4} .0929824{col 81}{space 3} .1196309
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0716081{col 40}{space 2} .0725501{col 51}{space 1}    0.99{col 60}{space 3}0.324{col 68}{space 4}-.0706926{col 81}{space 3} .2139089
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .018327{col 40}{space 2} .0021839{col 51}{space 1}    8.39{col 60}{space 3}0.000{col 68}{space 4} .0140435{col 81}{space 3} .0226105
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}   .11355{col 40}{space 2} .2999833{col 51}{space 1}    0.38{col 60}{space 3}0.705{col 68}{space 4}-.4748413{col 81}{space 3} .7019413
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .5079405{col 40}{space 2} .4256277{col 51}{space 1}    1.19{col 60}{space 3}0.233{col 68}{space 4}-.3268913{col 81}{space 3} 1.342772
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 49.22276{col 40}{space 2} 79.28257{col 51}{space 1}    0.62{col 60}{space 3}0.535{col 68}{space 4}-106.2831{col 81}{space 3} 204.7287
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4005407{col 40}{space 2} .0990772{col 51}{space 1}   -4.04{col 60}{space 3}0.000{col 68}{space 4} -.594872{col 81}{space 3}-.2062094
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0304251{col 40}{space 2} .2014101{col 51}{space 1}   -0.15{col 60}{space 3}0.880{col 68}{space 4}-.4254735{col 81}{space 3} .3646233
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0920474{col 40}{space 2} .5787085{col 51}{space 1}   -0.16{col 60}{space 3}0.874{col 68}{space 4}-1.227134{col 81}{space 3} 1.043039
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3028719{col 40}{space 2} .0414097{col 51}{space 1}    7.31{col 60}{space 3}0.000{col 68}{space 4} .2216504{col 81}{space 3} .3840935
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0446521{col 40}{space 2} .0494801{col 51}{space 1}    0.90{col 60}{space 3}0.367{col 68}{space 4}-.0523989{col 81}{space 3} .1417031
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0032222{col 40}{space 2} .0264932{col 51}{space 1}    0.12{col 60}{space 3}0.903{col 68}{space 4}-.0487418{col 81}{space 3} .0551863
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0496871{col 40}{space 2} .1540957{col 51}{space 1}   -0.32{col 60}{space 3}0.747{col 68}{space 4}-.3519324{col 81}{space 3} .2525582
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2109696{col 40}{space 2}  .159066{col 51}{space 1}    1.33{col 60}{space 3}0.185{col 68}{space 4}-.1010245{col 81}{space 3} .5229637
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2224006{col 40}{space 2} .1600678{col 51}{space 1}    1.39{col 60}{space 3}0.165{col 68}{space 4}-.0915586{col 81}{space 3} .5363598
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0802416{col 40}{space 2}   .18192{col 51}{space 1}    0.44{col 60}{space 3}0.659{col 68}{space 4}-.2765788{col 81}{space 3}  .437062
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2818683{col 40}{space 2} .2408768{col 51}{space 1}    1.17{col 60}{space 3}0.242{col 68}{space 4}-.1905907{col 81}{space 3} .7543273
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2928358{col 40}{space 2} .3102255{col 51}{space 1}    0.94{col 60}{space 3}0.345{col 68}{space 4}-.3156446{col 81}{space 3} .9013162
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2908108{col 40}{space 2} .3131211{col 51}{space 1}    0.93{col 60}{space 3}0.353{col 68}{space 4} -.323349{col 81}{space 3} .9049707
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .154656{col 40}{space 2} .3321405{col 51}{space 1}    0.47{col 60}{space 3}0.642{col 68}{space 4}-.4968088{col 81}{space 3} .8061207
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3539569{col 40}{space 2} .3875819{col 51}{space 1}    0.91{col 60}{space 3}0.361{col 68}{space 4}-.4062514{col 81}{space 3} 1.114165
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3476909{col 40}{space 2} .4649733{col 51}{space 1}    0.75{col 60}{space 3}0.455{col 68}{space 4}-.5643139{col 81}{space 3} 1.259696
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3446919{col 40}{space 2} .4685599{col 51}{space 1}    0.74{col 60}{space 3}0.462{col 68}{space 4}-.5743478{col 81}{space 3} 1.263732
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2207846{col 40}{space 2} .4861749{col 51}{space 1}    0.45{col 60}{space 3}0.650{col 68}{space 4}-.7328054{col 81}{space 3} 1.174375
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.  
+. test L2.compe_rate_adopt = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L2.compe_rate_adopt = 0{p_end}
+
+{txt}       F(  1,  1638) ={res} 1947.36
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. test L1.lnsalary_am_kokuji = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}  244.89
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. reg D.lnsalary_am_kokuji L2.compe_rate_adopt L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo2 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}     8.66
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.1051
+                                                {txt}Root MSE          =    {res} .04465
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}      D.lnsalary_am_kokuji{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}L2. {c |}{col 28}{res}{space 2} .0171306{col 40}{space 2} .0074666{col 51}{space 1}    2.29{col 60}{space 3}0.022{col 68}{space 4} .0024855{col 81}{space 3} .0317758
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2}-.0224688{col 40}{space 2} .0038523{col 51}{space 1}   -5.83{col 60}{space 3}0.000{col 68}{space 4}-.0300248{col 81}{space 3}-.0149128
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0813445{col 40}{space 2} .0345757{col 51}{space 1}    2.35{col 60}{space 3}0.019{col 68}{space 4} .0135271{col 81}{space 3} .1491618
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0002391{col 40}{space 2} .0012281{col 51}{space 1}    0.19{col 60}{space 3}0.846{col 68}{space 4}-.0021697{col 81}{space 3} .0026478
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2831347{col 40}{space 2}  .135959{col 51}{space 1}   -2.08{col 60}{space 3}0.037{col 68}{space 4}-.5498065{col 81}{space 3}-.0164629
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4382052{col 40}{space 2} .2369565{col 51}{space 1}   -1.85{col 60}{space 3}0.065{col 68}{space 4}-.9029749{col 81}{space 3} .0265644
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 50.35672{col 40}{space 2} 29.69952{col 51}{space 1}    1.70{col 60}{space 3}0.090{col 68}{space 4}-7.896308{col 81}{space 3} 108.6098
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0079461{col 40}{space 2} .0515434{col 51}{space 1}   -0.15{col 60}{space 3}0.878{col 68}{space 4}-.1090439{col 81}{space 3} .0931518
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1608475{col 40}{space 2}  .145755{col 51}{space 1}    1.10{col 60}{space 3}0.270{col 68}{space 4}-.1250384{col 81}{space 3} .4467334
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3395391{col 40}{space 2} .2229029{col 51}{space 1}    1.52{col 60}{space 3}0.128{col 68}{space 4}-.0976655{col 81}{space 3} .7767438
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0326345{col 40}{space 2} .0171639{col 51}{space 1}   -1.90{col 60}{space 3}0.057{col 68}{space 4}-.0662999{col 81}{space 3} .0010309
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0014168{col 40}{space 2} .0168248{col 51}{space 1}    0.08{col 60}{space 3}0.933{col 68}{space 4}-.0315835{col 81}{space 3} .0344171
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0173195{col 40}{space 2} .0073191{col 51}{space 1}   -2.37{col 60}{space 3}0.018{col 68}{space 4}-.0316753{col 81}{space 3}-.0029638
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0255115{col 40}{space 2} .0546394{col 51}{space 1}    0.47{col 60}{space 3}0.641{col 68}{space 4} -.081659{col 81}{space 3} .1326819
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1008669{col 40}{space 2} .0619433{col 51}{space 1}    1.63{col 60}{space 3}0.104{col 68}{space 4}-.0206294{col 81}{space 3} .2223633
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1064479{col 40}{space 2} .0630092{col 51}{space 1}    1.69{col 60}{space 3}0.091{col 68}{space 4}-.0171392{col 81}{space 3} .2300351
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0704309{col 40}{space 2}  .087626{col 51}{space 1}    0.80{col 60}{space 3}0.422{col 68}{space 4}-.1014399{col 81}{space 3} .2423017
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1121698{col 40}{space 2}  .103833{col 51}{space 1}    1.08{col 60}{space 3}0.280{col 68}{space 4}-.0914896{col 81}{space 3} .3158293
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1569951{col 40}{space 2} .1179044{col 51}{space 1}    1.33{col 60}{space 3}0.183{col 68}{space 4}-.0742642{col 81}{space 3} .3882545
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1728855{col 40}{space 2} .1196859{col 51}{space 1}    1.44{col 60}{space 3}0.149{col 68}{space 4}-.0618679{col 81}{space 3}  .407639
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1341397{col 40}{space 2} .1420826{col 51}{space 1}    0.94{col 60}{space 3}0.345{col 68}{space 4}-.1445431{col 81}{space 3} .4128225
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1821363{col 40}{space 2} .1592161{col 51}{space 1}    1.14{col 60}{space 3}0.253{col 68}{space 4}-.1301522{col 81}{space 3} .4944248
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2379629{col 40}{space 2} .1751936{col 51}{space 1}    1.36{col 60}{space 3}0.175{col 68}{space 4}-.1056642{col 81}{space 3}   .58159
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .252881{col 40}{space 2} .1770187{col 51}{space 1}    1.43{col 60}{space 3}0.153{col 68}{space 4}-.0943259{col 81}{space 3} .6000879
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2107332{col 40}{space 2} .1985708{col 51}{space 1}    1.06{col 60}{space 3}0.289{col 68}{space 4}-.1787461{col 81}{space 3} .6002125
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. test L2.compe_rate_adopt = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L2.compe_rate_adopt = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}    5.26
+{txt}{col 13}Prob > F ={res}    0.0219
+{txt}
+{com}. test L1.lnsalary_am_kokuji = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}   34.02
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. *iv
+. ivreg D.compe_rate_adopt (LD.compe_rate_adopt D.lnsalary_am_kokuji = L2.compe_rate_adopt L1.lnsalary_am_kokuji) D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , nocons cluster(pres_pm_codes)
+
+{txt}Instrumental variables (2SLS) regression        Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}     9.56
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}         .
+                                                {txt}Root MSE          =    {res} .15429
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}LD. {c |}{col 28}{res}{space 2} .0409096{col 40}{space 2} .0289494{col 51}{space 1}    1.41{col 60}{space 3}0.158{col 68}{space 4}-.0158721{col 81}{space 3} .0976913
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .4603225{col 40}{space 2} .4905514{col 51}{space 1}    0.94{col 60}{space 3}0.348{col 68}{space 4}-.5018516{col 81}{space 3} 1.422497
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .042634{col 40}{space 2} .0612538{col 51}{space 1}    0.70{col 60}{space 3}0.487{col 68}{space 4}  -.07751{col 81}{space 3}  .162778
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0297911{col 40}{space 2} .0032274{col 51}{space 1}   -9.23{col 60}{space 3}0.000{col 68}{space 4}-.0361213{col 81}{space 3}-.0234608
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .4473183{col 40}{space 2} .4600698{col 51}{space 1}    0.97{col 60}{space 3}0.331{col 68}{space 4}-.4550688{col 81}{space 3} 1.349705
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 1.017151{col 40}{space 2} .5546055{col 51}{space 1}    1.83{col 60}{space 3}0.067{col 68}{space 4}-.0706593{col 81}{space 3} 2.104962
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-33.42923{col 40}{space 2} 109.6321{col 51}{space 1}   -0.30{col 60}{space 3}0.760{col 68}{space 4}-248.4631{col 81}{space 3} 181.6047
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6317377{col 40}{space 2} .0937853{col 51}{space 1}    6.74{col 60}{space 3}0.000{col 68}{space 4} .4477859{col 81}{space 3} .8156894
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2769891{col 40}{space 2} .3282825{col 51}{space 1}   -0.84{col 60}{space 3}0.399{col 68}{space 4}-.9208868{col 81}{space 3} .3669086
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1094705{col 40}{space 2} .4557542{col 51}{space 1}    0.24{col 60}{space 3}0.810{col 68}{space 4}-.7844518{col 81}{space 3} 1.003393
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2140517{col 40}{space 2} .0521282{col 51}{space 1}   -4.11{col 60}{space 3}0.000{col 68}{space 4}-.3162965{col 81}{space 3}-.1118068
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0408125{col 40}{space 2} .0507038{col 51}{space 1}   -0.80{col 60}{space 3}0.421{col 68}{space 4}-.1402635{col 81}{space 3} .0586386
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0589062{col 40}{space 2} .0299983{col 51}{space 1}   -1.96{col 60}{space 3}0.050{col 68}{space 4}-.1177453{col 81}{space 3}-.0000672
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1408998{col 40}{space 2} .1831637{col 51}{space 1}    0.77{col 60}{space 3}0.442{col 68}{space 4}-.2183599{col 81}{space 3} .5001596
+{txt}{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.040645{col 40}{space 2}  .137119{col 51}{space 1}   -0.30{col 60}{space 3}0.767{col 68}{space 4}-.3095921{col 81}{space 3} .2283021
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0051207{col 40}{space 2} .1451998{col 51}{space 1}   -0.04{col 60}{space 3}0.972{col 68}{space 4}-.2899175{col 81}{space 3} .2796762
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0995726{col 40}{space 2} .1629675{col 51}{space 1}    0.61{col 60}{space 3}0.541{col 68}{space 4} -.220074{col 81}{space 3} .4192193
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0887468{col 40}{space 2} .2436112{col 51}{space 1}   -0.36{col 60}{space 3}0.716{col 68}{space 4} -.566569{col 81}{space 3} .3890755
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0398062{col 40}{space 2} .3088645{col 51}{space 1}   -0.13{col 60}{space 3}0.897{col 68}{space 4}-.6456171{col 81}{space 3} .5660047
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0211136{col 40}{space 2} .3237082{col 51}{space 1}    0.07{col 60}{space 3}0.948{col 68}{space 4} -.613812{col 81}{space 3} .6560392
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1473143{col 40}{space 2} .3456812{col 51}{space 1}    0.43{col 60}{space 3}0.670{col 68}{space 4}-.5307094{col 81}{space 3}  .825338
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0252479{col 40}{space 2} .4472432{col 51}{space 1}   -0.06{col 60}{space 3}0.955{col 68}{space 4}-.9024766{col 81}{space 3} .8519808
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0120468{col 40}{space 2} .5155848{col 51}{space 1}    0.02{col 60}{space 3}0.981{col 68}{space 4}-.9992282{col 81}{space 3} 1.023322
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0694832{col 40}{space 2} .5314214{col 51}{space 1}    0.13{col 60}{space 3}0.896{col 68}{space 4}-.9728538{col 81}{space 3}  1.11182
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1897163{col 40}{space 2} .5533714{col 51}{space 1}    0.34{col 60}{space 3}0.732{col 68}{space 4}-.8956738{col 81}{space 3} 1.275106
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 15 22}Instrumented:{space 2}LD.compe_rate_adopt D.lnsalary_am_kokuji{p_end}
+{p 0 15 22}Instruments:{space 3}D.ln_population D.n_seats_adopt D.population_elderly75_ratio D.population_child15_ratio D.ln_income_time_year D.ln_all_menseki D.canlive_ratio_menseki D.sigaika_ratio_area D.cand_ratio_musyozoku_pre D.touitsu_ele_dummy D.expired_dummy D.nendo1 D.nendo2 D.nendo3 D.nendo4 D.nendo5 D.nendo6 D.nendo7 D.nendo8 D.nendo9 D.nendo10 D.nendo11 D.nendo12 D.nendo13 D.nendo14 D.nendo15 L2.compe_rate_adopt L.lnsalary_am_kokuji{p_end}
+{hline 92}
+
+{com}. 
+. *differenced equation with constant
+. 
+. *first stage
+. reg LD.compe_rate_adopt L2.compe_rate_adopt L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+note: D.nendo14 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}   107.37
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.5323
+                                                {txt}Root MSE          =    {res} .11504
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}       LD.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}L2. {c |}{col 28}{res}{space 2}-.8619995{col 40}{space 2} .0196414{col 51}{space 1}  -43.89{col 60}{space 3}0.000{col 68}{space 4}-.9005245{col 81}{space 3}-.8234746
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2} .0952369{col 40}{space 2} .0068021{col 51}{space 1}   14.00{col 60}{space 3}0.000{col 68}{space 4} .0818952{col 81}{space 3} .1085786
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1324105{col 40}{space 2} .0706068{col 51}{space 1}    1.88{col 60}{space 3}0.061{col 68}{space 4}-.0060786{col 81}{space 3} .2708997
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .017649{col 40}{space 2} .0021688{col 51}{space 1}    8.14{col 60}{space 3}0.000{col 68}{space 4} .0133951{col 81}{space 3} .0219029
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2302263{col 40}{space 2} .2994183{col 51}{space 1}    0.77{col 60}{space 3}0.442{col 68}{space 4}-.3570567{col 81}{space 3} .8175093
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .472066{col 40}{space 2} .4240394{col 51}{space 1}    1.11{col 60}{space 3}0.266{col 68}{space 4}-.3596505{col 81}{space 3} 1.303783
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 2.313778{col 40}{space 2}  78.4537{col 51}{space 1}    0.03{col 60}{space 3}0.976{col 68}{space 4}-151.5664{col 81}{space 3} 156.1939
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4546321{col 40}{space 2} .0955276{col 51}{space 1}   -4.76{col 60}{space 3}0.000{col 68}{space 4}-.6420012{col 81}{space 3} -.267263
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0187801{col 40}{space 2} .2007298{col 51}{space 1}   -0.09{col 60}{space 3}0.925{col 68}{space 4}-.4124943{col 81}{space 3}  .374934
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1229844{col 40}{space 2} .5759469{col 51}{space 1}   -0.21{col 60}{space 3}0.831{col 68}{space 4}-1.252654{col 81}{space 3} 1.006685
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .2964663{col 40}{space 2} .0412177{col 51}{space 1}    7.19{col 60}{space 3}0.000{col 68}{space 4} .2156213{col 81}{space 3} .3773114
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0556004{col 40}{space 2} .0502529{col 51}{space 1}    1.11{col 60}{space 3}0.269{col 68}{space 4}-.0429664{col 81}{space 3} .1541671
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0274493{col 40}{space 2} .0268323{col 51}{space 1}    1.02{col 60}{space 3}0.306{col 68}{space 4}-.0251799{col 81}{space 3} .0800784
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0389442{col 40}{space 2} .4370055{col 51}{space 1}    0.09{col 60}{space 3}0.929{col 68}{space 4}-.8182043{col 81}{space 3} .8960926
+{txt}{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0596698{col 40}{space 2} .3968254{col 51}{space 1}   -0.15{col 60}{space 3}0.880{col 68}{space 4}-.8380084{col 81}{space 3} .7186687
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1050147{col 40}{space 2}  .293044{col 51}{space 1}    0.36{col 60}{space 3}0.720{col 68}{space 4}-.4697657{col 81}{space 3} .6797951
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1233391{col 40}{space 2} .2905833{col 51}{space 1}    0.42{col 60}{space 3}0.671{col 68}{space 4}-.4466149{col 81}{space 3} .6932932
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0240363{col 40}{space 2} .2775366{col 51}{space 1}   -0.09{col 60}{space 3}0.931{col 68}{space 4}-.5684003{col 81}{space 3} .5203276
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1144708{col 40}{space 2} .2462515{col 51}{space 1}    0.46{col 60}{space 3}0.642{col 68}{space 4}-.3685301{col 81}{space 3} .5974717
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0632766{col 40}{space 2} .1491034{col 51}{space 1}    0.42{col 60}{space 3}0.671{col 68}{space 4}-.2291767{col 81}{space 3} .3557299
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0680549{col 40}{space 2} .1454035{col 51}{space 1}    0.47{col 60}{space 3}0.640{col 68}{space 4}-.2171415{col 81}{space 3} .3532514
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0728462{col 40}{space 2} .1367299{col 51}{space 1}   -0.53{col 60}{space 3}0.594{col 68}{space 4}  -.34103{col 81}{space 3} .1953375
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0639792{col 40}{space 2} .1168095{col 51}{space 1}    0.55{col 60}{space 3}0.584{col 68}{space 4}-.1651325{col 81}{space 3} .2930909
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0037583{col 40}{space 2} .0247607{col 51}{space 1}   -0.15{col 60}{space 3}0.879{col 68}{space 4}-.0523242{col 81}{space 3} .0448076
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.129372{col 40}{space 2} .0497062{col 51}{space 1}   -2.60{col 60}{space 3}0.009{col 68}{space 4}-.2268665{col 81}{space 3}-.0318776
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2}  .307931{col 40}{space 2} .1098853{col 51}{space 1}    2.80{col 60}{space 3}0.005{col 68}{space 4} .0924006{col 81}{space 3} .5234614
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}.  
+. test L2.compe_rate_adopt = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L2.compe_rate_adopt = 0{p_end}
+
+{txt}       F(  1,  1638) ={res} 1926.05
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. test L1.lnsalary_am_kokuji = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}  196.03
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. reg D.lnsalary_am_kokuji L2.compe_rate_adopt L1.lnsalary_am_kokuji D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+{txt}note: D.nendo1 omitted because of collinearity
+note: D.nendo3 omitted because of collinearity
+note: D.nendo14 omitted because of collinearity
+
+Linear regression                               Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}     6.41
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}    0.0791
+                                                {txt}Root MSE          =    {res} .04438
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}      D.lnsalary_am_kokuji{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}L2. {c |}{col 28}{res}{space 2} .0143077{col 40}{space 2} .0073141{col 51}{space 1}    1.96{col 60}{space 3}0.051{col 68}{space 4}-.0000383{col 81}{space 3} .0286536
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}L1. {c |}{col 28}{res}{space 2}-.0303074{col 40}{space 2}  .004142{col 51}{space 1}   -7.32{col 60}{space 3}0.000{col 68}{space 4}-.0384317{col 81}{space 3}-.0221831
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1243993{col 40}{space 2} .0359126{col 51}{space 1}    3.46{col 60}{space 3}0.001{col 68}{space 4} .0539599{col 81}{space 3} .1948387
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.000241{col 40}{space 2} .0012109{col 51}{space 1}   -0.20{col 60}{space 3}0.842{col 68}{space 4}-.0026161{col 81}{space 3} .0021341
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.200515{col 40}{space 2} .1303057{col 51}{space 1}   -1.54{col 60}{space 3}0.124{col 68}{space 4}-.4560983{col 81}{space 3} .0550683
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4636083{col 40}{space 2} .2355227{col 51}{space 1}   -1.97{col 60}{space 3}0.049{col 68}{space 4}-.9255657{col 81}{space 3}-.0016509
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 17.13996{col 40}{space 2} 19.86574{col 51}{space 1}    0.86{col 60}{space 3}0.388{col 68}{space 4}-21.82497{col 81}{space 3} 56.10489
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0462488{col 40}{space 2} .0477498{col 51}{space 1}   -0.97{col 60}{space 3}0.333{col 68}{space 4}-.1399058{col 81}{space 3} .0474082
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .1690934{col 40}{space 2} .1458833{col 51}{space 1}    1.16{col 60}{space 3}0.247{col 68}{space 4}-.1170441{col 81}{space 3}  .455231
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .3176323{col 40}{space 2} .2214036{col 51}{space 1}    1.43{col 60}{space 3}0.152{col 68}{space 4}-.1166317{col 81}{space 3} .7518963
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0371704{col 40}{space 2}  .017208{col 51}{space 1}   -2.16{col 60}{space 3}0.031{col 68}{space 4}-.0709223{col 81}{space 3}-.0034185
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0091694{col 40}{space 2} .0154428{col 51}{space 1}    0.59{col 60}{space 3}0.553{col 68}{space 4}-.0211202{col 81}{space 3}  .039459
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0001641{col 40}{space 2} .0056387{col 51}{space 1}   -0.03{col 60}{space 3}0.977{col 68}{space 4} -.011224{col 81}{space 3} .0108958
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  .018776{col 40}{space 2} .1142018{col 51}{space 1}    0.16{col 60}{space 3}0.869{col 68}{space 4}-.2052211{col 81}{space 3}  .242773
+{txt}{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0096417{col 40}{space 2} .0773394{col 51}{space 1}    0.12{col 60}{space 3}0.901{col 68}{space 4}-.1420527{col 81}{space 3} .1613362
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0170382{col 40}{space 2} .0763251{col 51}{space 1}    0.22{col 60}{space 3}0.823{col 68}{space 4}-.1326668{col 81}{space 3} .1667433
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0275006{col 40}{space 2} .0740564{col 51}{space 1}    0.37{col 60}{space 3}0.710{col 68}{space 4}-.1177547{col 81}{space 3} .1727558
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0122103{col 40}{space 2} .0450776{col 51}{space 1}   -0.27{col 60}{space 3}0.787{col 68}{space 4}-.1006262{col 81}{space 3} .0762055
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.015167{col 40}{space 2} .0398743{col 51}{space 1}   -0.38{col 60}{space 3}0.704{col 68}{space 4} -.093377{col 81}{space 3}  .063043
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0143591{col 40}{space 2} .0394304{col 51}{space 1}   -0.36{col 60}{space 3}0.716{col 68}{space 4}-.0916984{col 81}{space 3} .0629802
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0063488{col 40}{space 2} .0368327{col 51}{space 1}    0.17{col 60}{space 3}0.863{col 68}{space 4}-.0658953{col 81}{space 3} .0785929
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} -.035758{col 40}{space 2} .0175925{col 51}{space 1}   -2.03{col 60}{space 3}0.042{col 68}{space 4}-.0702642{col 81}{space 3}-.0012517
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0320009{col 40}{space 2} .0134366{col 51}{space 1}   -2.38{col 60}{space 3}0.017{col 68}{space 4}-.0583556{col 81}{space 3}-.0056463
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0197029{col 40}{space 2} .0102788{col 51}{space 1}   -1.92{col 60}{space 3}0.055{col 68}{space 4}-.0398638{col 81}{space 3} .0004579
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0460174{col 40}{space 2} .0357887{col 51}{space 1}   -1.29{col 60}{space 3}0.199{col 68}{space 4}-.1162138{col 81}{space 3}  .024179
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} .2180493{col 40}{space 2} .0320301{col 51}{space 1}    6.81{col 60}{space 3}0.000{col 68}{space 4} .1552251{col 81}{space 3} .2808736
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. test L2.compe_rate_adopt = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L2.compe_rate_adopt = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}    3.83
+{txt}{col 13}Prob > F ={res}    0.0506
+{txt}
+{com}. test L1.lnsalary_am_kokuji = 0
+
+{p 0 7}{space 1}{text:( 1)}{space 1} {res}L.lnsalary_am_kokuji = 0{p_end}
+
+{txt}       F(  1,  1638) ={res}   53.54
+{txt}{col 13}Prob > F ={res}    0.0000
+{txt}
+{com}. 
+. *iv
+. ivreg D.compe_rate_adopt (LD.compe_rate_adopt D.lnsalary_am_kokuji = L2.compe_rate_adopt L1.lnsalary_am_kokuji) D.(ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area cand_ratio_musyozoku_pre touitsu_ele_dummy expired_dummy nendo1 nendo2 nendo3 nendo4 nendo5 nendo6 nendo7 nendo8 nendo9 nendo10 nendo11 nendo12 nendo13 nendo14 nendo15) , cluster(pres_pm_codes)
+
+{txt}Instrumental variables (2SLS) regression        Number of obs     = {res}     2,805
+                                                {txt}F(25, 1638)       =  {res}     7.79
+                                                {txt}Prob > F          = {res}    0.0000
+                                                {txt}R-squared         = {res}         .
+                                                {txt}Root MSE          =    {res} .15842
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,639} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}        D.compe_rate_adopt{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      t{col 60}   P>|t|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}compe_rate_adopt {c |}
+{space 23}LD. {c |}{col 28}{res}{space 2} .0506502{col 40}{space 2} .0275592{col 51}{space 1}    1.84{col 60}{space 3}0.066{col 68}{space 4}-.0034048{col 81}{space 3} .1047051
+{txt}{space 26} {c |}
+{space 8}lnsalary_am_kokuji {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .8064632{col 40}{space 2} .2691638{col 51}{space 1}    3.00{col 60}{space 3}0.003{col 68}{space 4} .2785218{col 81}{space 3} 1.334405
+{txt}{space 26} {c |}
+{space 13}ln_population {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .0508105{col 40}{space 2} .0639622{col 51}{space 1}    0.79{col 60}{space 3}0.427{col 68}{space 4}-.0746458{col 81}{space 3} .1762668
+{txt}{space 26} {c |}
+{space 13}n_seats_adopt {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0304652{col 40}{space 2} .0033611{col 51}{space 1}   -9.06{col 60}{space 3}0.000{col 68}{space 4}-.0370578{col 81}{space 3}-.0238727
+{txt}{space 26} {c |}
+population_elderly75_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6152765{col 40}{space 2} .4250826{col 51}{space 1}    1.45{col 60}{space 3}0.148{col 68}{space 4}-.2184862{col 81}{space 3} 1.449039
+{txt}{space 26} {c |}
+{space 2}population_child15_ratio {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} 1.142036{col 40}{space 2} .5632859{col 51}{space 1}    2.03{col 60}{space 3}0.043{col 68}{space 4} .0371991{col 81}{space 3} 2.246872
+{txt}{space 26} {c |}
+{space 7}ln_income_time_year {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-79.90834{col 40}{space 2} 124.6109{col 51}{space 1}   -0.64{col 60}{space 3}0.521{col 68}{space 4}-324.3218{col 81}{space 3} 164.5051
+{txt}{space 26} {c |}
+{space 12}ln_all_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2} .6054461{col 40}{space 2} .0960293{col 51}{space 1}    6.30{col 60}{space 3}0.000{col 68}{space 4} .4170931{col 81}{space 3} .7937992
+{txt}{space 26} {c |}
+{space 5}canlive_ratio_menseki {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3252764{col 40}{space 2} .3585239{col 51}{space 1}   -0.91{col 60}{space 3}0.364{col 68}{space 4} -1.02849{col 81}{space 3} .3779371
+{txt}{space 26} {c |}
+{space 8}sigaika_ratio_area {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0260029{col 40}{space 2} .4476174{col 51}{space 1}   -0.06{col 60}{space 3}0.954{col 68}{space 4}-.9039655{col 81}{space 3} .8519598
+{txt}{space 26} {c |}
+{space 2}cand_ratio_musyozoku_pre {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2096069{col 40}{space 2} .0539947{col 51}{space 1}   -3.88{col 60}{space 3}0.000{col 68}{space 4}-.3155128{col 81}{space 3} -.103701
+{txt}{space 26} {c |}
+{space 9}touitsu_ele_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}  -.03507{col 40}{space 2} .0531205{col 51}{space 1}   -0.66{col 60}{space 3}0.509{col 68}{space 4}-.1392612{col 81}{space 3} .0691213
+{txt}{space 26} {c |}
+{space 13}expired_dummy {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.0381875{col 40}{space 2} .0234207{col 51}{space 1}   -1.63{col 60}{space 3}0.103{col 68}{space 4}-.0841252{col 81}{space 3} .0077501
+{txt}{space 26} {c |}
+{space 20}nendo1 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo2 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo3 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 26} {c |}
+{space 20}nendo4 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1790446{col 40}{space 2} .1956192{col 51}{space 1}   -0.92{col 60}{space 3}0.360{col 68}{space 4}-.5627347{col 81}{space 3} .2046456
+{txt}{space 26} {c |}
+{space 20}nendo5 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3067624{col 40}{space 2} .2546914{col 51}{space 1}   -1.20{col 60}{space 3}0.229{col 68}{space 4}-.8063174{col 81}{space 3} .1927927
+{txt}{space 26} {c |}
+{space 20}nendo6 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2690828{col 40}{space 2}  .266184{col 51}{space 1}   -1.01{col 60}{space 3}0.312{col 68}{space 4}-.7911797{col 81}{space 3}  .253014
+{txt}{space 26} {c |}
+{space 20}nendo7 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.1537149{col 40}{space 2} .2993266{col 51}{space 1}   -0.51{col 60}{space 3}0.608{col 68}{space 4} -.740818{col 81}{space 3} .4333883
+{txt}{space 26} {c |}
+{space 20}nendo8 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3968877{col 40}{space 2} .4190984{col 51}{space 1}   -0.95{col 60}{space 3}0.344{col 68}{space 4}-1.218913{col 81}{space 3} .4251375
+{txt}{space 26} {c |}
+{space 20}nendo9 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4014284{col 40}{space 2} .5150392{col 51}{space 1}   -0.78{col 60}{space 3}0.436{col 68}{space 4}-1.411633{col 81}{space 3} .6087763
+{txt}{space 26} {c |}
+{space 19}nendo10 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3418458{col 40}{space 2} .5289932{col 51}{space 1}   -0.65{col 60}{space 3}0.518{col 68}{space 4} -1.37942{col 81}{space 3} .6957284
+{txt}{space 26} {c |}
+{space 19}nendo11 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2037979{col 40}{space 2} .5575451{col 51}{space 1}   -0.37{col 60}{space 3}0.715{col 68}{space 4}-1.297374{col 81}{space 3} .8897785
+{txt}{space 26} {c |}
+{space 19}nendo12 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4329647{col 40}{space 2} .6769336{col 51}{space 1}   -0.64{col 60}{space 3}0.523{col 68}{space 4}-1.760711{col 81}{space 3} .8947818
+{txt}{space 26} {c |}
+{space 19}nendo13 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.4523711{col 40}{space 2} .7775857{col 51}{space 1}   -0.58{col 60}{space 3}0.561{col 68}{space 4}-1.977538{col 81}{space 3} 1.072796
+{txt}{space 26} {c |}
+{space 19}nendo14 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.3959538{col 40}{space 2} .7927155{col 51}{space 1}   -0.50{col 60}{space 3}0.618{col 68}{space 4}-1.950797{col 81}{space 3} 1.158889
+{txt}{space 26} {c |}
+{space 19}nendo15 {c |}
+{space 23}D1. {c |}{col 28}{res}{space 2}-.2632529{col 40}{space 2}  .819268{col 51}{space 1}   -0.32{col 60}{space 3}0.748{col 68}{space 4}-1.870176{col 81}{space 3}  1.34367
+{txt}{space 26} {c |}
+{space 21}_cons {c |}{col 28}{res}{space 2} .1875403{col 40}{space 2} .1650081{col 51}{space 1}    1.14{col 60}{space 3}0.256{col 68}{space 4}-.1361089{col 81}{space 3} .5111895
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 15 22}Instrumented:{space 2}LD.compe_rate_adopt D.lnsalary_am_kokuji{p_end}
+{p 0 15 22}Instruments:{space 3}D.ln_population D.n_seats_adopt D.population_elderly75_ratio D.population_child15_ratio D.ln_income_time_year D.ln_all_menseki D.canlive_ratio_menseki D.sigaika_ratio_area D.cand_ratio_musyozoku_pre D.touitsu_ele_dummy D.expired_dummy D.nendo1 D.nendo2 D.nendo3 D.nendo4 D.nendo5 D.nendo6 D.nendo7 D.nendo8 D.nendo9 D.nendo10 D.nendo11 D.nendo12 D.nendo13 D.nendo14 D.nendo15 L2.compe_rate_adopt L.lnsalary_am_kokuji{p_end}
+{hline 92}
+
+{com}. 
+{txt}end of do-file
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\miyak\theses_codes\1101_AH_estimator.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Nov 2021, 15:13:16
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
