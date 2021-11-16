@@ -31,3 +31,4 @@ gen salary_12month = 12 * salary_am_kokuji
 gen ln_diff_salary = log(salary_12month) - log(income_time_year)
 gen ratio_salary = salary_12month/income_time_year
 gen persentage_salary = (salary_12month - income_time_year)/income_time_year
+
