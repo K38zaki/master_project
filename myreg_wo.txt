@@ -1,0 +1,43 @@
+	(1)	(2)	(3)
+VARIABLES	OLS	FE	FE
+			
+lnsalary_am_kokuji	0.0774***	0.00280	0.0105
+	(0.00382)	(0.0137)	(0.0255)
+ln_population			0.0397
+			(0.0269)
+n_seats_adopt			-0.00182**
+			(0.000925)
+population_elderly75_ratio			-0.0672
+			(0.154)
+population_child15_ratio			0.0722
+			(0.247)
+ln_income_time_year			-1.332
+			(20.91)
+ln_all_menseki			-0.0938**
+			(0.0425)
+canlive_ratio_menseki			0.0113
+			(0.0889)
+sigaika_ratio_area			0.0475
+			(0.249)
+zaiseiryoku_index			-0.00326
+			(0.0241)
+cand_ratio_musyozoku_pre			0.0344*
+			(0.0199)
+expired_dummy			0.0212**
+			(0.00978)
+touitsu_2011			0.0135
+			(0.0175)
+touitsu_2015			-0.00196
+			(0.0176)
+touitsu_2019			0.00525
+			(0.0181)
+Constant	-0.508***	0.0811	10.63
+	(0.0302)	(0.109)	(159.0)
+			
+Observations	6,572	6,572	4,538
+R-squared	0.142	0.103	0.103
+Municipality FE	No	Yes	Yes
+Nendo FE	No	Yes	Yes
+Number of pres_pm_codes		1,750	1,735
+Robust standard errors in parentheses			
+*** p<0.01, ** p<0.05, * p<0.1			

@@ -403,8 +403,129 @@ ivregress 2sls D.ratio_forfeit_deposit (LD.ratio_forfeit_deposit D.lnsalary_am_k
 estat firststage
 
 
+** 1125
+** ABbond2
+ssc install xtabond2
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt L.lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt L.lnsalary_am_kokuji) ivstyle(i.nendo) robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo) robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo) nolevel twostep robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo) twostep robust small
 
 
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm( lnsalary_am_kokuji) ivstyle(i.nendo) nolevel twostep robust small
 
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm( lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
 
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo, gmm(lnsalary_am_kokuji) ivstyle(i.nendo) robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo i.ele_t , gmm(lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019) nolevel robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019) nolevel twostep robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019) nolevel twostep robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019) nolevel robust small
+
+xtabond2 compe_rate_adopt L.compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019) twostep robust small
+
+hist compe_rate_adopt
+
+xtpoisson compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, vce(cluster pres_pm_codes)
+
+xtpoisson ratio_women_cand_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, vce(cluster pres_pm_codes)
+
+xtpoisson ratio_women_cand lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo ln_population if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo ln_population n_seats_adopt if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo ln_population n_seats_adopt population_elderly75_ratio if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtpoisson compe_rate_minus1 lnsalary_am_kokuji  i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+hist ratio_women_cand
+
+xtpoisson ratio_women_cand lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+hist age_mean_cand
+
+xtpoisson ratio_women_cand lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy if compe_rate_minus1 >= 0, vce(cluster pres_pm_codes)
+
+xtreg age_mean_cand  lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, fe vce(cluster pres_pm_codes)
+
+gen  ln_age_mean_cand = ln(age_mean_cand)
+
+xtreg ln_age_mean_cand  lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, fe vce(cluster pres_pm_codes)
+
+hist age_std_cand
+xtreg age_std_cand lnsalary_am_kokuji, fe vce(cluster pres_pm_codes)
+xtreg age_std_cand  lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy, fe vce(cluster pres_pm_codes)
+
+xtreg age_std_cand  lnsalary_am_kokuji i.nendo ln_population n_seats_adopt ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index expired_dummy, fe vce(cluster pres_pm_codes)
+
+xtsum age_std_cand  lnsalary_am_kokuji
+
+hist ratio_forfeit_deposit
+
+count if ratio_forfeit_deposit == 0
+
+xtpoisson ratio_forfeit_deposit lnsalary_am_kokuji i.nendo, vce(cluster pres_pm_codes)
+
+poisson ratio_forfeit_deposit lnsalary_am_kokuji i.nendo i.pref_id, vce(cluster pres_pm_codes)
+
+probit ratio_forfeit_deposit lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy i.pref_id, vce(cluster pres_pm_codes)
+
+logit ratio_forfeit_deposit lnsalary_am_kokuji i.nendo i.pref_id, vce(cluster pres_pm_codes)
+
+hist voting_rate_isna
+
+reg voting_rate_isna i.cate_change_salary, vce(cluster pres_pm_codes)
+
+reg voting_rate_isna dummy_up_salary, vce(cluster pres_pm_codes)
+
+xtreg voting_rate_isna dummy_up_salary, fe vce(cluster pres_pm_codes)
+
+tab cate_change_salary
+
+xtsum dummy_up_salary
+
+xtreg voting_rate_isna lnsalary_am_kokuji, fe vce(cluster pres_pm_codes)
+
+reg voting_rate_isna i.cate_change_salary ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, vce(cluster pres_pm_codes) 
+
+reg voting_rate_isna lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, vce(cluster pres_pm_codes) 
+
+xtreg voting_rate_isna lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, fe vce(cluster pres_pm_codes) 
+
+reg adjusted_ave_voteshare_inc lnsalary_am_kokuji, vce(cluster pres_pm_codes)
+
+reg adjusted_ave_voteshare_inc lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, vce(cluster pres_pm_codes)
+
+xtreg adjusted_ave_voteshare_inc lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, fe vce(cluster pres_pm_codes)
+ 
  

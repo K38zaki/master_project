@@ -1,0 +1,98 @@
+tsset pres_pm_codes ele_t
+
+* compe_rate_minus1_adj
+
+** xtpoisson
+
+poisson compe_rate_minus1_adj lnsalary_am_kokuji, vce(robust)
+outreg2 using pois_compe.xml, replace ctitle(POIS) addtext(Municipality FE, No, Nendo FE, No)
+
+poisson compe_rate_minus1_adj lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(robust)
+outreg2 using pois_compe.xml, replace ctitle(POIS) keep(lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, No, Nendo FE, No)
+
+xtpoisson compe_rate_minus1_adj lnsalary_am_kokuji i.nendo, fe vce(robust) 
+margins, dydx(lnsalary_am_kokuji)
+outreg2 using pois_compe.xml, append ctitle(POIS FE) keep(lnsalary_am_kokuji) addtext(Municipality FE, YES, Nendo FE, YES)
+
+xtpoisson compe_rate_minus1_adj lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all i.nendo, fe vce(robust) 
+margins, dydx(lnsalary_am_kokuji)
+outreg2 using pois_compe.xml, append ctitle(POIS FE) keep(lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, YES, Nendo FE, YES)
+
+** poisson 2SRI
+
+*** first stage
+
+reg lnsalary_am_kokuji mean_salary_ruiji_1yago ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all
+
+test mean_salary_ruiji_1yago = 0
+
+corr ln_population mean_salary_ruiji_1yago
+
+predict x_hat
+
+gen xu_hat = lnsalary_am_kokuji - x_hat
+
+
+*** second stage
+
+poisson compe_rate_minus1_adj lnsalary_am_kokuji xu_hat ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(robust)
+
+outreg2 using pois_compe.xml, append ctitle(POIS2SRI) keep(lnsalary_am_kokuji xu_hat ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, No, Nendo FE, No)
+
+** xtpoisson 2SRI
+
+*** first stage
+
+xtreg lnsalary_am_kokuji mean_salary_ruiji_1yago ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all , vce(cluster pres_pm_codes)
+
+test mean_salary_ruiji_1yago = 0
+
+corr ln_population mean_salary_ruiji_1yago
+
+predict xu_hat_xt, e
+
+
+*** second stage
+
+xtpoisson compe_rate_minus1_adj lnsalary_am_kokuji xu_hat_xt ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all i.nendo, fe vce(robust)
+
+outreg2 using pois_compe.xml, append ctitle(POIS2SRI FE) keep(lnsalary_am_kokuji xu_hat_xt ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, YES, Nendo FE, YES)
+
+
+** Arellano Bond
+xtreg compe_rate_adopt lnsalary_am_kokuji F1.lnsalary_am_kokuji  i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all,fe vce(cluster pres_pm_codes)
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo , gmm(lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) nolevel robust small
+outreg2 using pois_compe.xml, append ctitle(AB) keep(lnsalary_am_kokuji xu_hat_xt ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, YES, Nendo FE, YES)
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) noconstant noleveleq robust small
+
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo , gmm(lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust twostep small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) nolevel robust twostep small
+outreg2 using pois_compe.xml, append ctitle(AB) keep(lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, YES, Nendo FE, YES)
+
+
+
+*** Y
+xtabond2 compe_rate_adopt L1.compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) nolevel robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo , gmm(lnsalary_am_kokuji) ivstyle(i.nendo) nolevel robust twostep small
+
+xtabond2 compe_rate_adopt L1.compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(L.compe_rate_adopt lnsalary_am_kokuji) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) nolevel robust twostep small
+outreg2 using pois_compe.xml, append ctitle(AB) keep(lnsalary_am_kokuji L1.compe_rate_adopt ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all) addtext(Municipality FE, YES, Nendo FE, YES)
+
+** System GMM
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo , gmm(lnsalary_am_kokuji,eq(level)) ivstyle(i.nendo) nolevel robust small
+
+xtabond2 compe_rate_adopt lnsalary_am_kokuji i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, gmm(lnsalary_am_kokuji,eq(both)) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index cand_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all,eq(both))  robust small
+
+xtreg compe_rate_adopt c.lnsalary_am_kokuji##c.win_ratio_musyozoku_pre  i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_time_year ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all,fe vce(cluster pres_pm_codes)
+
+** 
+
+

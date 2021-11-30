@@ -32,3 +32,11 @@ gen ln_diff_salary = log(salary_12month) - log(income_time_year)
 gen ratio_salary = salary_12month/income_time_year
 gen persentage_salary = (salary_12month - income_time_year)/income_time_year
 
+gen compe_rate_minus1 = compe_rate_adopt - 1
+
+gen compe_rate_minus1_adj = compe_rate_minus1
+
+replace compe_rate_minus1_adj = 0 if compe_rate_minus1_adj < 0
+
+xtset pres_pm_codes ele_t
+
