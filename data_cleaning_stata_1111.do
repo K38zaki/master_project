@@ -25,6 +25,7 @@ gen lnsalary_am_kokuji = ln(salary_am_kokuji)
 
 gen ln_population = log(population)
 gen ln_income_time_year = log(income_time_year)
+gen ln_income_per = log(income_per_syotokuwari_time)
 gen ln_all_menseki = log(all_menseki)
 
 gen salary_12month = 12 * salary_am_kokuji
