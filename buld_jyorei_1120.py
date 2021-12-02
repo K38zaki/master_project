@@ -728,3 +728,4 @@ kari_j[kari_j["pres_pm"] == "熊本県熊本市"]
 
 
 
+
