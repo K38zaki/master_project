@@ -1,0 +1,1197 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\miyak\theses_codes\1202_1y_jyorei.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 3 Dec 2021, 02:43:07
+
+{com}. do "C:\Users\miyak\AppData\Local\Temp\STD4c94_000000.tmp"
+{txt}
+{com}. sum lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki zaiseiryoku_index sigaika_ratio_area win_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+lnsalary_a~t {c |}{res}     13,844    7.946594    .4059705   6.742881   9.179881
+{txt}ln_populat~n {c |}{res}     13,862    10.11652    1.469971   5.056246   15.13175
+{txt}n_seats_ad~t {c |}{res}     13,620    18.16887    8.869797          3         86
+{txt}pop~75_ratio {c |}{res}     13,862    .1547978    .0539675   .0357143   .4210276
+{txt}pop~15_ratio {c |}{res}     13,862    .1230894    .0239709   .0275928   .2201492
+{txt}{hline 13}{c +}{hline 57}
+ln_income_~r {c |}{res}     13,862    7.920159    .1535159   7.553957   9.446757
+{txt}ln_all_men~i {c |}{res}     13,861     9.32686    1.229743   5.849325   12.29118
+{txt}canlive_ra~i {c |}{res}     13,857    .4831082    .2972116   .0212862          1
+{txt}zaiseiryok~x {c |}{res}     13,862    .5076886     .294844        .05       2.77
+{txt}sigaika_ra~a {c |}{res}     13,862    .1128386    .2297859          0          1
+{txt}{hline 13}{c +}{hline 57}
+win_ratio_~u {c |}{res}     13,201    .7882722    .2004674          0          1
+{txt}expired_du~y {c |}{res}     13,862     .984995     .121577          0          1
+{txt}touitsu_2007 {c |}{res}     13,862    .1045304    .3059584          0          1
+{txt}touitsu_2011 {c |}{res}     13,862    .2016304    .4012321          0          1
+{txt}touitsu_2015 {c |}{res}     13,862    .1018612    .3024766          0          1
+{txt}{hline 13}{c +}{hline 57}
+touitsu_2019 {c |}{res}     13,862           0           0          0          0
+{txt}{space 1}n_staff_all {c |}{res}     13,851    665.1386    1666.208         15      39936
+{txt}
+{com}. 
+. * jyorei
+. 
+. ** poisson
+. poisson count_jyorei lnsalary_am_start, vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2547.7762}  
+Iteration 1:{space 3}log pseudolikelihood = {res: -2547.776}  
+Iteration 2:{space 3}log pseudolikelihood = {res: -2547.776}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}1{txt}){col 67}= {res}    254.02
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res} -2547.776{txt}{col 49}Pseudo R2{col 67}= {res}    0.0860
+
+{txt}{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2} 2.028719{col 31}{space 2} .1272877{col 42}{space 1}   15.94{col 51}{space 3}0.000{col 59}{space 4}  1.77924{col 72}{space 3} 2.278198
+{txt}{space 12}_cons {c |}{col 19}{res}{space 2}-19.49588{col 31}{space 2} 1.054526{col 42}{space 1}  -18.49{col 51}{space 3}0.000{col 59}{space 4}-21.56271{col 72}{space 3}-17.42905
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_start ln_population, vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2515.7776}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2515.7702}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2515.7702}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    296.04
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2515.7702{txt}{col 49}Pseudo R2{col 67}= {res}    0.0975
+
+{txt}{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2}-.0491497{col 31}{space 2} .3225431{col 42}{space 1}   -0.15{col 51}{space 3}0.879{col 59}{space 4}-.6813225{col 72}{space 3} .5830231
+{txt}{space 4}ln_population {c |}{col 19}{res}{space 2} .6236683{col 31}{space 2} .1006765{col 42}{space 1}    6.19{col 51}{space 3}0.000{col 59}{space 4}  .426346{col 72}{space 3} .8209907
+{txt}{space 12}_cons {c |}{col 19}{res}{space 2}-9.341729{col 31}{space 2} 1.649661{col 42}{space 1}   -5.66{col 51}{space 3}0.000{col 59}{space 4}  -12.575{col 72}{space 3}-6.108454
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. poisson count_jyorei lnsalary_am_kokuji ln_population, vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2515.8961}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2515.8894}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2515.8894}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,821
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    298.45
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2515.8894{txt}{col 49}Pseudo R2{col 67}= {res}    0.0976
+
+{txt}{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_kokuji {c |}{col 20}{res}{space 2} .1244088{col 32}{space 2} .3039296{col 43}{space 1}    0.41{col 52}{space 3}0.682{col 60}{space 4}-.4712823{col 73}{space 3} .7200999
+{txt}{space 5}ln_population {c |}{col 20}{res}{space 2} .5770551{col 32}{space 2} .0964083{col 43}{space 1}    5.99{col 52}{space 3}0.000{col 60}{space 4} .3880984{col 73}{space 3} .7660119
+{txt}{space 13}_cons {c |}{col 20}{res}{space 2} -10.2489{col 32}{space 2} 1.552501{col 43}{space 1}   -6.60{col 52}{space 3}0.000{col 60}{space 4}-13.29174{col 73}{space 3}-7.206049
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. poisson count_jyorei lnsalary_am_kokuji lnsalary_am_start ln_population, vce(robust)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2513.7305}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2513.7231}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2513.7231}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}3{txt}){col 67}= {res}    332.10
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2513.7231{txt}{col 49}Pseudo R2{col 67}= {res}    0.0982
+
+{txt}{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_kokuji {c |}{col 20}{res}{space 2} 1.760368{col 32}{space 2} .7523488{col 43}{space 1}    2.34{col 52}{space 3}0.019{col 60}{space 4} .2857915{col 73}{space 3} 3.234945
+{txt}{space 1}lnsalary_am_start {c |}{col 20}{res}{space 2}-1.726677{col 32}{space 2} .7110211{col 43}{space 1}   -2.43{col 52}{space 3}0.015{col 60}{space 4}-3.120252{col 73}{space 3}-.3331011
+{txt}{space 5}ln_population {c |}{col 20}{res}{space 2} .5965417{col 32}{space 2} .0973658{col 43}{space 1}    6.13{col 52}{space 3}0.000{col 60}{space 4} .4057083{col 73}{space 3} .7873751
+{txt}{space 13}_cons {c |}{col 20}{res}{space 2}-9.717826{col 32}{space 2} 1.597943{col 43}{space 1}   -6.08{col 52}{space 3}0.000{col 60}{space 4}-12.84974{col 73}{space 3}-6.585915
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(robust)
+{txt}note: touitsu_2007 omitted because of collinearity
+note: touitsu_2019 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-8341.5043}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-4355.4974}  (backed up)
+Iteration 2:{space 3}log pseudolikelihood = {res:-2956.5541}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-2248.3124}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1935.3845}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-1813.3571}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-1798.2024}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-1797.0812}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-1797.0713}  
+Iteration 9:{space 3}log pseudolikelihood = {res:-1797.0713}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     9,855
+{txt}{col 49}Wald chi2({res}15{txt}){col 67}= {res}    310.72
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-1797.0713{txt}{col 49}Pseudo R2{col 67}= {res}    0.0889
+
+{txt}{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} .3381484{col 40}{space 2} .3801881{col 51}{space 1}    0.89{col 60}{space 3}0.374{col 68}{space 4}-.4070067{col 81}{space 3} 1.083303
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .7822586{col 40}{space 2} .1653294{col 51}{space 1}    4.73{col 60}{space 3}0.000{col 68}{space 4} .4582189{col 81}{space 3} 1.106298
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2}-.0143836{col 40}{space 2} .0164484{col 51}{space 1}   -0.87{col 60}{space 3}0.382{col 68}{space 4}-.0466219{col 81}{space 3} .0178547
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2} 14.01456{col 40}{space 2} 3.166698{col 51}{space 1}    4.43{col 60}{space 3}0.000{col 68}{space 4} 7.807949{col 81}{space 3} 20.22118
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}  9.01907{col 40}{space 2} 4.050258{col 51}{space 1}    2.23{col 60}{space 3}0.026{col 68}{space 4} 1.080711{col 81}{space 3} 16.95743
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2} .0933286{col 40}{space 2} .4899299{col 51}{space 1}    0.19{col 60}{space 3}0.849{col 68}{space 4}-.8669164{col 81}{space 3} 1.053574
+{txt}{space 12}ln_all_menseki {c |}{col 28}{res}{space 2}-.1068641{col 40}{space 2} .1074069{col 51}{space 1}   -0.99{col 60}{space 3}0.320{col 68}{space 4}-.3173779{col 81}{space 3} .1036496
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-.9974157{col 40}{space 2} .3795035{col 51}{space 1}   -2.63{col 60}{space 3}0.009{col 68}{space 4}-1.741229{col 81}{space 3}-.2536024
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} .2470071{col 40}{space 2} .3939811{col 51}{space 1}    0.63{col 60}{space 3}0.531{col 68}{space 4}-.5251818{col 81}{space 3} 1.019196
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} .5396669{col 40}{space 2} .2886791{col 51}{space 1}    1.87{col 60}{space 3}0.062{col 68}{space 4}-.0261337{col 81}{space 3} 1.105468
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .1687723{col 40}{space 2} .3641728{col 51}{space 1}    0.46{col 60}{space 3}0.643{col 68}{space 4}-.5449932{col 81}{space 3} .8825378
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2} .4460896{col 40}{space 2} .5606675{col 51}{space 1}    0.80{col 60}{space 3}0.426{col 68}{space 4}-.6527985{col 81}{space 3} 1.544978
+{txt}{space 14}touitsu_2007 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 14}touitsu_2011 {c |}{col 28}{res}{space 2}  .063835{col 40}{space 2} .1266939{col 51}{space 1}    0.50{col 60}{space 3}0.614{col 68}{space 4}-.1844804{col 81}{space 3} .3121504
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-.0004264{col 40}{space 2} .1717023{col 51}{space 1}   -0.00{col 60}{space 3}0.998{col 68}{space 4}-.3369567{col 81}{space 3} .3361039
+{txt}{space 14}touitsu_2019 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0000414{col 40}{space 2} .0000337{col 51}{space 1}    1.23{col 60}{space 3}0.220{col 68}{space 4}-.0000247{col 81}{space 3} .0001075
+{txt}{space 21}_cons {c |}{col 28}{res}{space 2}-17.18613{col 40}{space 2} 4.866025{col 51}{space 1}   -3.53{col 60}{space 3}0.000{col 68}{space 4}-26.72337{col 81}{space 3}-7.648901
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_kokuji lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(robust)
+{txt}note: touitsu_2007 omitted because of collinearity
+note: touitsu_2019 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-8361.6572}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-4215.6061}  (backed up)
+Iteration 2:{space 3}log pseudolikelihood = {res:-3069.9759}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-2259.2434}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1925.6583}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-1811.6474}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-1797.9685}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-1796.8896}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-1796.8803}  
+Iteration 9:{space 3}log pseudolikelihood = {res:-1796.8803}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}     9,855
+{txt}{col 49}Wald chi2({res}16{txt}){col 67}= {res}    314.17
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-1796.8803{txt}{col 49}Pseudo R2{col 67}= {res}    0.0890
+
+{txt}{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}{col 28}{res}{space 2} .9231294{col 40}{space 2} 1.500503{col 51}{space 1}    0.62{col 60}{space 3}0.538{col 68}{space 4}-2.017802{col 81}{space 3} 3.864061
+{txt}{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.5774767{col 40}{space 2} 1.548832{col 51}{space 1}   -0.37{col 60}{space 3}0.709{col 68}{space 4}-3.613133{col 81}{space 3} 2.458179
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .7807244{col 40}{space 2}  .165095{col 51}{space 1}    4.73{col 60}{space 3}0.000{col 68}{space 4} .4571442{col 81}{space 3} 1.104305
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2}-.0149497{col 40}{space 2} .0164425{col 51}{space 1}   -0.91{col 60}{space 3}0.363{col 68}{space 4}-.0471764{col 81}{space 3} .0172769
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2} 14.06545{col 40}{space 2} 3.176345{col 51}{space 1}    4.43{col 60}{space 3}0.000{col 68}{space 4} 7.839931{col 81}{space 3} 20.29098
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} 9.062581{col 40}{space 2} 4.052197{col 51}{space 1}    2.24{col 60}{space 3}0.025{col 68}{space 4}  1.12042{col 81}{space 3} 17.00474
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2} .1055249{col 40}{space 2} .4890988{col 51}{space 1}    0.22{col 60}{space 3}0.829{col 68}{space 4}-.8530911{col 81}{space 3} 1.064141
+{txt}{space 12}ln_all_menseki {c |}{col 28}{res}{space 2}-.1043573{col 40}{space 2} .1075793{col 51}{space 1}   -0.97{col 60}{space 3}0.332{col 68}{space 4}-.3152089{col 81}{space 3} .1064942
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-.9898088{col 40}{space 2} .3798036{col 51}{space 1}   -2.61{col 60}{space 3}0.009{col 68}{space 4} -1.73421{col 81}{space 3}-.2454074
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} .2502657{col 40}{space 2} .3937282{col 51}{space 1}    0.64{col 60}{space 3}0.525{col 68}{space 4}-.5214274{col 81}{space 3} 1.021959
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} .5379799{col 40}{space 2} .2885915{col 51}{space 1}    1.86{col 60}{space 3}0.062{col 68}{space 4} -.027649{col 81}{space 3} 1.103609
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .1734568{col 40}{space 2} .3646256{col 51}{space 1}    0.48{col 60}{space 3}0.634{col 68}{space 4}-.5411962{col 81}{space 3} .8881099
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2}   .44964{col 40}{space 2} .5606356{col 51}{space 1}    0.80{col 60}{space 3}0.423{col 68}{space 4}-.6491856{col 81}{space 3} 1.548466
+{txt}{space 14}touitsu_2007 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 14}touitsu_2011 {c |}{col 28}{res}{space 2} .0583654{col 40}{space 2} .1269095{col 51}{space 1}    0.46{col 60}{space 3}0.646{col 68}{space 4}-.1903726{col 81}{space 3} .3071034
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-.0006207{col 40}{space 2} .1715378{col 51}{space 1}   -0.00{col 60}{space 3}0.997{col 68}{space 4}-.3368287{col 81}{space 3} .3355873
+{txt}{space 14}touitsu_2019 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 15}n_staff_all {c |}{col 28}{res}{space 2}  .000044{col 40}{space 2} .0000338{col 51}{space 1}    1.30{col 60}{space 3}0.193{col 68}{space 4}-.0000222{col 81}{space 3} .0001102
+{txt}{space 21}_cons {c |}{col 28}{res}{space 2}-17.36194{col 40}{space 2} 4.863955{col 51}{space 1}   -3.57{col 60}{space 3}0.000{col 68}{space 4}-26.89512{col 81}{space 3}-7.828766
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. xtpoisson count_jyorei lnsalary_am_start  i.nendo, fe vce(robust)
+{txt}note: 1332 groups (10584 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1173.7587}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1133.2248}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1131.9064}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1131.9042}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1131.9042}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,226
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       408
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         5
+{txt}{col 63}avg{col 67}={col 69}{res}       7.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}8{txt}){col 67}={col 70}{res}    65.36
+{txt}Log pseudolikelihood  = {res}-1131.9042{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 83:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2} .4710671{col 31}{space 2} 1.061845{col 42}{space 1}    0.44{col 51}{space 3}0.657{col 59}{space 4}-1.610111{col 72}{space 3} 2.552245
+{txt}{space 17} {c |}
+{space 12}nendo {c |}
+{space 12}2010  {c |}{col 19}{res}{space 2} .5599235{col 31}{space 2} .2367716{col 42}{space 1}    2.36{col 51}{space 3}0.018{col 59}{space 4} .0958597{col 72}{space 3} 1.023987
+{txt}{space 12}2011  {c |}{col 19}{res}{space 2}  .598573{col 31}{space 2} .2378157{col 42}{space 1}    2.52{col 51}{space 3}0.012{col 59}{space 4} .1324628{col 72}{space 3} 1.064683
+{txt}{space 12}2012  {c |}{col 19}{res}{space 2}   1.0255{col 31}{space 2} .2247221{col 42}{space 1}    4.56{col 51}{space 3}0.000{col 59}{space 4} .5850531{col 72}{space 3} 1.465948
+{txt}{space 12}2013  {c |}{col 19}{res}{space 2} 1.266276{col 31}{space 2} .2109261{col 42}{space 1}    6.00{col 51}{space 3}0.000{col 59}{space 4} .8528679{col 72}{space 3} 1.679683
+{txt}{space 12}2014  {c |}{col 19}{res}{space 2} 1.260863{col 31}{space 2} .2112334{col 42}{space 1}    5.97{col 51}{space 3}0.000{col 59}{space 4} .8468534{col 72}{space 3} 1.674873
+{txt}{space 12}2015  {c |}{col 19}{res}{space 2} .8733119{col 31}{space 2} .2257387{col 42}{space 1}    3.87{col 51}{space 3}0.000{col 59}{space 4} .4308722{col 72}{space 3} 1.315752
+{txt}{space 12}2016  {c |}{col 19}{res}{space 2} 1.106026{col 31}{space 2}  .226021{col 42}{space 1}    4.89{col 51}{space 3}0.000{col 59}{space 4} .6630331{col 72}{space 3} 1.549019
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_kokuji i.nendo, fe vce(robust)
+{txt}note: 1333 groups (10594 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1173.8922}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1131.5107}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1130.0743}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1130.0712}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1130.0712}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,227
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       408
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         5
+{txt}{col 63}avg{col 67}={col 69}{res}       7.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}8{txt}){col 67}={col 70}{res}    68.50
+{txt}Log pseudolikelihood  = {res}-1130.0712{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 84:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_kokuji {c |}{col 20}{res}{space 2} 2.326659{col 32}{space 2}  1.56715{col 43}{space 1}    1.48{col 52}{space 3}0.138{col 60}{space 4}-.7448976{col 73}{space 3} 5.398216
+{txt}{space 18} {c |}
+{space 13}nendo {c |}
+{space 13}2010  {c |}{col 20}{res}{space 2} .5611879{col 32}{space 2} .2362151{col 43}{space 1}    2.38{col 52}{space 3}0.018{col 60}{space 4} .0982149{col 73}{space 3} 1.024161
+{txt}{space 13}2011  {c |}{col 20}{res}{space 2} .6069878{col 32}{space 2}  .239345{col 43}{space 1}    2.54{col 52}{space 3}0.011{col 60}{space 4} .1378803{col 73}{space 3} 1.076095
+{txt}{space 13}2012  {c |}{col 20}{res}{space 2} 1.035297{col 32}{space 2} .2271975{col 43}{space 1}    4.56{col 52}{space 3}0.000{col 60}{space 4} .5899982{col 73}{space 3} 1.480596
+{txt}{space 13}2013  {c |}{col 20}{res}{space 2} 1.276187{col 32}{space 2} .2106414{col 43}{space 1}    6.06{col 52}{space 3}0.000{col 60}{space 4}  .863338{col 73}{space 3} 1.689037
+{txt}{space 13}2014  {c |}{col 20}{res}{space 2} 1.272657{col 32}{space 2} .2111336{col 43}{space 1}    6.03{col 52}{space 3}0.000{col 60}{space 4}  .858843{col 73}{space 3} 1.686471
+{txt}{space 13}2015  {c |}{col 20}{res}{space 2} .8877664{col 32}{space 2} .2232939{col 43}{space 1}    3.98{col 52}{space 3}0.000{col 60}{space 4} .4501185{col 73}{space 3} 1.325414
+{txt}{space 13}2016  {c |}{col 20}{res}{space 2} 1.124796{col 32}{space 2} .2200846{col 43}{space 1}    5.11{col 52}{space 3}0.000{col 60}{space 4} .6934383{col 73}{space 3} 1.556154
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start lnsalary_am_kokuji i.nendo, fe vce(robust)
+{txt}note: 1332 groups (10584 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1173.7587}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1131.4186}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1129.9692}  
+Iteration 3:{space 3}log pseudolikelihood = {res: -1129.966}  
+Iteration 4:{space 3}log pseudolikelihood = {res: -1129.966}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,226
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       408
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         5
+{txt}{col 63}avg{col 67}={col 69}{res}       7.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}9{txt}){col 67}={col 70}{res}    68.44
+{txt}Log pseudolikelihood  = {res} -1129.966{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 84:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}lnsalary_am_start {c |}{col 20}{res}{space 2} .1537215{col 32}{space 2} 1.073973{col 43}{space 1}    0.14{col 52}{space 3}0.886{col 60}{space 4}-1.951227{col 73}{space 3}  2.25867
+{txt}lnsalary_am_kokuji {c |}{col 20}{res}{space 2} 2.286163{col 32}{space 2}  1.41582{col 43}{space 1}    1.61{col 52}{space 3}0.106{col 60}{space 4}-.4887939{col 73}{space 3}  5.06112
+{txt}{space 18} {c |}
+{space 13}nendo {c |}
+{space 13}2010  {c |}{col 20}{res}{space 2} .5621807{col 32}{space 2} .2356387{col 43}{space 1}    2.39{col 52}{space 3}0.017{col 60}{space 4} .1003373{col 73}{space 3} 1.024024
+{txt}{space 13}2011  {c |}{col 20}{res}{space 2} .6115459{col 32}{space 2} .2375282{col 43}{space 1}    2.57{col 52}{space 3}0.010{col 60}{space 4} .1459991{col 73}{space 3} 1.077093
+{txt}{space 13}2012  {c |}{col 20}{res}{space 2} 1.038559{col 32}{space 2}  .224913{col 43}{space 1}    4.62{col 52}{space 3}0.000{col 60}{space 4} .5977372{col 73}{space 3}  1.47938
+{txt}{space 13}2013  {c |}{col 20}{res}{space 2}   1.2791{col 32}{space 2} .2098494{col 43}{space 1}    6.10{col 52}{space 3}0.000{col 60}{space 4} .8678028{col 73}{space 3} 1.690397
+{txt}{space 13}2014  {c |}{col 20}{res}{space 2} 1.274875{col 32}{space 2} .2106244{col 43}{space 1}    6.05{col 52}{space 3}0.000{col 60}{space 4} .8620585{col 73}{space 3} 1.687691
+{txt}{space 13}2015  {c |}{col 20}{res}{space 2} .8896548{col 32}{space 2} .2228019{col 43}{space 1}    3.99{col 52}{space 3}0.000{col 60}{space 4} .4529712{col 73}{space 3} 1.326338
+{txt}{space 13}2016  {c |}{col 20}{res}{space 2}  1.12524{col 32}{space 2} .2198327{col 43}{space 1}    5.12{col 52}{space 3}0.000{col 60}{space 4} .6943761{col 73}{space 3} 1.556104
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population i.nendo, fe vce(robust)
+{txt}note: 1332 groups (10584 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1173.7587}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1132.1029}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1130.7618}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1130.7593}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1130.7593}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,226
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       408
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         5
+{txt}{col 63}avg{col 67}={col 69}{res}       7.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}9{txt}){col 67}={col 70}{res}    65.18
+{txt}Log pseudolikelihood  = {res}-1130.7593{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 83:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2} .3318344{col 31}{space 2} 1.094123{col 42}{space 1}    0.30{col 51}{space 3}0.762{col 59}{space 4}-1.812607{col 72}{space 3} 2.476276
+{txt}{space 4}ln_population {c |}{col 19}{res}{space 2}-2.805547{col 31}{space 2} 2.193353{col 42}{space 1}   -1.28{col 51}{space 3}0.201{col 59}{space 4}-7.104441{col 72}{space 3} 1.493346
+{txt}{space 17} {c |}
+{space 12}nendo {c |}
+{space 12}2010  {c |}{col 19}{res}{space 2} .5537405{col 31}{space 2} .2361857{col 42}{space 1}    2.34{col 51}{space 3}0.019{col 59}{space 4}  .090825{col 72}{space 3} 1.016656
+{txt}{space 12}2011  {c |}{col 19}{res}{space 2} .5830004{col 31}{space 2} .2353021{col 42}{space 1}    2.48{col 51}{space 3}0.013{col 59}{space 4} .1218168{col 72}{space 3} 1.044184
+{txt}{space 12}2012  {c |}{col 19}{res}{space 2} 1.002201{col 31}{space 2} .2219135{col 42}{space 1}    4.52{col 51}{space 3}0.000{col 59}{space 4} .5672583{col 72}{space 3} 1.437143
+{txt}{space 12}2013  {c |}{col 19}{res}{space 2}  1.25846{col 31}{space 2} .2108322{col 42}{space 1}    5.97{col 51}{space 3}0.000{col 59}{space 4} .8452363{col 72}{space 3} 1.671683
+{txt}{space 12}2014  {c |}{col 19}{res}{space 2} 1.245689{col 31}{space 2} .2105204{col 42}{space 1}    5.92{col 51}{space 3}0.000{col 59}{space 4} .8330765{col 72}{space 3} 1.658301
+{txt}{space 12}2015  {c |}{col 19}{res}{space 2} .8413366{col 31}{space 2} .2224471{col 42}{space 1}    3.78{col 51}{space 3}0.000{col 59}{space 4} .4053484{col 72}{space 3} 1.277325
+{txt}{space 12}2016  {c |}{col 19}{res}{space 2} 1.058533{col 31}{space 2}  .220532{col 42}{space 1}    4.80{col 51}{space 3}0.000{col 59}{space 4}  .626298{col 72}{space 3} 1.490767
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10444 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1090.5223}  
+Iteration 2:{space 3}log pseudolikelihood = {res: -1089.468}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1089.4658}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1089.4658}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}10{txt}){col 67}={col 70}{res}    60.26
+{txt}Log pseudolikelihood  = {res}-1089.4658{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 83:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2}-.4468022{col 31}{space 2} 1.347526{col 42}{space 1}   -0.33{col 51}{space 3}0.740{col 59}{space 4}-3.087905{col 72}{space 3} 2.194301
+{txt}{space 4}ln_population {c |}{col 19}{res}{space 2}-3.685759{col 31}{space 2} 2.273614{col 42}{space 1}   -1.62{col 51}{space 3}0.105{col 59}{space 4}-8.141961{col 72}{space 3} .7704434
+{txt}{space 4}n_seats_adopt {c |}{col 19}{res}{space 2} .1193484{col 31}{space 2} .0477456{col 42}{space 1}    2.50{col 51}{space 3}0.012{col 59}{space 4} .0257688{col 72}{space 3}  .212928
+{txt}{space 17} {c |}
+{space 12}nendo {c |}
+{space 12}2010  {c |}{col 19}{res}{space 2} .5270417{col 31}{space 2} .2702876{col 42}{space 1}    1.95{col 51}{space 3}0.051{col 59}{space 4}-.0027123{col 72}{space 3} 1.056796
+{txt}{space 12}2011  {c |}{col 19}{res}{space 2} .6658126{col 31}{space 2} .2509661{col 42}{space 1}    2.65{col 51}{space 3}0.008{col 59}{space 4} .1739281{col 72}{space 3} 1.157697
+{txt}{space 12}2012  {c |}{col 19}{res}{space 2} 1.092815{col 31}{space 2} .2464907{col 42}{space 1}    4.43{col 51}{space 3}0.000{col 59}{space 4} .6097024{col 72}{space 3} 1.575928
+{txt}{space 12}2013  {c |}{col 19}{res}{space 2} 1.381787{col 31}{space 2} .2398588{col 42}{space 1}    5.76{col 51}{space 3}0.000{col 59}{space 4} .9116728{col 72}{space 3} 1.851902
+{txt}{space 12}2014  {c |}{col 19}{res}{space 2} 1.382055{col 31}{space 2} .2486378{col 42}{space 1}    5.56{col 51}{space 3}0.000{col 59}{space 4}  .894734{col 72}{space 3} 1.869376
+{txt}{space 12}2015  {c |}{col 19}{res}{space 2}  1.02675{col 31}{space 2} .2571908{col 42}{space 1}    3.99{col 51}{space 3}0.000{col 59}{space 4} .5226654{col 72}{space 3} 1.530835
+{txt}{space 12}2016  {c |}{col 19}{res}{space 2} 1.239186{col 31}{space 2} .2613336{col 42}{space 1}    4.74{col 51}{space 3}0.000{col 59}{space 4} .7269821{col 72}{space 3} 1.751391
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10444 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1089.6863}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1088.6446}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1088.6423}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1088.6423}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}11{txt}){col 67}={col 70}{res}    63.90
+{txt}Log pseudolikelihood  = {res}-1088.6423{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.4289943{col 40}{space 2} 1.341133{col 51}{space 1}   -0.32{col 60}{space 3}0.749{col 68}{space 4}-3.057566{col 81}{space 3} 2.199577
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-4.540179{col 40}{space 2} 2.350715{col 51}{space 1}   -1.93{col 60}{space 3}0.053{col 68}{space 4}-9.147495{col 81}{space 3} .0671376
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1221805{col 40}{space 2} .0481669{col 51}{space 1}    2.54{col 60}{space 3}0.011{col 68}{space 4} .0277751{col 81}{space 3} .2165859
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-16.81933{col 40}{space 2} 15.72525{col 51}{space 1}   -1.07{col 60}{space 3}0.285{col 68}{space 4}-47.64026{col 81}{space 3} 14.00159
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2}  .603151{col 40}{space 2} .2711859{col 51}{space 1}    2.22{col 60}{space 3}0.026{col 68}{space 4} .0716365{col 81}{space 3} 1.134666
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2}  .815734{col 40}{space 2} .2732924{col 51}{space 1}    2.98{col 60}{space 3}0.003{col 68}{space 4} .2800907{col 81}{space 3} 1.351377
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.309708{col 40}{space 2} .3015228{col 51}{space 1}    4.34{col 60}{space 3}0.000{col 68}{space 4} .7187342{col 81}{space 3} 1.900682
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2}  1.65871{col 40}{space 2} .3315374{col 51}{space 1}    5.00{col 60}{space 3}0.000{col 68}{space 4} 1.008909{col 81}{space 3} 2.308512
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 1.681618{col 40}{space 2} .3462672{col 51}{space 1}    4.86{col 60}{space 3}0.000{col 68}{space 4} 1.002947{col 81}{space 3} 2.360289
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.373731{col 40}{space 2} .3913828{col 51}{space 1}    3.51{col 60}{space 3}0.000{col 68}{space 4} .6066349{col 81}{space 3} 2.140827
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.650898{col 40}{space 2} .4376813{col 51}{space 1}    3.77{col 60}{space 3}0.000{col 68}{space 4} .7930587{col 81}{space 3} 2.508738
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10444 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1087.6909}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1086.6075}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1086.6047}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1086.6047}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}12{txt}){col 67}={col 70}{res}    69.73
+{txt}Log pseudolikelihood  = {res}-1086.6047{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.4087655{col 40}{space 2} 1.379633{col 51}{space 1}   -0.30{col 60}{space 3}0.767{col 68}{space 4}-3.112797{col 81}{space 3} 2.295266
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-3.865334{col 40}{space 2} 2.509923{col 51}{space 1}   -1.54{col 60}{space 3}0.124{col 68}{space 4}-8.784693{col 81}{space 3} 1.054025
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2}  .123326{col 40}{space 2} .0481351{col 51}{space 1}    2.56{col 60}{space 3}0.010{col 68}{space 4} .0289829{col 81}{space 3}  .217669
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-28.27491{col 40}{space 2} 16.61995{col 51}{space 1}   -1.70{col 60}{space 3}0.089{col 68}{space 4}-60.84942{col 81}{space 3} 4.299602
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-44.30741{col 40}{space 2} 26.35096{col 51}{space 1}   -1.68{col 60}{space 3}0.093{col 68}{space 4}-95.95435{col 81}{space 3} 7.339525
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} .5996001{col 40}{space 2} .2721285{col 51}{space 1}    2.20{col 60}{space 3}0.028{col 68}{space 4}  .066238{col 81}{space 3} 1.132962
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2}  .819386{col 40}{space 2} .2748522{col 51}{space 1}    2.98{col 60}{space 3}0.003{col 68}{space 4} .2806856{col 81}{space 3} 1.358086
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.303243{col 40}{space 2}  .301409{col 51}{space 1}    4.32{col 60}{space 3}0.000{col 68}{space 4} .7124924{col 81}{space 3} 1.893994
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 1.611283{col 40}{space 2} .3377383{col 51}{space 1}    4.77{col 60}{space 3}0.000{col 68}{space 4} .9493285{col 81}{space 3} 2.273238
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 1.606021{col 40}{space 2}  .355344{col 51}{space 1}    4.52{col 60}{space 3}0.000{col 68}{space 4} .9095598{col 81}{space 3} 2.302483
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.276879{col 40}{space 2} .4049258{col 51}{space 1}    3.15{col 60}{space 3}0.002{col 68}{space 4}  .483239{col 81}{space 3} 2.070519
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.539414{col 40}{space 2} .4556943{col 51}{space 1}    3.38{col 60}{space 3}0.001{col 68}{space 4} .6462697{col 81}{space 3} 2.432559
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10444 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1087.5518}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1086.4646}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1086.4618}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1086.4618}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}13{txt}){col 67}={col 70}{res}    69.77
+{txt}Log pseudolikelihood  = {res}-1086.4618{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.4404255{col 40}{space 2}  1.38813{col 51}{space 1}   -0.32{col 60}{space 3}0.751{col 68}{space 4}-3.161111{col 81}{space 3}  2.28026
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-3.795259{col 40}{space 2} 2.481649{col 51}{space 1}   -1.53{col 60}{space 3}0.126{col 68}{space 4}-8.659201{col 81}{space 3} 1.068683
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1236762{col 40}{space 2} .0481633{col 51}{space 1}    2.57{col 60}{space 3}0.010{col 68}{space 4} .0292778{col 81}{space 3} .2180747
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-29.47651{col 40}{space 2} 16.78197{col 51}{space 1}   -1.76{col 60}{space 3}0.079{col 68}{space 4}-62.36857{col 81}{space 3} 3.415548
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-45.16303{col 40}{space 2} 26.13904{col 51}{space 1}   -1.73{col 60}{space 3}0.084{col 68}{space 4}-96.39461{col 81}{space 3} 6.068553
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-1.363733{col 40}{space 2} 3.020144{col 51}{space 1}   -0.45{col 60}{space 3}0.652{col 68}{space 4}-7.283108{col 81}{space 3} 4.555641
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} .6035486{col 40}{space 2} .2740316{col 51}{space 1}    2.20{col 60}{space 3}0.028{col 68}{space 4} .0664564{col 81}{space 3} 1.140641
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} .8222495{col 40}{space 2} .2758552{col 51}{space 1}    2.98{col 60}{space 3}0.003{col 68}{space 4} .2815833{col 81}{space 3} 1.362916
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.309093{col 40}{space 2} .3030983{col 51}{space 1}    4.32{col 60}{space 3}0.000{col 68}{space 4} .7150311{col 81}{space 3} 1.903155
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 1.636686{col 40}{space 2} .3519769{col 51}{space 1}    4.65{col 60}{space 3}0.000{col 68}{space 4} .9468243{col 81}{space 3} 2.326548
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 1.640325{col 40}{space 2} .3728081{col 51}{space 1}    4.40{col 60}{space 3}0.000{col 68}{space 4} .9096343{col 81}{space 3} 2.371015
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.323602{col 40}{space 2} .4308786{col 51}{space 1}    3.07{col 60}{space 3}0.002{col 68}{space 4} .4790955{col 81}{space 3} 2.168109
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.603024{col 40}{space 2} .4923687{col 51}{space 1}    3.26{col 60}{space 3}0.001{col 68}{space 4} .6379992{col 81}{space 3} 2.568049
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki　i.nendo, fe vce(robust) 
+{err}ln_all_menseki　i.nendo invalid name
+{txt}{search r(198), local:r(198);}
+
+end of do-file
+
+{search r(198), local:r(198);}
+
+{com}. do "C:\Users\miyak\AppData\Local\Temp\STD4c94_000000.tmp"
+{txt}
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki i.nendo, fe vce(robust) 
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10444 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1085.1232}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1083.0084}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1082.5136}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1082.5088}  
+{err}{p}
+cannot compute an improvement -- discontinuous region encountered
+{p_end}
+{res}{txt}{search r(430), local:r(430);}
+
+end of do-file
+
+{search r(430), local:r(430);}
+
+{com}. do "C:\Users\miyak\AppData\Local\Temp\STD4c94_000000.tmp"
+{txt}
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10440 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1086.9717}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1085.8415}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1085.8384}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1085.8384}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}14{txt}){col 67}={col 70}{res}    69.37
+{txt}Log pseudolikelihood  = {res}-1085.8384{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.3948634{col 40}{space 2} 1.387826{col 51}{space 1}   -0.28{col 60}{space 3}0.776{col 68}{space 4}-3.114953{col 81}{space 3} 2.325226
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-3.260316{col 40}{space 2}  2.45627{col 51}{space 1}   -1.33{col 60}{space 3}0.184{col 68}{space 4}-8.074517{col 81}{space 3} 1.553886
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1218919{col 40}{space 2} .0473847{col 51}{space 1}    2.57{col 60}{space 3}0.010{col 68}{space 4} .0290196{col 81}{space 3} .2147641
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}  -27.576{col 40}{space 2} 16.91886{col 51}{space 1}   -1.63{col 60}{space 3}0.103{col 68}{space 4}-60.73635{col 81}{space 3} 5.584348
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-46.19387{col 40}{space 2} 25.58506{col 51}{space 1}   -1.81{col 60}{space 3}0.071{col 68}{space 4}-96.33967{col 81}{space 3} 3.951933
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-1.290676{col 40}{space 2} 2.993084{col 51}{space 1}   -0.43{col 60}{space 3}0.666{col 68}{space 4}-7.157013{col 81}{space 3} 4.575661
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-8.096256{col 40}{space 2} 9.244435{col 51}{space 1}   -0.88{col 60}{space 3}0.381{col 68}{space 4}-26.21502{col 81}{space 3}  10.0225
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} .5955943{col 40}{space 2} .2720343{col 51}{space 1}    2.19{col 60}{space 3}0.029{col 68}{space 4} .0624169{col 81}{space 3} 1.128772
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2}  .833922{col 40}{space 2} .2770881{col 51}{space 1}    3.01{col 60}{space 3}0.003{col 68}{space 4} .2908394{col 81}{space 3} 1.377005
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.313295{col 40}{space 2} .3017668{col 51}{space 1}    4.35{col 60}{space 3}0.000{col 68}{space 4} .7218426{col 81}{space 3} 1.904747
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2}  1.62826{col 40}{space 2} .3465268{col 51}{space 1}    4.70{col 60}{space 3}0.000{col 68}{space 4} .9490798{col 81}{space 3}  2.30744
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 1.629104{col 40}{space 2} .3655221{col 51}{space 1}    4.46{col 60}{space 3}0.000{col 68}{space 4} .9126937{col 81}{space 3} 2.345514
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.307128{col 40}{space 2} .4224708{col 51}{space 1}    3.09{col 60}{space 3}0.002{col 68}{space 4} .4791009{col 81}{space 3} 2.135156
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.583491{col 40}{space 2} .4794766{col 51}{space 1}    3.30{col 60}{space 3}0.001{col 68}{space 4} .6437339{col 81}{space 3} 2.523248
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  sigaika_ratio_area i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10440 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1086.2544}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1085.1115}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1085.1082}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1085.1082}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}15{txt}){col 67}={col 70}{res}    68.86
+{txt}Log pseudolikelihood  = {res}-1085.1082{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.4225732{col 40}{space 2} 1.408237{col 51}{space 1}   -0.30{col 60}{space 3}0.764{col 68}{space 4}-3.182667{col 81}{space 3} 2.337521
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-3.353874{col 40}{space 2} 2.460979{col 51}{space 1}   -1.36{col 60}{space 3}0.173{col 68}{space 4}-8.177305{col 81}{space 3} 1.469556
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1202563{col 40}{space 2}  .047772{col 51}{space 1}    2.52{col 60}{space 3}0.012{col 68}{space 4} .0266248{col 81}{space 3} .2138877
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-28.45356{col 40}{space 2} 16.89706{col 51}{space 1}   -1.68{col 60}{space 3}0.092{col 68}{space 4}-61.57118{col 81}{space 3} 4.664061
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-45.49228{col 40}{space 2} 25.49706{col 51}{space 1}   -1.78{col 60}{space 3}0.074{col 68}{space 4} -95.4656{col 81}{space 3} 4.481044
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-1.231514{col 40}{space 2} 2.987971{col 51}{space 1}   -0.41{col 60}{space 3}0.680{col 68}{space 4} -7.08783{col 81}{space 3} 4.624801
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-8.140344{col 40}{space 2} 9.222275{col 51}{space 1}   -0.88{col 60}{space 3}0.377{col 68}{space 4}-26.21567{col 81}{space 3} 9.934982
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2}  28.2171{col 40}{space 2} 25.34731{col 51}{space 1}    1.11{col 60}{space 3}0.266{col 68}{space 4}-21.46272{col 81}{space 3} 77.89692
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} .5858988{col 40}{space 2}  .272098{col 51}{space 1}    2.15{col 60}{space 3}0.031{col 68}{space 4} .0525965{col 81}{space 3} 1.119201
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} .8276818{col 40}{space 2} .2775716{col 51}{space 1}    2.98{col 60}{space 3}0.003{col 68}{space 4} .2836515{col 81}{space 3} 1.371712
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.303427{col 40}{space 2} .3013264{col 51}{space 1}    4.33{col 60}{space 3}0.000{col 68}{space 4} .7128381{col 81}{space 3} 1.894016
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 1.621058{col 40}{space 2}  .345589{col 51}{space 1}    4.69{col 60}{space 3}0.000{col 68}{space 4}  .943716{col 81}{space 3}   2.2984
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 1.627919{col 40}{space 2} .3644605{col 51}{space 1}    4.47{col 60}{space 3}0.000{col 68}{space 4} .9135891{col 81}{space 3} 2.342248
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.307337{col 40}{space 2} .4209407{col 51}{space 1}    3.11{col 60}{space 3}0.002{col 68}{space 4} .4823086{col 81}{space 3} 2.132366
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.584922{col 40}{space 2} .4775291{col 51}{space 1}    3.32{col 60}{space 3}0.001{col 68}{space 4} .6489823{col 81}{space 3} 2.520862
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  sigaika_ratio_area zaiseiryoku_index i.nendo, fe vce(robust)
+{txt}note: 2 groups (2 obs) dropped because of only one obs per group
+note: 1333 groups (10440 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-1130.4063}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-1084.5032}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-1083.1918}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-1083.1867}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-1083.1867}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     3,127
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       405
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         4
+{txt}{col 63}avg{col 67}={col 69}{res}       7.7
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}16{txt}){col 67}={col 70}{res}    69.18
+{txt}Log pseudolikelihood  = {res}-1083.1867{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.3953345{col 40}{space 2} 1.437414{col 51}{space 1}   -0.28{col 60}{space 3}0.783{col 68}{space 4}-3.212613{col 81}{space 3} 2.421944
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-2.703951{col 40}{space 2} 2.522466{col 51}{space 1}   -1.07{col 60}{space 3}0.284{col 68}{space 4}-7.647894{col 81}{space 3} 2.239992
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2}  .122432{col 40}{space 2} .0478759{col 51}{space 1}    2.56{col 60}{space 3}0.011{col 68}{space 4}  .028597{col 81}{space 3}  .216267
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-29.18698{col 40}{space 2} 16.98006{col 51}{space 1}   -1.72{col 60}{space 3}0.086{col 68}{space 4}-62.46728{col 81}{space 3} 4.093331
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-49.99175{col 40}{space 2} 25.79515{col 51}{space 1}   -1.94{col 60}{space 3}0.053{col 68}{space 4}-100.5493{col 81}{space 3} .5658135
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-.9892994{col 40}{space 2} 2.969643{col 51}{space 1}   -0.33{col 60}{space 3}0.739{col 68}{space 4}-6.809693{col 81}{space 3} 4.831094
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-9.219561{col 40}{space 2} 9.448913{col 51}{space 1}   -0.98{col 60}{space 3}0.329{col 68}{space 4}-27.73909{col 81}{space 3} 9.299967
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 28.86515{col 40}{space 2} 25.31363{col 51}{space 1}    1.14{col 60}{space 3}0.254{col 68}{space 4}-20.74866{col 81}{space 3} 78.47895
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2}  3.14174{col 40}{space 2} 1.805126{col 51}{space 1}    1.74{col 60}{space 3}0.082{col 68}{space 4}-.3962424{col 81}{space 3} 6.679723
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} .6880864{col 40}{space 2} .2813895{col 51}{space 1}    2.45{col 60}{space 3}0.014{col 68}{space 4} .1365731{col 81}{space 3}   1.2396
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} 1.030674{col 40}{space 2} .3099771{col 51}{space 1}    3.33{col 60}{space 3}0.001{col 68}{space 4} .4231304{col 81}{space 3} 1.638219
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 1.565404{col 40}{space 2} .3413224{col 51}{space 1}    4.59{col 60}{space 3}0.000{col 68}{space 4} .8964241{col 81}{space 3} 2.234384
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 1.870956{col 40}{space 2} .3819632{col 51}{space 1}    4.90{col 60}{space 3}0.000{col 68}{space 4} 1.122322{col 81}{space 3}  2.61959
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2}  1.86745{col 40}{space 2} .3969409{col 51}{space 1}    4.70{col 60}{space 3}0.000{col 68}{space 4}  1.08946{col 81}{space 3}  2.64544
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 1.529677{col 40}{space 2} .4451118{col 51}{space 1}    3.44{col 60}{space 3}0.001{col 68}{space 4}  .657274{col 81}{space 3}  2.40208
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 1.792664{col 40}{space 2} .5031239{col 51}{space 1}    3.56{col 60}{space 3}0.000{col 68}{space 4} .8065591{col 81}{space 3} 2.778768
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre i.nendo, fe vce(robust)
+{txt}note: 11 groups (11 obs) dropped because of only one obs per group
+note: 1363 groups (7856 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-737.67867}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-707.62278}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-706.29927}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-706.23944}  
+Iteration 4:{space 3}log pseudolikelihood = {res: -706.2393}  
+Iteration 5:{space 3}log pseudolikelihood = {res: -706.2393}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     1,989
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       338
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         2
+{txt}{col 63}avg{col 67}={col 69}{res}       5.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}17{txt}){col 67}={col 70}{res}    44.51
+{txt}Log pseudolikelihood  = {res} -706.2393{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0003
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} 2.263387{col 40}{space 2} 2.914767{col 51}{space 1}    0.78{col 60}{space 3}0.437{col 68}{space 4}-3.449451{col 81}{space 3} 7.976225
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2}-.0378945{col 40}{space 2} 3.334452{col 51}{space 1}   -0.01{col 60}{space 3}0.991{col 68}{space 4}-6.573301{col 81}{space 3} 6.497512
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1474648{col 40}{space 2} .0774885{col 51}{space 1}    1.90{col 60}{space 3}0.057{col 68}{space 4}-.0044098{col 81}{space 3} .2993394
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-27.26845{col 40}{space 2} 20.56033{col 51}{space 1}   -1.33{col 60}{space 3}0.185{col 68}{space 4}-67.56596{col 81}{space 3} 13.02906
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-54.03841{col 40}{space 2} 36.41065{col 51}{space 1}   -1.48{col 60}{space 3}0.138{col 68}{space 4} -125.402{col 81}{space 3} 17.32514
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-5.466824{col 40}{space 2} 4.326106{col 51}{space 1}   -1.26{col 60}{space 3}0.206{col 68}{space 4}-13.94584{col 81}{space 3} 3.012187
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-4.276562{col 40}{space 2} 15.95505{col 51}{space 1}   -0.27{col 60}{space 3}0.789{col 68}{space 4}-35.54789{col 81}{space 3} 26.99477
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 82.19299{col 40}{space 2} 55.33724{col 51}{space 1}    1.49{col 60}{space 3}0.137{col 68}{space 4}-26.26601{col 81}{space 3}  190.652
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} 8.791747{col 40}{space 2} 3.817125{col 51}{space 1}    2.30{col 60}{space 3}0.021{col 68}{space 4}  1.31032{col 81}{space 3} 16.27317
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .7206083{col 40}{space 2} 1.372641{col 51}{space 1}    0.52{col 60}{space 3}0.600{col 68}{space 4}-1.969719{col 81}{space 3} 3.410936
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} 1.974556{col 40}{space 2} 1.142409{col 51}{space 1}    1.73{col 60}{space 3}0.084{col 68}{space 4} -.264524{col 81}{space 3} 4.213636
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} 2.700897{col 40}{space 2} 1.159282{col 51}{space 1}    2.33{col 60}{space 3}0.020{col 68}{space 4} .4287458{col 81}{space 3} 4.973048
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 3.342254{col 40}{space 2} 1.198676{col 51}{space 1}    2.79{col 60}{space 3}0.005{col 68}{space 4} .9928926{col 81}{space 3} 5.691616
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 3.742497{col 40}{space 2} 1.210118{col 51}{space 1}    3.09{col 60}{space 3}0.002{col 68}{space 4} 1.370708{col 81}{space 3} 6.114285
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 3.731713{col 40}{space 2} 1.215568{col 51}{space 1}    3.07{col 60}{space 3}0.002{col 68}{space 4} 1.349243{col 81}{space 3} 6.114183
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 3.422544{col 40}{space 2} 1.223442{col 51}{space 1}    2.80{col 60}{space 3}0.005{col 68}{space 4} 1.024641{col 81}{space 3} 5.820446
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 3.729043{col 40}{space 2} 1.253879{col 51}{space 1}    2.97{col 60}{space 3}0.003{col 68}{space 4} 1.271485{col 81}{space 3} 6.186602
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. **ここで符号が変化
+. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre n_staff_all i.nendo, fe vce(robust)
+{txt}note: 11 groups (11 obs) dropped because of only one obs per group
+note: 1363 groups (7855 obs) dropped because of all zero outcomes
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-737.67867}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-703.81601}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-702.41734}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-702.35261}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-702.35244}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-702.35244}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     1,989
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       338
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         2
+{txt}{col 63}avg{col 67}={col 69}{res}       5.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}18{txt}){col 67}={col 70}{res}    48.13
+{txt}Log pseudolikelihood  = {res}-702.35244{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0001
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} 1.764489{col 40}{space 2} 2.807605{col 51}{space 1}    0.63{col 60}{space 3}0.530{col 68}{space 4}-3.738316{col 81}{space 3} 7.267293
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .3392928{col 40}{space 2} 3.300725{col 51}{space 1}    0.10{col 60}{space 3}0.918{col 68}{space 4}-6.130009{col 81}{space 3} 6.808594
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1508385{col 40}{space 2} .0768735{col 51}{space 1}    1.96{col 60}{space 3}0.050{col 68}{space 4} .0001692{col 81}{space 3} .3015077
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-27.97822{col 40}{space 2} 20.28024{col 51}{space 1}   -1.38{col 60}{space 3}0.168{col 68}{space 4}-67.72677{col 81}{space 3} 11.77033
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-52.87869{col 40}{space 2} 36.15913{col 51}{space 1}   -1.46{col 60}{space 3}0.144{col 68}{space 4}-123.7493{col 81}{space 3}  17.9919
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-6.228695{col 40}{space 2} 4.167797{col 51}{space 1}   -1.49{col 60}{space 3}0.135{col 68}{space 4}-14.39743{col 81}{space 3} 1.940036
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-4.823916{col 40}{space 2} 16.13378{col 51}{space 1}   -0.30{col 60}{space 3}0.765{col 68}{space 4}-36.44555{col 81}{space 3} 26.79772
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 75.66854{col 40}{space 2} 50.82782{col 51}{space 1}    1.49{col 60}{space 3}0.137{col 68}{space 4}-23.95215{col 81}{space 3} 175.2892
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} 10.30683{col 40}{space 2} 4.332791{col 51}{space 1}    2.38{col 60}{space 3}0.017{col 68}{space 4} 1.814713{col 81}{space 3} 18.79894
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .6670389{col 40}{space 2}   1.3742{col 51}{space 1}    0.49{col 60}{space 3}0.627{col 68}{space 4}-2.026344{col 81}{space 3} 3.360421
+{txt}{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0020453{col 40}{space 2} .0010514{col 51}{space 1}    1.95{col 60}{space 3}0.052{col 68}{space 4}-.0000153{col 81}{space 3} .0041059
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} 2.070825{col 40}{space 2} 1.149603{col 51}{space 1}    1.80{col 60}{space 3}0.072{col 68}{space 4}-.1823548{col 81}{space 3} 4.324005
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} 2.806751{col 40}{space 2} 1.172681{col 51}{space 1}    2.39{col 60}{space 3}0.017{col 68}{space 4} .5083383{col 81}{space 3} 5.105163
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2} 3.535881{col 40}{space 2} 1.220295{col 51}{space 1}    2.90{col 60}{space 3}0.004{col 68}{space 4} 1.144147{col 81}{space 3} 5.927615
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 3.971725{col 40}{space 2} 1.232019{col 51}{space 1}    3.22{col 60}{space 3}0.001{col 68}{space 4} 1.557012{col 81}{space 3} 6.386438
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 3.987572{col 40}{space 2} 1.239006{col 51}{space 1}    3.22{col 60}{space 3}0.001{col 68}{space 4} 1.559165{col 81}{space 3} 6.415978
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 3.680834{col 40}{space 2} 1.245055{col 51}{space 1}    2.96{col 60}{space 3}0.003{col 68}{space 4}  1.24057{col 81}{space 3} 6.121098
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 4.005669{col 40}{space 2} 1.275764{col 51}{space 1}    3.14{col 60}{space 3}0.002{col 68}{space 4} 1.505217{col 81}{space 3} 6.506121
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki  sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre n_staff_all expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 i.nendo, fe vce(robust)
+{txt}note: 11 groups (11 obs) dropped because of only one obs per group
+note: 1363 groups (7855 obs) dropped because of all zero outcomes
+note: touitsu_2007 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-737.67867}  
+Iteration 1:{space 3}log pseudolikelihood = {res: -702.6356}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-701.17404}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-701.09578}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-701.09078}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-701.08963}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-701.08939}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-701.08935}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     1,989
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       338
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         2
+{txt}{col 63}avg{col 67}={col 69}{res}       5.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}21{txt}){col 67}={col 70}{res}   190.39
+{txt}Log pseudolikelihood  = {res}-701.08935{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} 1.561344{col 40}{space 2} 2.755386{col 51}{space 1}    0.57{col 60}{space 3}0.571{col 68}{space 4}-3.839114{col 81}{space 3} 6.961801
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} -.281618{col 40}{space 2} 3.229004{col 51}{space 1}   -0.09{col 60}{space 3}0.931{col 68}{space 4}-6.610349{col 81}{space 3} 6.047113
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1619693{col 40}{space 2} .0777332{col 51}{space 1}    2.08{col 60}{space 3}0.037{col 68}{space 4} .0096151{col 81}{space 3} .3143235
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-31.73463{col 40}{space 2} 20.68994{col 51}{space 1}   -1.53{col 60}{space 3}0.125{col 68}{space 4}-72.28616{col 81}{space 3} 8.816899
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} -57.0455{col 40}{space 2}  36.0496{col 51}{space 1}   -1.58{col 60}{space 3}0.114{col 68}{space 4}-127.7014{col 81}{space 3} 13.61042
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-6.233684{col 40}{space 2} 4.216219{col 51}{space 1}   -1.48{col 60}{space 3}0.139{col 68}{space 4}-14.49732{col 81}{space 3} 2.029954
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-3.796066{col 40}{space 2}   15.967{col 51}{space 1}   -0.24{col 60}{space 3}0.812{col 68}{space 4}-35.09081{col 81}{space 3} 27.49868
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 78.18782{col 40}{space 2} 50.65833{col 51}{space 1}    1.54{col 60}{space 3}0.123{col 68}{space 4}-21.10069{col 81}{space 3} 177.4763
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} 9.938454{col 40}{space 2} 4.396704{col 51}{space 1}    2.26{col 60}{space 3}0.024{col 68}{space 4} 1.321072{col 81}{space 3} 18.55584
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .7206774{col 40}{space 2} 1.345739{col 51}{space 1}    0.54{col 60}{space 3}0.592{col 68}{space 4}-1.916922{col 81}{space 3} 3.358277
+{txt}{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0020466{col 40}{space 2} .0010288{col 51}{space 1}    1.99{col 60}{space 3}0.047{col 68}{space 4} .0000301{col 81}{space 3} .0040631
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2} .2769612{col 40}{space 2} .8049821{col 51}{space 1}    0.34{col 60}{space 3}0.731{col 68}{space 4}-1.300775{col 81}{space 3} 1.854697
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2}-12.19782{col 40}{space 2} 1.029867{col 51}{space 1}  -11.84{col 60}{space 3}0.000{col 68}{space 4}-14.21632{col 81}{space 3}-10.17932
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2} -11.9594{col 40}{space 2} 1.016367{col 51}{space 1}  -11.77{col 60}{space 3}0.000{col 68}{space 4}-13.95144{col 81}{space 3} -9.96736
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} 2.069218{col 40}{space 2}  1.14996{col 51}{space 1}    1.80{col 60}{space 3}0.072{col 68}{space 4}-.1846625{col 81}{space 3} 4.323098
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} 2.838547{col 40}{space 2} 1.171837{col 51}{space 1}    2.42{col 60}{space 3}0.015{col 68}{space 4} .5417883{col 81}{space 3} 5.135306
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2}  3.56297{col 40}{space 2}  1.21952{col 51}{space 1}    2.92{col 60}{space 3}0.003{col 68}{space 4} 1.172755{col 81}{space 3} 5.953185
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 4.004548{col 40}{space 2} 1.229904{col 51}{space 1}    3.26{col 60}{space 3}0.001{col 68}{space 4} 1.593979{col 81}{space 3} 6.415116
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 4.022756{col 40}{space 2} 1.236498{col 51}{space 1}    3.25{col 60}{space 3}0.001{col 68}{space 4} 1.599264{col 81}{space 3} 6.446247
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 3.629255{col 40}{space 2} 1.243258{col 51}{space 1}    2.92{col 60}{space 3}0.004{col 68}{space 4} 1.192515{col 81}{space 3} 6.065996
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 3.958764{col 40}{space 2} 1.268018{col 51}{space 1}    3.12{col 60}{space 3}0.002{col 68}{space 4} 1.473495{col 81}{space 3} 6.444033
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 n_staff_all, fe vce(robust) 
+{txt}note: 11 groups (11 obs) dropped because of only one obs per group
+note: 1363 groups (7855 obs) dropped because of all zero outcomes
+note: touitsu_2007 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-737.67867}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-723.91991}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-723.77983}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-723.75709}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-723.75335}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-723.75249}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-723.75229}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-723.75225}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-723.75224}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     1,989
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       338
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         2
+{txt}{col 63}avg{col 67}={col 69}{res}       5.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}14{txt}){col 67}={col 70}{res}   200.12
+{txt}Log pseudolikelihood  = {res}-723.75224{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} 1.213799{col 40}{space 2} 2.781244{col 51}{space 1}    0.44{col 60}{space 3}0.663{col 68}{space 4}-4.237339{col 81}{space 3} 6.664937
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} 2.939721{col 40}{space 2} 3.229487{col 51}{space 1}    0.91{col 60}{space 3}0.363{col 68}{space 4}-3.389958{col 81}{space 3} 9.269401
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1177947{col 40}{space 2} .0773169{col 51}{space 1}    1.52{col 60}{space 3}0.128{col 68}{space 4}-.0337436{col 81}{space 3}  .269333
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}  19.4842{col 40}{space 2}  16.4832{col 51}{space 1}    1.18{col 60}{space 3}0.237{col 68}{space 4}-12.82228{col 81}{space 3} 51.79068
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2}-57.09256{col 40}{space 2} 31.56005{col 51}{space 1}   -1.81{col 60}{space 3}0.070{col 68}{space 4}-118.9491{col 81}{space 3} 4.764003
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-3.866301{col 40}{space 2} 3.281626{col 51}{space 1}   -1.18{col 60}{space 3}0.239{col 68}{space 4}-10.29817{col 81}{space 3} 2.565567
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-4.157502{col 40}{space 2} 15.18249{col 51}{space 1}   -0.27{col 60}{space 3}0.784{col 68}{space 4}-33.91463{col 81}{space 3} 25.59962
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 70.24094{col 40}{space 2} 45.03383{col 51}{space 1}    1.56{col 60}{space 3}0.119{col 68}{space 4}-18.02374{col 81}{space 3} 158.5056
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2}-.7292424{col 40}{space 2} 2.859884{col 51}{space 1}   -0.25{col 60}{space 3}0.799{col 68}{space 4}-6.334512{col 81}{space 3} 4.876027
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} 1.032296{col 40}{space 2} 1.284151{col 51}{space 1}    0.80{col 60}{space 3}0.421{col 68}{space 4}-1.484593{col 81}{space 3} 3.549185
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2} .3161374{col 40}{space 2} .8356635{col 51}{space 1}    0.38{col 60}{space 3}0.705{col 68}{space 4}-1.321733{col 81}{space 3} 1.954008
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2}-13.30483{col 40}{space 2} 1.014235{col 51}{space 1}  -13.12{col 60}{space 3}0.000{col 68}{space 4}-15.29269{col 81}{space 3}-11.31696
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-13.37187{col 40}{space 2} .9931912{col 51}{space 1}  -13.46{col 60}{space 3}0.000{col 68}{space 4}-15.31849{col 81}{space 3}-11.42525
+{txt}{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0012113{col 40}{space 2} .0010564{col 51}{space 1}    1.15{col 60}{space 3}0.252{col 68}{space 4}-.0008592{col 81}{space 3} .0032818
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. xtpoisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 i.nendo n_staff_all, fe vce(robust) 
+{txt}note: 11 groups (11 obs) dropped because of only one obs per group
+note: 1363 groups (7855 obs) dropped because of all zero outcomes
+note: touitsu_2007 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-737.67867}  
+Iteration 1:{space 3}log pseudolikelihood = {res: -702.6356}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-701.17404}  
+Iteration 3:{space 3}log pseudolikelihood = {res:-701.09578}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-701.09078}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-701.08963}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-701.08939}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-701.08935}  
+{res}
+{txt}Conditional fixed-effects Poisson regression{col 49}Number of obs{col 67}={col 69}{res}     1,989
+{txt}Group variable: {res}pres_pm_codes{col 49}{txt}Number of groups{col 67}={col 69}{res}       338
+
+{txt}{col 49}Obs per group:
+{col 63}min{col 67}={col 69}{res}         2
+{txt}{col 63}avg{col 67}={col 69}{res}       5.9
+{txt}{col 63}max{col 67}={col 69}{res}         8
+
+{txt}{col 49}Wald chi2({res}21{txt}){col 67}={col 70}{res}   190.39
+{txt}Log pseudolikelihood  = {res}-701.08935{col 49}{txt}Prob > chi2{col 67}={res}{col 73}0.0000
+
+{txt}{ralign 92:(Std. Err. adjusted for clustering on pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2} 1.561344{col 40}{space 2} 2.755386{col 51}{space 1}    0.57{col 60}{space 3}0.571{col 68}{space 4}-3.839114{col 81}{space 3} 6.961801
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} -.281618{col 40}{space 2} 3.229004{col 51}{space 1}   -0.09{col 60}{space 3}0.931{col 68}{space 4}-6.610349{col 81}{space 3} 6.047113
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .1619693{col 40}{space 2} .0777332{col 51}{space 1}    2.08{col 60}{space 3}0.037{col 68}{space 4} .0096151{col 81}{space 3} .3143235
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2}-31.73463{col 40}{space 2} 20.68994{col 51}{space 1}   -1.53{col 60}{space 3}0.125{col 68}{space 4}-72.28616{col 81}{space 3} 8.816899
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} -57.0455{col 40}{space 2}  36.0496{col 51}{space 1}   -1.58{col 60}{space 3}0.114{col 68}{space 4}-127.7014{col 81}{space 3} 13.61042
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2}-6.233684{col 40}{space 2} 4.216219{col 51}{space 1}   -1.48{col 60}{space 3}0.139{col 68}{space 4}-14.49732{col 81}{space 3} 2.029954
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-3.796066{col 40}{space 2}   15.967{col 51}{space 1}   -0.24{col 60}{space 3}0.812{col 68}{space 4}-35.09081{col 81}{space 3} 27.49868
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2} 78.18782{col 40}{space 2} 50.65833{col 51}{space 1}    1.54{col 60}{space 3}0.123{col 68}{space 4}-21.10069{col 81}{space 3} 177.4763
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} 9.938454{col 40}{space 2} 4.396704{col 51}{space 1}    2.26{col 60}{space 3}0.024{col 68}{space 4} 1.321072{col 81}{space 3} 18.55584
+{txt}{space 3}win_ratio_musyozoku_pre {c |}{col 28}{res}{space 2} .7206774{col 40}{space 2} 1.345739{col 51}{space 1}    0.54{col 60}{space 3}0.592{col 68}{space 4}-1.916922{col 81}{space 3} 3.358277
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2} .2769612{col 40}{space 2} .8049821{col 51}{space 1}    0.34{col 60}{space 3}0.731{col 68}{space 4}-1.300775{col 81}{space 3} 1.854697
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2}-12.19782{col 40}{space 2} 1.029509{col 51}{space 1}  -11.85{col 60}{space 3}0.000{col 68}{space 4}-14.21562{col 81}{space 3}-10.18002
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2} -11.9594{col 40}{space 2} 1.016361{col 51}{space 1}  -11.77{col 60}{space 3}0.000{col 68}{space 4}-13.95143{col 81}{space 3} -9.96737
+{txt}{space 26} {c |}
+{space 21}nendo {c |}
+{space 21}2010  {c |}{col 28}{res}{space 2} 2.069218{col 40}{space 2}  1.14996{col 51}{space 1}    1.80{col 60}{space 3}0.072{col 68}{space 4}-.1846625{col 81}{space 3} 4.323098
+{txt}{space 21}2011  {c |}{col 28}{res}{space 2} 2.838547{col 40}{space 2} 1.171837{col 51}{space 1}    2.42{col 60}{space 3}0.015{col 68}{space 4} .5417883{col 81}{space 3} 5.135306
+{txt}{space 21}2012  {c |}{col 28}{res}{space 2}  3.56297{col 40}{space 2}  1.21952{col 51}{space 1}    2.92{col 60}{space 3}0.003{col 68}{space 4} 1.172755{col 81}{space 3} 5.953185
+{txt}{space 21}2013  {c |}{col 28}{res}{space 2} 4.004548{col 40}{space 2} 1.229904{col 51}{space 1}    3.26{col 60}{space 3}0.001{col 68}{space 4} 1.593979{col 81}{space 3} 6.415116
+{txt}{space 21}2014  {c |}{col 28}{res}{space 2} 4.022756{col 40}{space 2} 1.236498{col 51}{space 1}    3.25{col 60}{space 3}0.001{col 68}{space 4} 1.599264{col 81}{space 3} 6.446247
+{txt}{space 21}2015  {c |}{col 28}{res}{space 2} 3.629255{col 40}{space 2} 1.243258{col 51}{space 1}    2.92{col 60}{space 3}0.004{col 68}{space 4} 1.192515{col 81}{space 3} 6.065996
+{txt}{space 21}2016  {c |}{col 28}{res}{space 2} 3.958764{col 40}{space 2} 1.268018{col 51}{space 1}    3.12{col 60}{space 3}0.002{col 68}{space 4} 1.473495{col 81}{space 3} 6.444033
+{txt}{space 26} {c |}
+{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0020466{col 40}{space 2} .0010288{col 51}{space 1}    1.99{col 60}{space 3}0.047{col 68}{space 4} .0000301{col 81}{space 3} .0040631
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. 
+. ** そもそも全て0の自治体を省いているので、話にならない
+. 
+. **pooled poisson
+. 
+. poisson count_jyorei lnsalary_am_start, vce(cluster pres_pm_codes)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2547.7762}  
+Iteration 1:{space 3}log pseudolikelihood = {res: -2547.776}  
+Iteration 2:{space 3}log pseudolikelihood = {res: -2547.776}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}1{txt}){col 67}= {res}    122.65
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res} -2547.776{txt}{col 49}Pseudo R2{col 67}= {res}    0.0860
+
+{txt}{ralign 83:(Std. Err. adjusted for {res:1,740} clusters in pres_pm_codes)}
+{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2} 2.028719{col 31}{space 2} .1831806{col 42}{space 1}   11.07{col 51}{space 3}0.000{col 59}{space 4} 1.669692{col 72}{space 3} 2.387746
+{txt}{space 12}_cons {c |}{col 19}{res}{space 2}-19.49588{col 31}{space 2} 1.507473{col 42}{space 1}  -12.93{col 51}{space 3}0.000{col 59}{space 4}-22.45047{col 72}{space 3}-16.54129
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_start ln_population, vce(cluster pres_pm_codes)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2515.7776}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2515.7702}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2515.7702}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    157.77
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2515.7702{txt}{col 49}Pseudo R2{col 67}= {res}    0.0975
+
+{txt}{ralign 83:(Std. Err. adjusted for {res:1,740} clusters in pres_pm_codes)}
+{hline 18}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 19}{c |}{col 31}    Robust
+{col 1}     count_jyorei{col 19}{c |}      Coef.{col 31}   Std. Err.{col 43}      z{col 51}   P>|z|{col 59}     [95% Con{col 72}f. Interval]
+{hline 18}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_start {c |}{col 19}{res}{space 2}-.0491497{col 31}{space 2} .3848911{col 42}{space 1}   -0.13{col 51}{space 3}0.898{col 59}{space 4}-.8035223{col 72}{space 3} .7052229
+{txt}{space 4}ln_population {c |}{col 19}{res}{space 2} .6236683{col 31}{space 2} .1293491{col 42}{space 1}    4.82{col 51}{space 3}0.000{col 59}{space 4} .3701487{col 72}{space 3}  .877188
+{txt}{space 12}_cons {c |}{col 19}{res}{space 2}-9.341729{col 31}{space 2} 1.905575{col 42}{space 1}   -4.90{col 51}{space 3}0.000{col 59}{space 4}-13.07659{col 72}{space 3}-5.606871
+{txt}{hline 18}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. poisson count_jyorei lnsalary_am_kokuji ln_population, vce(cluster pres_pm_codes)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2515.8961}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2515.8894}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2515.8894}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,821
+{txt}{col 49}Wald chi2({res}2{txt}){col 67}= {res}    158.81
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2515.8894{txt}{col 49}Pseudo R2{col 67}= {res}    0.0976
+
+{txt}{ralign 84:(Std. Err. adjusted for {res:1,741} clusters in pres_pm_codes)}
+{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_kokuji {c |}{col 20}{res}{space 2} .1244088{col 32}{space 2} .3617197{col 43}{space 1}    0.34{col 52}{space 3}0.731{col 60}{space 4}-.5845489{col 73}{space 3} .8333665
+{txt}{space 5}ln_population {c |}{col 20}{res}{space 2} .5770551{col 32}{space 2} .1238589{col 43}{space 1}    4.66{col 52}{space 3}0.000{col 60}{space 4} .3342962{col 73}{space 3} .8198141
+{txt}{space 13}_cons {c |}{col 20}{res}{space 2} -10.2489{col 32}{space 2} 1.791337{col 43}{space 1}   -5.72{col 52}{space 3}0.000{col 60}{space 4}-13.75985{col 73}{space 3}-6.737939
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. poisson count_jyorei lnsalary_am_kokuji lnsalary_am_start ln_population, vce(cluster pres_pm_codes)
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-2513.7305}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-2513.7231}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-2513.7231}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,810
+{txt}{col 49}Wald chi2({res}3{txt}){col 67}= {res}    191.55
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2513.7231{txt}{col 49}Pseudo R2{col 67}= {res}    0.0982
+
+{txt}{ralign 84:(Std. Err. adjusted for {res:1,740} clusters in pres_pm_codes)}
+{hline 19}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 20}{c |}{col 32}    Robust
+{col 1}      count_jyorei{col 20}{c |}      Coef.{col 32}   Std. Err.{col 44}      z{col 52}   P>|z|{col 60}     [95% Con{col 73}f. Interval]
+{hline 19}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+lnsalary_am_kokuji {c |}{col 20}{res}{space 2} 1.760368{col 32}{space 2} .8686244{col 43}{space 1}    2.03{col 52}{space 3}0.043{col 60}{space 4} .0578956{col 73}{space 3} 3.462841
+{txt}{space 1}lnsalary_am_start {c |}{col 20}{res}{space 2}-1.726677{col 32}{space 2} .7777101{col 43}{space 1}   -2.22{col 52}{space 3}0.026{col 60}{space 4} -3.25096{col 73}{space 3}-.2023931
+{txt}{space 5}ln_population {c |}{col 20}{res}{space 2} .5965417{col 32}{space 2} .1247046{col 43}{space 1}    4.78{col 52}{space 3}0.000{col 60}{space 4} .3521253{col 73}{space 3} .8409582
+{txt}{space 13}_cons {c |}{col 20}{res}{space 2}-9.717826{col 32}{space 2} 1.839311{col 43}{space 1}   -5.28{col 52}{space 3}0.000{col 60}{space 4}-13.32281{col 73}{space 3}-6.112843
+{txt}{hline 19}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(cluster pres_pm_codes)
+{txt}note: touitsu_2019 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res: -14820.83}  
+Iteration 1:{space 3}log pseudolikelihood = {res:-9991.1175}  (backed up)
+Iteration 2:{space 3}log pseudolikelihood = {res: -5097.315}  (backed up)
+Iteration 3:{space 3}log pseudolikelihood = {res:-3535.7828}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-2516.4037}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-2343.8612}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-2329.9041}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-2329.2799}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-2329.2789}  
+Iteration 9:{space 3}log pseudolikelihood = {res:-2329.2789}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,152
+{txt}{col 49}Wald chi2({res}16{txt}){col 67}= {res}    494.48
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2329.2789{txt}{col 49}Pseudo R2{col 67}= {res}    0.1119
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,737} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.0487649{col 40}{space 2} .3795923{col 51}{space 1}   -0.13{col 60}{space 3}0.898{col 68}{space 4} -.792752{col 81}{space 3} .6952223
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .7238436{col 40}{space 2} .1704307{col 51}{space 1}    4.25{col 60}{space 3}0.000{col 68}{space 4} .3898057{col 81}{space 3} 1.057882
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .0001442{col 40}{space 2} .0176882{col 51}{space 1}    0.01{col 60}{space 3}0.993{col 68}{space 4} -.034524{col 81}{space 3} .0348124
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2} 14.15246{col 40}{space 2} 3.669158{col 51}{space 1}    3.86{col 60}{space 3}0.000{col 68}{space 4} 6.961044{col 81}{space 3} 21.34388
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} 8.404409{col 40}{space 2} 4.122565{col 51}{space 1}    2.04{col 60}{space 3}0.041{col 68}{space 4} .3243288{col 81}{space 3} 16.48449
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2} .4887857{col 40}{space 2} .4758057{col 51}{space 1}    1.03{col 60}{space 3}0.304{col 68}{space 4}-.4437764{col 81}{space 3} 1.421348
+{txt}{space 12}ln_all_menseki {c |}{col 28}{res}{space 2}-.1318045{col 40}{space 2} .1144463{col 51}{space 1}   -1.15{col 60}{space 3}0.249{col 68}{space 4}-.3561152{col 81}{space 3} .0925061
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-.7070629{col 40}{space 2} .4179854{col 51}{space 1}   -1.69{col 60}{space 3}0.091{col 68}{space 4}-1.526299{col 81}{space 3} .1121734
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2}-.1295138{col 40}{space 2} .3967995{col 51}{space 1}   -0.33{col 60}{space 3}0.744{col 68}{space 4}-.9072265{col 81}{space 3} .6481989
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} .7377673{col 40}{space 2} .2802809{col 51}{space 1}    2.63{col 60}{space 3}0.008{col 68}{space 4} .1884269{col 81}{space 3} 1.287108
+{txt}{space 7}win_ratio_musyozoku {c |}{col 28}{res}{space 2}-.4511802{col 40}{space 2} .3683259{col 51}{space 1}   -1.22{col 60}{space 3}0.221{col 68}{space 4}-1.173086{col 81}{space 3} .2707252
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2} -.314349{col 40}{space 2} .2547431{col 51}{space 1}   -1.23{col 60}{space 3}0.217{col 68}{space 4}-.8136364{col 81}{space 3} .1849383
+{txt}{space 14}touitsu_2007 {c |}{col 28}{res}{space 2}-.6491541{col 40}{space 2} .2146921{col 51}{space 1}   -3.02{col 60}{space 3}0.002{col 68}{space 4}-1.069943{col 81}{space 3}-.2283653
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2} .0188399{col 40}{space 2} .1342289{col 51}{space 1}    0.14{col 60}{space 3}0.888{col 68}{space 4}-.2442439{col 81}{space 3} .2819238
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-.0867576{col 40}{space 2}  .183845{col 51}{space 1}   -0.47{col 60}{space 3}0.637{col 68}{space 4}-.4470873{col 81}{space 3}  .273572
+{txt}{space 14}touitsu_2019 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 15}n_staff_all {c |}{col 28}{res}{space 2}  .000019{col 40}{space 2} .0000281{col 51}{space 1}    0.68{col 60}{space 3}0.497{col 68}{space 4} -.000036{col 81}{space 3} .0000741
+{txt}{space 21}_cons {c |}{col 28}{res}{space 2}-15.54499{col 40}{space 2}  4.87247{col 51}{space 1}   -3.19{col 60}{space 3}0.001{col 68}{space 4}-25.09486{col 81}{space 3}-5.995129
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_kokuji ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(cluster pres_pm_codes)
+{txt}note: touitsu_2019 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-14813.746}  (not concave)
+Iteration 1:{space 3}log pseudolikelihood = {res:-14241.176}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-7931.3622}  (backed up)
+Iteration 3:{space 3}log pseudolikelihood = {res: -4492.831}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-3095.0426}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-2399.5219}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-2343.6229}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-2329.3456}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-2329.3047}  
+Iteration 9:{space 3}log pseudolikelihood = {res:-2329.3047}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,154
+{txt}{col 49}Wald chi2({res}16{txt}){col 67}= {res}    501.34
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2329.3047{txt}{col 49}Pseudo R2{col 67}= {res}    0.1119
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,738} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}{col 28}{res}{space 2} .0749095{col 40}{space 2} .3889779{col 51}{space 1}    0.19{col 60}{space 3}0.847{col 68}{space 4}-.6874732{col 81}{space 3} .8372922
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .6881828{col 40}{space 2}  .169877{col 51}{space 1}    4.05{col 60}{space 3}0.000{col 68}{space 4} .3552301{col 81}{space 3} 1.021135
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .0002417{col 40}{space 2} .0175247{col 51}{space 1}    0.01{col 60}{space 3}0.989{col 68}{space 4}-.0341061{col 81}{space 3} .0345894
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2} 14.01662{col 40}{space 2} 3.675445{col 51}{space 1}    3.81{col 60}{space 3}0.000{col 68}{space 4} 6.812884{col 81}{space 3} 21.22036
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} 8.337569{col 40}{space 2} 4.126971{col 51}{space 1}    2.02{col 60}{space 3}0.043{col 68}{space 4} .2488534{col 81}{space 3} 16.42628
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2} .4815425{col 40}{space 2} .4738227{col 51}{space 1}    1.02{col 60}{space 3}0.309{col 68}{space 4}-.4471328{col 81}{space 3} 1.410218
+{txt}{space 12}ln_all_menseki {c |}{col 28}{res}{space 2}-.1268074{col 40}{space 2} .1144133{col 51}{space 1}   -1.11{col 60}{space 3}0.268{col 68}{space 4}-.3510533{col 81}{space 3} .0974385
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-.6930708{col 40}{space 2} .4171755{col 51}{space 1}   -1.66{col 60}{space 3}0.097{col 68}{space 4} -1.51072{col 81}{space 3} .1245782
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2}-.1222552{col 40}{space 2} .3955265{col 51}{space 1}   -0.31{col 60}{space 3}0.757{col 68}{space 4}-.8974728{col 81}{space 3} .6529624
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} .7270214{col 40}{space 2} .2797601{col 51}{space 1}    2.60{col 60}{space 3}0.009{col 68}{space 4} .1787017{col 81}{space 3} 1.275341
+{txt}{space 7}win_ratio_musyozoku {c |}{col 28}{res}{space 2}-.4271739{col 40}{space 2} .3706287{col 51}{space 1}   -1.15{col 60}{space 3}0.249{col 68}{space 4}-1.153593{col 81}{space 3}  .299245
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2}-.3205182{col 40}{space 2}   .25142{col 51}{space 1}   -1.27{col 60}{space 3}0.202{col 68}{space 4}-.8132923{col 81}{space 3} .1722559
+{txt}{space 14}touitsu_2007 {c |}{col 28}{res}{space 2}-.6535138{col 40}{space 2}  .213944{col 51}{space 1}   -3.05{col 60}{space 3}0.002{col 68}{space 4}-1.072836{col 81}{space 3}-.2341914
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2} .0144066{col 40}{space 2} .1344581{col 51}{space 1}    0.11{col 60}{space 3}0.915{col 68}{space 4}-.2491265{col 81}{space 3} .2779396
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-.0882784{col 40}{space 2} .1832967{col 51}{space 1}   -0.48{col 60}{space 3}0.630{col 68}{space 4}-.4475333{col 81}{space 3} .2709765
+{txt}{space 14}touitsu_2019 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0000202{col 40}{space 2} .0000276{col 51}{space 1}    0.73{col 60}{space 3}0.465{col 68}{space 4} -.000034{col 81}{space 3} .0000743
+{txt}{space 21}_cons {c |}{col 28}{res}{space 2}-16.14209{col 40}{space 2}  4.88924{col 51}{space 1}   -3.30{col 60}{space 3}0.001{col 68}{space 4}-25.72482{col 81}{space 3}-6.559357
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_kokuji lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all, vce(cluster pres_pm_codes)
+{txt}note: touitsu_2019 omitted because of collinearity
+{res}
+{txt}Iteration 0:{space 3}log pseudolikelihood = {res:-14750.497}  (not concave)
+Iteration 1:{space 3}log pseudolikelihood = {res: -14180.65}  
+Iteration 2:{space 3}log pseudolikelihood = {res:-7020.5601}  (backed up)
+Iteration 3:{space 3}log pseudolikelihood = {res:-4890.6498}  
+Iteration 4:{space 3}log pseudolikelihood = {res:-3523.1163}  
+Iteration 5:{space 3}log pseudolikelihood = {res:-2565.0914}  
+Iteration 6:{space 3}log pseudolikelihood = {res:-2345.1146}  
+Iteration 7:{space 3}log pseudolikelihood = {res:-2329.5683}  
+Iteration 8:{space 3}log pseudolikelihood = {res:-2328.7199}  
+Iteration 9:{space 3}log pseudolikelihood = {res:-2328.7175}  
+Iteration 10:{space 2}log pseudolikelihood = {res:-2328.7175}  
+{res}
+{txt}Poisson regression{col 49}Number of obs{col 67}= {res}    13,152
+{txt}{col 49}Wald chi2({res}17{txt}){col 67}= {res}    619.66
+{txt}{col 49}Prob > chi2{col 67}= {res}    0.0000
+{txt}Log pseudolikelihood = {res}-2328.7175{txt}{col 49}Pseudo R2{col 67}= {res}    0.1121
+
+{txt}{ralign 92:(Std. Err. adjusted for {res:1,737} clusters in pres_pm_codes)}
+{hline 27}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 28}{c |}{col 40}    Robust
+{col 1}              count_jyorei{col 28}{c |}      Coef.{col 40}   Std. Err.{col 52}      z{col 60}   P>|z|{col 68}     [95% Con{col 81}f. Interval]
+{hline 27}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}lnsalary_am_kokuji {c |}{col 28}{res}{space 2} .8767879{col 40}{space 2} .6943209{col 51}{space 1}    1.26{col 60}{space 3}0.207{col 68}{space 4}-.4840559{col 81}{space 3} 2.237632
+{txt}{space 9}lnsalary_am_start {c |}{col 28}{res}{space 2}-.8659848{col 40}{space 2} .6525874{col 51}{space 1}   -1.33{col 60}{space 3}0.185{col 68}{space 4}-2.145033{col 81}{space 3}  .413063
+{txt}{space 13}ln_population {c |}{col 28}{res}{space 2} .7051999{col 40}{space 2} .1720822{col 51}{space 1}    4.10{col 60}{space 3}0.000{col 68}{space 4}  .367925{col 81}{space 3} 1.042475
+{txt}{space 13}n_seats_adopt {c |}{col 28}{res}{space 2} .0009809{col 40}{space 2} .0175871{col 51}{space 1}    0.06{col 60}{space 3}0.956{col 68}{space 4}-.0334891{col 81}{space 3}  .035451
+{txt}population_elderly75_ratio {c |}{col 28}{res}{space 2} 14.04573{col 40}{space 2} 3.684405{col 51}{space 1}    3.81{col 60}{space 3}0.000{col 68}{space 4} 6.824429{col 81}{space 3} 21.26703
+{txt}{space 2}population_child15_ratio {c |}{col 28}{res}{space 2} 8.259988{col 40}{space 2} 4.129782{col 51}{space 1}    2.00{col 60}{space 3}0.045{col 68}{space 4}  .165764{col 81}{space 3} 16.35421
+{txt}{space 13}ln_income_per {c |}{col 28}{res}{space 2} .4761765{col 40}{space 2}  .476581{col 51}{space 1}    1.00{col 60}{space 3}0.318{col 68}{space 4} -.457905{col 81}{space 3} 1.410258
+{txt}{space 12}ln_all_menseki {c |}{col 28}{res}{space 2}-.1314739{col 40}{space 2} .1145716{col 51}{space 1}   -1.15{col 60}{space 3}0.251{col 68}{space 4}  -.35603{col 81}{space 3} .0930822
+{txt}{space 5}canlive_ratio_menseki {c |}{col 28}{res}{space 2}-.6999926{col 40}{space 2}  .417996{col 51}{space 1}   -1.67{col 60}{space 3}0.094{col 68}{space 4} -1.51925{col 81}{space 3} .1192646
+{txt}{space 8}sigaika_ratio_area {c |}{col 28}{res}{space 2}-.1398541{col 40}{space 2} .3963036{col 51}{space 1}   -0.35{col 60}{space 3}0.724{col 68}{space 4}-.9165948{col 81}{space 3} .6368867
+{txt}{space 9}zaiseiryoku_index {c |}{col 28}{res}{space 2} .7327599{col 40}{space 2} .2803886{col 51}{space 1}    2.61{col 60}{space 3}0.009{col 68}{space 4} .1832083{col 81}{space 3} 1.282311
+{txt}{space 7}win_ratio_musyozoku {c |}{col 28}{res}{space 2}-.4306056{col 40}{space 2} .3716981{col 51}{space 1}   -1.16{col 60}{space 3}0.247{col 68}{space 4}-1.159121{col 81}{space 3} .2979093
+{txt}{space 13}expired_dummy {c |}{col 28}{res}{space 2}-.2184623{col 40}{space 2} .2819852{col 51}{space 1}   -0.77{col 60}{space 3}0.438{col 68}{space 4}-.7711431{col 81}{space 3} .3342186
+{txt}{space 14}touitsu_2007 {c |}{col 28}{res}{space 2}-.6438571{col 40}{space 2} .2150159{col 51}{space 1}   -2.99{col 60}{space 3}0.003{col 68}{space 4}-1.065281{col 81}{space 3}-.2224337
+{txt}{space 14}touitsu_2011 {c |}{col 28}{res}{space 2} .0161392{col 40}{space 2} .1343836{col 51}{space 1}    0.12{col 60}{space 3}0.904{col 68}{space 4}-.2472478{col 81}{space 3} .2795261
+{txt}{space 14}touitsu_2015 {c |}{col 28}{res}{space 2}-.0780499{col 40}{space 2} .1839945{col 51}{space 1}   -0.42{col 60}{space 3}0.671{col 68}{space 4}-.4386726{col 81}{space 3} .2825727
+{txt}{space 14}touitsu_2019 {c |}{col 28}{res}{space 2}        0{col 40}{txt}  (omitted)
+{space 15}n_staff_all {c |}{col 28}{res}{space 2} .0000174{col 40}{space 2}  .000028{col 51}{space 1}    0.62{col 60}{space 3}0.534{col 68}{space 4}-.0000374{col 81}{space 3} .0000722
+{txt}{space 21}_cons {c |}{col 28}{res}{space 2}-15.82052{col 40}{space 2} 4.924507{col 51}{space 1}   -3.21{col 60}{space 3}0.001{col 68}{space 4}-25.47237{col 81}{space 3} -6.16866
+{txt}{hline 27}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. poisson count_jyorei lnsalary_am_start ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area zaiseiryoku_index win_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 n_staff_all i.nendo  vce(cluster pres_pm_codes)
+{err}variable {bf}vce{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\miyak\theses_codes\1202_1y_jyorei.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 3 Dec 2021, 02:45:45
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
