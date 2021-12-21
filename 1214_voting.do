@@ -1,0 +1,228 @@
+xtset pres_pm_codes ele_t
+
+
+xtsum dummy_up_salary dummy_down_salary
+**問題ない
+
+corr dummy_up_salary dummy_down_salary lnsalary_am_kokuji
+
+sum voting_rate_isna
+gen voting_rate_p = voting_rate_isna*0.01
+sum voting_rate_p
+
+encode muni_type, gen(new_muni_type)
+tab new_muni_type
+tab muni_type
+drop muni_type
+rename new_muni_type muni_type
+
+gen downratio = down_ratio_sala_prefbigtype_4ys 
+gen upratio = up_ratio_sala_prefbigtype_4ys 
+
+*gen increase_salary = abs_change_salary_am if (abs_change_salary_am > 0)&(dummy_up_salary == 1)
+*gen decrease_salary = abs_change_salary_am if (abs_change_salary_am > 0)&(dummy_down_salary == 1)
+
+gen increase_salary = abs_change_salary_am*dummy_up_salary
+gen decrease_salary = abs_change_salary_am*dummy_down_salary
+
+sum dummy_up_salary dummy_down_salary increase_salary decrease_salary
+
+
+sum increase_salary decrease_salary
+
+*gen ln_increase_salary = log(increase_salary)
+*gen ln_decrease_salary = log(decrease_salary)]
+
+replace ln_increase_salary = log(increase_salary)
+replace ln_decrease_salary = log(decrease_salary)
+
+hist ln_increase_salary
+
+sum ln_increase_salary ln_decrease_salary
+
+gen ln_increase_salary_fina = ln_increase_salary
+replace ln_increase_salary_fina = 0 if dummy_up_salary == 0
+
+gen ln_decrease_salary_fina = ln_decrease_salary
+replace ln_decrease_salary_fina = 0 if dummy_down_salary == 0
+
+sum ln_increase_salary_fina ln_decrease_salary_fina
+
+
+ivregress 2sls voting_rate_p (lnsalary_am_kokuji = ln_mean_prefbigtype_1yago) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+estat first
+**検定問題なし、有意ならず
+
+ivregress 2sls voting_rate_p (lnsalary_am_kokuji = ln_mean_prefbigtype_1yago) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+estat first
+**検定問題なし、有意ならず
+
+ivregress 2sls voting_rate_p (lnsalary_am_kokuji = ln_mean_prefbigtype_1yago) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+estat first
+**検定問題なし、有意ならず
+
+ivregress 2sls voting_rate_p (dummy_up_salary = upratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku  win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+estat first
+**検定問題なし、有意プラス
+
+ivregress 2sls voting_rate_p (dummy_down_salary = downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+estat first
+**検定問題なし、有意でない
+
+ivregress 2sls voting_rate_p (ib(0).cate_change_salary = upratio downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+estat first
+
+ivreg2 voting_rate_p (ib(0).cate_change_salary = upratio downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, cluster(pres_pm_codes)
+estat first
+**検定びみょいけど、両方有意
+
+
+ivreg2 voting_rate_p (lnsalary_am_kokuji ib(0).cate_change_salary = upratio downratio ln_mean_prefbigtype_1yago) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, cluster(pres_pm_codes)
+**検定びみょい
+
+reg lnsalary_am_kokuji upratio downratio ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if (voting_rate_p != .)&(cate_change_salary != .), cluster(pres_pm_codes)
+test upratio downratio ln_mean_prefbigtype_1yago
+
+reg dummy_down_salary upratio downratio ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if (voting_rate_p != .)&(cate_change_salary != .), cluster(pres_pm_codes)
+test upratio downratio ln_mean_prefbigtype_1yago
+*微妙
+
+reg dummy_up_salary upratio downratio ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if (voting_rate_p != .)&(cate_change_salary != .), cluster(pres_pm_codes)
+test upratio downratio ln_mean_prefbigtype_1yago
+**個々で1st stageを見ていくとF test はそんなに微妙ではない
+
+reg dummy_down_salary upratio downratio ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if (voting_rate_p != .)&(cate_change_salary != .), cluster(pres_pm_codes)
+test upratio downratio 
+
+
+** 固定効果
+xtreg voting_rate_p lnsalary_am_kokuji ib(0).cate_change_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p ib(0).cate_change_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p ib(0).cate_change_salary ib(0).cate_change_salary#c.abs_change_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary dummy_down_salary dummy_up_salary#c.increase_salary dummy_down_salary#c.decrease_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p lnsalary_am_kokuji dummy_up_salary dummy_down_salary dummy_up_salary#c.increase_salary dummy_down_salary#c.decrease_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary#c.increase_salary dummy_down_salary#c.decrease_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary dummy_down_salary dummy_up_salary#c.ln_increase_salary_fina dummy_down_salary#c.ln_decrease_salary_fina ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p lnsalary_am_kokuji dummy_up_salary dummy_down_salary dummy_up_salary#c.ln_increase_salary_fina dummy_down_salary#c.ln_decrease_salary_fina ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary#c.ln_increase_salary_fina dummy_down_salary#c.ln_decrease_salary_fina ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary dummy_up_salary#c.increase_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_up_salary dummy_up_salary#c.ln_increase_salary_fina ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+*消えた
+
+xtreg voting_rate_p dummy_down_salary dummy_down_salary#c.decrease_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtreg voting_rate_p dummy_down_salary dummy_down_salary#c.ln_decrease_salary_fina ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+
+xtreg voting_rate_p i.dummy_up_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+*1%有意
+
+xtreg voting_rate_p lnsalary_am_kokuji dummy_up_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+*10％有意
+
+xtreg voting_rate_p lnsalary_am_kokuji dummy_down_salary ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+*ギリ有意にならない
+
+** fractional probit 
+fracreg probit voting_rate_p lnsalary_am_kokuji i.cate_change_salary ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+margins if e(sample) == 1, dydx(i.cate_change_salary)
+
+fracreg probit voting_rate_p i.cate_change_salary ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+margins if e(sample) == 1, dydx(i.cate_change_salary)
+
+**FDIV
+ivreg2 D.voting_rate_p (D.dummy_up_salary D.dummy_down_salary = L.upratio L.downratio) D.(ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo* compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku), nocons cluster(pres_pm_codes)
+
+ivregress 2sls D.voting_rate_p (D.dummy_up_salary  = L.upratio) D.(ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo* compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku), nocons vce(cluster pres_pm_codes)
+estat first
+*検定アカン
+
+ivregress 2sls D.voting_rate_p (D.dummy_up_salary  = D.upratio) D.(ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo* compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku), nocons vce(cluster pres_pm_codes)
+estat first
+
+ivregress 2sls D.voting_rate_p (D.dummy_up_salary  = D.upratio) D.(ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo* compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku), nocons vce(cluster pres_pm_codes)
+estat first
+*比較的きれいだけどダメ'
+
+ivregress 2sls D.voting_rate_p (D.dummy_up_salary  = LD.upratio) D.(ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo* compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku), nocons vce(cluster pres_pm_codes)
+estat first
+**観測数大きく減少、妥当ではない
+
+**FEIV →　仮定に注意
+
+xtivreg voting_rate_p (dummy_up_salary dummy_down_salary = upratio downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+**めちゃキレイ
+
+xtivreg voting_rate_p (dummy_down_salary = downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+xtivreg voting_rate_p (dummy_up_salary = upratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+
+
+**diff GMM
+
+xtabond2 voting_rate_p i.cate_change_salary L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(upratio downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) noleveleq twostep robust
+*検定アカンぽい
+
+xtabond2 voting_rate_p lnsalary_am_kokuji i.cate_change_salary L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(lnsalary_am_kokuji upratio downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) noleveleq twostep robust
+
+xtabond2 voting_rate_p dummy_up_salary_am L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(upratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) noleveleq twostep robust
+
+xtabond2 voting_rate_p dummy_down_salary_am L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) noleveleq twostep robust
+
+***sys GMM
+
+xtabond2 voting_rate_p i.cate_change_salary L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(upratio downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) twostep robust
+*検定アカンぽい
+
+xtabond2 voting_rate_p lnsalary_am_kokuji i.cate_change_salary L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(lnsalary_am_kokuji upratio downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) twostep robust
+*検定アカンぽい
+
+xtabond2 voting_rate_p dummy_up_salary_am L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(upratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all)  twostep robust
+*検定アカンぽい
+
+xtabond2 voting_rate_p dummy_down_salary_am L1.voting_rate_p ln_income_per i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku ln_staff_all ln_salary_staff_all compe_rate_adopt age_mean_cand ratio_women_cand_adopt cand_ratio_musyozoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019, gmm(downratio L.voting_rate_p) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku compe_rate_adopt age_mean_cand win_ratio_musyozoku_pre ratio_women_cand_adopt cand_ratio_musyozoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) twostep robust
+
+**pooled fraction model 2sri
+
+reg dummy_up_salary upratio ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+predict v_up_xu_hat, resid
+
+fracreg probit voting_rate_p dummy_up_salary v_up_xu_hat ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+
+
+
+
+
+
+
+
+esttab r1 r2 r3 r4 r5 using "jyorei_iv_1213.tex", replace ///
+b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+drop(touitsu_2007 *.nendo _cons *.pref_id *.muni_type ) nogaps ///
+stats(year municipality N, fmt(%9.0f %9.0f %9.0f) labels("年度固定効果" "自治体固定効果" "観測数")) ///
+label nolz varwidth(16) modelwidth(13) style(tex)  ///
+title(被説明変数: 議員提案条例可決数(4年間)) coeflabels(lnsalary_am_kokuji "対数議員報酬額" wom_xu_hat "第1段階残差" ///
+ln_population "対数人口" n_seats_adopt "議席数" L1.compe_rate_adopt "1議席あたり立候補人数 1期ラグ" ///
+population_elderly75_ratio "全人口に占める75歳以上の割合" population_child15_ratio "全人口に占める15歳未満の割合" ln_income_per "納税者1人あたり課税対象所得" ///
+ln_all_menseki "対数面積" canlive_ratio_menseki "可住地面積割合" sigaika_ratio_area "市街化区域面積割合" ln_zaiseiryoku ///
+"対数財政力指数" win_ratio_musyozoku_pre "前回当選者に占める無所属の割合" ln_staff_all "対数自治体職員数" expired_dummy ///
+"任期満了ダミー"  touitsu_2011 "2011年統一選ダミー" touitsu_2015 "2015年統一選ダミー" touitsu_2019 "2019年統一選ダミー" ln_salary_staff_all "対数職員平均給与" ///
+age_mean_wins "当選者平均年齢" ratio_women_wins_adopt "当選者女性割合" win_ratio_musyozoku "当選者無所属割合" ) ///
+mlabels(, span prefix(\multicolumn{@span}{c}{) suffix(})) ///
+prehead("\documentclass[10pt]{jsarticle}" "\pagestyle{empty}" "\usepackage{booktabs}""\usepackage{siunitx}""\usepackage{lscape}" ///
+"\usepackage[margin=20truemm]{geometry}""\sisetup{input-symbols = ()}""\begin{document}""\begin{table}\caption{@title}" ///
+"\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}""\begin{center}" ///
+"\sisetup{table-space-text-post = \sym{***}}""\begin{tabular}{l*{@M}{llll}}""\toprule") posthead(\midrule) prefoot(\midrule) ///
+postfoot("\bottomrule""\end{tabular}""\end{center}""\end{table}""\end{document}")
+
+

@@ -2,8 +2,9 @@ use meap92_01, clear
 
 capture program drop math4_boot
 
-program math4_boot, rclass
 
+
+program math4_boot, rclass
 * First Stage
 reg lavgrexp lfound lfndy96-lfndy01 lunch alunch lenroll alenroll y96-y01 lexppp94 le94y96-le94y01 if year>1994, robust cluster(distid)
 predict v2hat, resid

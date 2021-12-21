@@ -18,6 +18,8 @@ sum voting_rate_isna, detail
 list ele_id voting_rate_isna if voting_rate_isna < 30 
 replace voting_rate_isna = . if voting_rate_isna < 20
 
+list ele_id voting_rate_isna if (voting_rate_isna > 97)&(voting_rate_isna != .)
+replace voting_rate_isna = . if voting_rate_isna == 100
 
 
 

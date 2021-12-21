@@ -6,6 +6,8 @@ gen ln_zaiseiryoku = log(zaiseiryoku_index)
 gen ln_mean_ruiji_1yago = log(mean_salary_ruiji_1yago)
 
 
+
+
 replace ln_income_per = log(income_per_syotokuwari_time)
 
 replace ln_diff_salary = log(salary_12month) - log(income_per_syotokuwari_time)
