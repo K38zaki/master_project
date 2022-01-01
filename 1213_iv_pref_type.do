@@ -14,6 +14,9 @@ hist ln_mean_preftype_1yago
 hist ln_mean_ruiji_1yago
 hist ln_mean_prefbigtype_1yago
 
+**1229
+replace age_mean_cand = . if age_mean_cand < 40
+
 
 estimates clear
 
@@ -274,6 +277,9 @@ regress age_mean_cand ln_salary_am_kokuji ln_income_per ln_population n_seats_ad
 estimates store r1, title("OLS")
 estadd local municipality "No": r1
 estadd local year "Yes": r1
+
+gen sample_age = 0
+replace sample_age = 1 if e(sample) == 1
 
 xtreg age_mean_cand ln_salary_am_kokuji ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo, fe vce(cluster pres_pm_codes)
 

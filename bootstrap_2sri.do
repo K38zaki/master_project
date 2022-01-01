@@ -926,7 +926,7 @@ nolz varwidth(16) modelwidth(13) style(tex)
 
 preserve
 drop if sample_teian_cont == 0
-bootstrap r(ame_1) r(ame_2) r(ame_3) r(ame_4) r(ame_5) r(ame_6) r(ame_7) r(ame_8) r(ame_9) r(ame_10) r(ame_11) r(ame_12) r(ame_13) r(ame_14) r(ame_15) r(ame_16) r(ame_17) r(ame_18) r(ame_19) r(ame_20), reps(589) seed (437) cluster(pres_pm_codes) idcluster(new_id_ppm): jyoreicont2sri
+bootstrap r(ame_1) r(ame_2) r(ame_3) r(ame_4) r(ame_5) r(ame_6) r(ame_7) r(ame_8) r(ame_9) r(ame_10) r(ame_11) r(ame_12) r(ame_13) r(ame_14) r(ame_15) r(ame_16) r(ame_17) r(ame_18) r(ame_19) r(ame_20), reps(589) seed (3189) cluster(pres_pm_codes) idcluster(new_id_ppm): jyoreicont2sri
 restore
 estimates store res_cont_jyorei_2sri, title("2SRI_cont_jyorei")
 

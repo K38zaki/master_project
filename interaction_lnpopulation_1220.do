@@ -13,6 +13,12 @@ xtabond2 compe_rate_adopt c.lnsalary_am_kokuji##c.ln_population L1.compe_rate_ad
 
 margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15))
 
+**novote
+regress no_voting_ratio_win c.lnsalary_am_kokuji##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+
+ivreg2 no_voting_ratio_win (lnsalary_am_kokuji c.lnsalary_am_kokuji#c.ln_population = ln_mean_prefbigtype_1yago c.ln_mean_prefbigtype_1yago#c.ln_population) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, cluster(pres_pm_codes)
+margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15))
+
 **women
 
 regress ratio_women_cand_adopt c.lnsalary_am_kokuji##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
@@ -40,7 +46,7 @@ eststo m4 :margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15)) po
 xtabond2 age_mean_cand c.lnsalary_am_kokuji##c.ln_population L1.age_mean_cand i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all, gmm(ln_mean_prefbigtype_1yago c.ln_mean_prefbigtype_1yago#c.ln_population L.age_mean_cand) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) noleveleq robust twostep
 margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15))
 
-xtabond2 ratio_women_cand_adopt c.lnsalary_am_kokuji##c.ln_population L1.age_mean_cand i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all, gmm(ln_mean_prefbigtype_1yago c.ln_mean_prefbigtype_1yago#c.ln_population L.age_mean_cand) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) robust twostep
+xtabond2 ratio_women_cand_adopt c.lnsalary_am_kokuji##c.ln_population L1.ratio_women_cand_adopt i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all, gmm(ln_mean_prefbigtype_1yago c.ln_mean_prefbigtype_1yago#c.ln_population L.age_mean_cand) ivstyle(i.nendo ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all) robust twostep
 
 **deposit
 
@@ -135,6 +141,25 @@ mlabels(, span prefix(\multicolumn{@span}{c}{) suffix(})) ///
 prehead("\sisetup{table-space-text-post = \sym{***}}""\begin{tabular}{l*{@M}{llll}}""\toprule") posthead(\midrule) prefoot(\midrule) ///
 postfoot("\bottomrule""\end{tabular}")
 
+
+**jyorei_4y
+poisson teian_jyorei_4y c.lnsalary_am_kokuji##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo , vce(cluster pres_pm_codes)
+estimates store r4, title("incdown")
+
+
+poisson teian_jyorei_4y c.lnsalary_am_kokuji##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo win_ratio_musyozoku age_mean_wins ratio_women_wins_adopt, vce(cluster pres_pm_codes)
+
+reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo win_ratio_musyozoku age_mean_wins ratio_women_wins_adopt if teian_jyorei_4y != ., vce(cluster pres_pm_codes)
+
+predict xu_hat_jy1, resid
+
+reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo win_ratio_musyozoku age_mean_wins ratio_women_wins_adopt if teian_jyorei_4y != . ,vce(cluster pres_pm_codes)
+
+predict xu_hat_jy2, resid
+
+poisson teian_jyorei_4y xu_hat_jy1 xu_hat_jy2 c.lnsalary_am_kokuji##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo win_ratio_musyozoku age_mean_wins ratio_women_wins_adopt, vce(cluster pres_pm_codes)
+
+margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15))
 
 
 
