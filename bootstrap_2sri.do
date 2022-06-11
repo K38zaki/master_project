@@ -116,6 +116,9 @@ drop if sample_women == 0
 bootstrap r(b_lnsalary_am_kokuji), reps(1000) seed (10101) cluster(pres_pm_codes) idcluster(new_id_ppm): women2sri
 restore
 
+reg lnsalary_am_kokuji ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if ratio_women_cand_adopt != ., vce(cluster pres_pm_codes)
+
+
 
 program drop women2sri
 program women2sri, rclass
@@ -228,13 +231,22 @@ star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
 
+**deposit test
+
+reg lnsalary_am_kokuji ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all compe_rate_adopt i.nendo i.pref_id i.muni_type if dummy_forfeit_deposit != ., vce(cluster pres_pm_codes)
+test ln_mean_prefbigtype_1yago
 
 
 
 **jyorei_not_control
+
+****2sls
+ivregress 2sls teian_jyorei_4y (lnsalary_am_kokuji = ln_mean_prefbigtype_1yago)  ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+
 drop Xuhat
 
 reg lnsalary_am_kokuji ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if teian_jyorei_4y != ., vce(cluster pres_pm_codes)
+test ln_mean_prefbigtype_1yago
 
 predict Xuhat, resid
 
@@ -291,9 +303,13 @@ estimates store res_not_jyorei_2sri, title("2SRI_not_jyorei")
 
 *** jyorei control
 
+****2sls
+ivregress 2sls teian_jyorei_4y (lnsalary_am_kokuji = ln_mean_prefbigtype_1yago)  ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type age_mean_wins ratio_women_wins_adopt win_ratio_musyozoku, vce(cluster pres_pm_codes)
+
 drop Xuhat
 
 reg lnsalary_am_kokuji ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type age_mean_wins ratio_women_wins_adopt win_ratio_musyozoku if teian_jyorei_4y != ., vce(cluster pres_pm_codes)
+test ln_mean_prefbigtype_1yago
 
 predict Xuhat, resid
 
@@ -774,10 +790,11 @@ nolz varwidth(16) modelwidth(13) style(tex)
 **novoting
 
 reg lnsalary_am_kokuji ln_mean_prefbigtype_1yago ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if no_voting_ratio_win != ., vce(cluster pres_pm_codes)
+test ln_mean_prefbigtype_1yago
 
-predict Xuhat, resid
+predict Xuhat_nov, resid
 
-fracreg probit no_voting_ratio_win lnsalary_am_kokuji Xuhat ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+fracreg probit no_voting_ratio_win lnsalary_am_kokuji Xuhat_nov ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
 
 gen sample_novote = 0
 replace sample_novote = 1 if e(sample) == 1
@@ -933,6 +950,103 @@ estimates store res_cont_jyorei_2sri, title("2SRI_cont_jyorei")
 esttab res_cont_jyorei_2sri using "jyoreicont_2sri.tex", replace ///
 star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
+nolz varwidth(16) modelwidth(13) style(tex)
+
+
+**depo2sri interaction
+
+
+
+probit dummy_forfeit_deposit c.lnsalary_am_kokuji##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+gen sample_depo_probit = 0
+replace sample_depo_probit = 1 if e(sample) == 1
+
+drop Xuhat1 Xuhat2
+
+preserve
+drop if sample_depo_probit == 0
+reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+
+predict Xuhat1 , resid
+
+reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+
+predict Xuhat2 , resid
+
+probit dummy_forfeit_deposit c.lnsalary_am_kokuji##c.ln_population Xuhat1 Xuhat2 ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+estimates store r7
+margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15))
+restore
+
+
+esttab r7 using "depo_int_2sri.tex", replace ///
+b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+keep(lnsalary_am_kokuji c.lnsalary_am_kokuji#c.ln_population ln_population) nogaps ///
+stats( N, fmt(%9.0f) labels("観測数")) ///
+label nolz varwidth(16) modelwidth(13) style(tex)  ///
+title(被説明変数: 供託金没収ライン未到達者の発生) ///
+mlabels(, span prefix(\multicolumn{@span}{c}{) suffix(})) ///
+prehead("\documentclass[10pt]{jsarticle}" "\pagestyle{empty}" "\usepackage{booktabs}""\usepackage{siunitx}""\usepackage{lscape}" ///
+"\usepackage[margin=20truemm]{geometry}""\sisetup{input-symbols = ()}""\begin{document}""\begin{table}\caption{@title}" ///
+"\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}""\begin{center}" ///
+"\sisetup{table-space-text-post = \sym{***}}""\begin{tabular}{l*{@M}{llll}}""\toprule") posthead(\midrule) prefoot(\midrule) ///
+postfoot("\bottomrule""\end{tabular}""\end{center}""\end{table}""\end{document}")
+
+
+probit dummy_forfeit_deposit c.lnsalary_am_kokuji##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+estimates store r8
+esttab r8 using "depo_int_probit.tex", replace ///
+b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+keep(lnsalary_am_kokuji c.lnsalary_am_kokuji#c.ln_population ln_population) nogaps ///
+stats( N, fmt(%9.0f) labels("観測数")) ///
+label nolz varwidth(16) modelwidth(13) style(tex)  ///
+title(被説明変数: 供託金没収ライン未到達者の発生) ///
+mlabels(, span prefix(\multicolumn{@span}{c}{) suffix(})) ///
+prehead("\documentclass[10pt]{jsarticle}" "\pagestyle{empty}" "\usepackage{booktabs}""\usepackage{siunitx}""\usepackage{lscape}" ///
+"\usepackage[margin=20truemm]{geometry}""\sisetup{input-symbols = ()}""\begin{document}""\begin{table}\caption{@title}" ///
+"\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}""\begin{center}" ///
+"\sisetup{table-space-text-post = \sym{***}}""\begin{tabular}{l*{@M}{llll}}""\toprule") posthead(\midrule) prefoot(\midrule) ///
+postfoot("\bottomrule""\end{tabular}""\end{center}""\end{table}""\end{document}")
+
+
+program drop depo2sri_int
+program depo2sri_int, rclass
+
+capture drop Xuhat1 Xuhat2
+
+reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+
+predict Xuhat1 , resid
+
+reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+
+predict Xuhat2 , resid
+
+probit dummy_forfeit_deposit c.lnsalary_am_kokuji##c.ln_population Xuhat1 Xuhat2 ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre i.expired_dummy i.touitsu_2011 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt, vce(cluster pres_pm_codes)
+
+return scalar b_sala = _b[lnsalary_am_kokuji]
+return scalar b_int = _b[c.lnsalary_am_kokuji#c.ln_population]
+return scalar b_popu = _b[ln_population]
+
+margins, dydx(lnsalary_am_kokuji) at(ln_population = (5 (0.5) 15)) post
+
+end
+
+preserve
+drop if sample_depo_probit == 0
+bootstrap r(b_sala) r(b_int) r(b_popu) _b, reps(500) seed (3175) cluster(pres_pm_codes) idcluster(new_id_ppm) : depo2sri_int
+restore
+estimates store depo_2sri_int, title("2sri_depo_int")
+
+
+esttab depo_2sri_int using "depo_int_2sri_boot.tex", replace ///
+star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
+nolz varwidth(16) modelwidth(13) style(tex)
+
+esttab depo_2sri_int using "depo_int_2sri_ci2.tex", replace ///
+star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+label b(3) ci(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
 
 

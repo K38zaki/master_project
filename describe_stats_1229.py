@@ -8,7 +8,8 @@ from seaborn.utils import despine
 #被説明変数の記述統計量
 master = pd.read_stata("1219_data.dta")
 master[master["age_mean_cand"] < 50]["age_mean_cand"]
-master[master["voting_rate_p"] > 0.95]
+master[master["voting_rate_p"] > 0.95]["voting_rate_p"]
+
 
 
 deps = ["compe_rate_adopt","no_voting_ratio_win","ratio_women_cand_adopt","age_mean_cand","dummy_forfeit_deposit","teian_jyorei_4y",
@@ -41,6 +42,7 @@ print(des_deps.to_latex())
 sns.set_style(style="darkgrid")
 sns.set(font="MS Gothic")
 sns.set_context("poster", rc={"font.size":20,"axes.titlesize":8,"axes.labelsize":25})  
+
 #hist
 fig = plt.figure(figsize=(15,25))
 plt.subplots_adjust(wspace=0.2, hspace=0.4)
@@ -61,6 +63,28 @@ axes = fig.add_subplot(4, 2, 7)
 sns.distplot(depdata.loc[depdata[samples[7]] == 1,deps[7]],kde=False,rug=False,bins=list(np.arange(0,1.1,0.1)),axlabel="投票率")
 
 plt.savefig("histgram_dep_0101.png",dpi=400)
+
+## hist for revised ver (20220203)
+
+fig = plt.figure(figsize=(15,25))
+plt.subplots_adjust(wspace=0.2, hspace=0.4)
+
+axes = fig.add_subplot(4, 2, 1)
+sns.distplot(depdata.loc[depdata[samples[0]] == 1,deps[0]],kde=False,rug=False,bins=list(np.arange(0.4,2,0.1)),axlabel="1議席あたり立候補人数")
+axes = fig.add_subplot(4, 2, 2)
+sns.distplot(depdata.loc[depdata[samples[1]] == 1,deps[1]],kde=False,rug=False,bins=list(np.arange(0,1.2,0.1)),axlabel="無投票当選割合")
+axes = fig.add_subplot(4, 2, 3)
+sns.distplot(depdata.loc[depdata[samples[2]] == 1,deps[2]],kde=False,rug=False,bins=list(np.arange(0,1.2,0.1)),axlabel="立候補者女性割合")
+axes = fig.add_subplot(4, 2, 4)
+sns.distplot(depdata.loc[depdata[samples[3]] == 1,deps[3]],kde=False,rug=False,bins=list(np.arange(45,80,5)),axlabel="立候補者平均年齢")
+axes = fig.add_subplot(4, 2, 5)
+sns.distplot(depdata.loc[depdata[samples[5]] == 1,deps[5]],kde=False,rug=False,bins=list(np.arange(0,13,1)),axlabel="議員提案条例可決数(任期中)")
+axes = fig.add_subplot(4, 2, 6)
+sns.distplot(depdata.loc[depdata[samples[6]] == 1,deps[6]],kde=False,rug=False,bins=list(np.arange(0,1.1,0.1)),axlabel="調整済み現職1人あたり得票率")
+axes = fig.add_subplot(4, 2, 7)
+sns.distplot(depdata.loc[depdata[samples[7]] == 1,deps[7]],kde=False,rug=False,bins=list(np.arange(0,1.1,0.1)),axlabel="投票率")
+
+plt.savefig("histgram_dep_0203.png",dpi=400)
 
 
 salas = master[["salary_am_kokuji","lnsalary_am_kokuji","dummy_up_salary_am","dummy_down_salary_am","sample_novote","pref_id","ele_id","nendo"]]
@@ -167,5 +191,8 @@ des_cont.index = ["対数1人あたり課税対象所得","対数人口","議席
                   "当選者平均年齢","当選者女性割合","当選者無所属割合"]
 
 print(des_cont.to_latex())
+
+#自治体数・自治体別観測数
+master.loc[master["sample_novote"] == 1,"pres_pm_codes"].value_counts().describe()
 
 

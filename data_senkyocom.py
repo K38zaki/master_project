@@ -412,8 +412,7 @@ def collect_cand_lv(base_inf_l,district,elec_data_l,dist_data_l):
             id_lv_data_l_l.append(id_lv_data_l)
         
         return id_lv_data_l_l
-
-    
+ 
 
 def make_data_for_ele(csv_name):
     

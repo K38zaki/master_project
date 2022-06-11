@@ -1,11 +1,11 @@
 
 
-reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if compe_rate_minus1_adj != ., vce(cluster pres_pm_codes)
 
 predict Xuhat1, resid
 
 gen lnsala_int_lnpopu = lnsalary_am_kokuji*ln_population
-reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type, vce(cluster pres_pm_codes)
+reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if compe_rate_minus1_adj != ., vce(cluster pres_pm_codes)
 
 predict Xuhat2, resid
 
@@ -63,6 +63,12 @@ star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) ci(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
 
+reg lnsalary_am_kokuji c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if ratio_women_cand_adopt != ., vce(cluster pres_pm_codes)
+
+test c.ln_mean_prefbigtype_1yago#c.ln_population c.ln_mean_prefbigtype_1yago
+
+reg lnsala_int_lnpopu c.ln_mean_prefbigtype_1yago##c.ln_population ln_income_per n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type if ratio_women_cand_adopt != ., vce(cluster pres_pm_codes)
+
 
 program women2sri_int, rclass
 
@@ -96,12 +102,19 @@ bootstrap r(b_sala) r(b_int) r(b_popu) r(ame_1) r(ame_2) r(ame_3) r(ame_4) r(ame
 restore
 estimates store int_women_2sri, title("2SRI_women_int")
 
-esttab int_women_2sri using "women_int_2sri_se.tex", replace ///
+preserve
+drop if sample_women == 0
+bootstrap r(b_sala) r(b_int) r(b_popu) r(ame_1) r(ame_2) r(ame_3) r(ame_4) r(ame_5) r(ame_6) r(ame_7) r(ame_8) r(ame_9) r(ame_10) r(ame_11) r(ame_12) r(ame_13) r(ame_14) r(ame_15) r(ame_16) r(ame_17) r(ame_18) r(ame_19) r(ame_20) r(ame_21), reps(589) seed (3175) cluster(pres_pm_codes) idcluster(new_id_ppm): women2sri_int
+restore
+estimates store int_women_2sri, title("2SRI_women_int")
+
+
+esttab int_women_2sri using "women_int_2sri_se2.tex", replace ///
 star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
 
-esttab int_women_2sri using "women_int_2sri_ci.tex", replace ///
+esttab int_women_2sri using "women_int_2sri_ci2.tex", replace ///
 star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) ci(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
@@ -112,6 +125,28 @@ gen upsala_lnpopu = dummy_up_salary_am*ln_population
 gen upsala_lnpopu_sq = dummy_up_salary_am*ln_population*ln_population
 gen downsala_lnpopu = dummy_down_salary_am*ln_population
 gen downsala_lnpopu_sq = dummy_down_salary_am*ln_population*ln_population
+
+
+reg dummy_up_salary_am c.upratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.upratio#c.ln_population upratio
+
+reg upsala_lnpopu c.upratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.upratio#c.ln_population upratio
+
+reg dummy_up_salary_am c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.upratio#c.ln_population#c.ln_population c.upratio#c.ln_population upratio
+
+reg upsala_lnpopu c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.upratio#c.ln_population#c.ln_population c.upratio#c.ln_population upratio
+
+reg upsala_lnpopu_sq c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.upratio#c.ln_population#c.ln_population c.upratio#c.ln_population upratio
+
 
 
 program drop votingup2sri_int
@@ -155,6 +190,29 @@ return scalar b2_intsq = _b[1.dummy_up_salary_am#c.ln_population#c.ln_population
 return scalar b2_popu = _b[ln_population]
 return scalar b2_popusq = _b[c.ln_population#c.ln_population]
 end
+
+
+reg dummy_down_salary_am c.downratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.downratio#c.ln_population downratio
+
+reg downsala_lnpopu c.downratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.downratio#c.ln_population downratio
+
+reg dummy_down_salary_am c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population downratio
+
+reg downsala_lnpopu c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population  downratio
+
+reg downsala_lnpopu_sq c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if voting_rate_p != ., vce(cluster pres_pm_codes)
+
+test c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population downratio
+
+
 
 program drop votingdown2sri_int
 program votingdown2sri_int, rclass
@@ -216,6 +274,26 @@ star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
 
+reg dummy_up_salary c.upratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test upratio c.upratio#c.ln_population
+
+reg upsala_lnpopu c.upratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test upratio c.upratio#c.ln_population
+
+reg dummy_up_salary_am c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != . , vce(cluster pres_pm_codes)
+
+test upratio c.upratio#c.ln_population c.upratio#c.ln_population#c.ln_population  
+
+reg upsala_lnpopu c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test upratio c.upratio#c.ln_population c.upratio#c.ln_population#c.ln_population 
+
+reg upsala_lnpopu_sq c.upratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test upratio c.upratio#c.ln_population c.upratio#c.ln_population#c.ln_population   
+
 
 program incup2sri_int, rclass
 
@@ -256,6 +334,27 @@ return scalar b2_intsq = _b[1.dummy_up_salary_am#c.ln_population#c.ln_population
 return scalar b2_popu = _b[ln_population]
 return scalar b2_popusq = _b[c.ln_population#c.ln_population]
 end
+
+
+reg dummy_down_salary c.downratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test downratio c.downratio#c.ln_population
+
+reg downsala_lnpopu c.downratio##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test downratio c.downratio#c.ln_population
+
+reg dummy_down_salary_am c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != . , vce(cluster pres_pm_codes)
+
+test downratio c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population  
+
+reg downsala_lnpopu c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test downratio c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population 
+
+reg downsala_lnpopu_sq c.downratio##c.ln_population##c.ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku if adjusted_ave_voteshare_inc != ., vce(cluster pres_pm_codes)
+
+test downratio c.downratio#c.ln_population c.downratio#c.ln_population#c.ln_population   
 
 
 program incdown2sri_int, rclass
@@ -311,11 +410,64 @@ bootstrap r(b_dummy) r(b_int) r(b_popu) r(b2_dummy) r(b2_int) r(b2_intsq) r(b2_p
 estimates store down_inc_2sri_int, title("2SRI_incdown_inter")
 restore
 
+
+
+
+
 **result
 esttab up_inc_2sri_int down_inc_2sri_int using "incum_int_2sri_rev.tex", replace ///
 star(* 0.10 ** 0.05 *** 0.01) booktabs ///
 label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
 nolz varwidth(16) modelwidth(13) style(tex)
+
+
+**500に調整
+
+preserve
+drop if sample_inc == 0
+bootstrap r(b_dummy) r(b_int) r(b_popu) r(b2_dummy) r(b2_int) r(b2_intsq) r(b2_popu) r(b2_popusq) , reps(600) seed (10101) cluster(pres_pm_codes) idcluster(new_id_ppm): incup2sri_int
+estimates store up_inc_2sri_int, title("2SRI_incup_inter2")
+restore
+
+preserve
+drop if sample_inc == 0
+bootstrap r(b_dummy) r(b_int) r(b_popu) r(b2_dummy) r(b2_int) r(b2_intsq) r(b2_popu) r(b2_popusq) , reps(600) seed (10101) cluster(pres_pm_codes) idcluster(new_id_ppm): incdown2sri_int
+estimates store down_inc_2sri_int, title("2SRI_incdown_inter2")
+restore
+
+
+esttab up_inc_2sri_int down_inc_2sri_int using "incum_int_2sri_rev.tex", replace ///
+star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
+nolz varwidth(16) modelwidth(13) style(tex)
+
+
+preserve
+drop if sample_voting == 0
+bootstrap r(b_dummy) r(b_int) r(b_popu) r(b2_dummy) r(b2_int) r(b2_intsq) r(b2_popu) r(b2_popusq) , reps(600) seed (10101) cluster(pres_pm_codes) idcluster(new_id_ppm): votingup2sri_int
+estimates store up_vot_2sri_int, title("2SRI_votup_inter")
+restore
+
+preserve
+drop if sample_voting == 0
+bootstrap r(b_dummy) r(b_int) r(b_popu) r(b2_dummy) r(b2_int) r(b2_intsq) r(b2_popu) r(b2_popusq) , reps(600) seed (10101) cluster(pres_pm_codes) idcluster(new_id_ppm): votingdown2sri_int
+estimates store down_vot_2sri_int, title("2SRI_votdown_inter")
+restore
+
+
+esttab up_vot_2sri_int down_vot_2sri_int using "voting_int_2sri_rev.tex", replace ///
+star(* 0.10 ** 0.05 *** 0.01) booktabs ///
+label b(3) se(3) stats(N, fmt(%9.0f) labels("観測数")) ///
+nolz varwidth(16) modelwidth(13) style(tex)
+
+
+
+
+
+
+
+
+
 
 **唯一出た vote_down 1乗
 
