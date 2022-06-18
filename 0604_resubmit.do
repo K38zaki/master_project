@@ -90,7 +90,7 @@ reg dummy_down_salary upratio downratio ln_population n_seats_adopt population_e
 predict v_down_xu_hat_2, resid
 test upratio downratio
 
-fracreg probit voting_rate_p i.cate_change_salary i_up_xu_hat_2 i_down_xu_hat_2 ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type  compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
+fracreg probit voting_rate_p i.cate_change_salary v_up_xu_hat_2 v_down_xu_hat_2 ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_income_per ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo i.pref_id i.muni_type compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, vce(cluster pres_pm_codes)
 eststo r_2sri,title("2SRI") :margins, dydx(*) post
 
 
@@ -102,7 +102,7 @@ estimates store r_fe, title("FE")
 xtivreg voting_rate_p (dummy_up_salary dummy_down_salary = upratio downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
 estimates store r_feiv, title("FEIV")
 
-xtivreg voting_rate_p (dummy_up_salary = upratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all i.nendo compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe vce(cluster pres_pm_codes)
+xtivreg2 voting_rate_p (dummy_up_salary dummy_down_salary = upratio downratio) ln_income_per ln_population n_seats_adopt population_elderly75_ratio population_child15_ratio ln_all_menseki canlive_ratio_menseki sigaika_ratio_area ln_zaiseiryoku win_ratio_musyozoku_pre expired_dummy touitsu_2007 touitsu_2011 touitsu_2015 touitsu_2019 ln_staff_all ln_salary_staff_all nendo1-nendo15 compe_rate_adopt ratio_women_cand_adopt age_mean_cand cand_ratio_musyozoku, fe cluster(pres_pm_codes)
 
 
 esttab r_ols r_fpml r_2sls r_2sri r_fe r_feiv using "voteupdown_0604.tex", replace ///
@@ -140,7 +140,7 @@ end
 drop i_up_xu_hat_2 i_down_xu_hat_2
 preserve
 drop if sample_2sri_inc == 0
-bootstrap ame_up ame_down, reps(1000) seed (5788) cluster(pres_pm_codes) idcluster(new_id_ppm) : incupdown2sri
+bootstrap ame_up ame_down, reps(1000) seed (5) cluster(pres_pm_codes) idcluster(new_id_ppm) : incupdown2sri
 estimates store res_incupdown2sri, title("2SRI_inc_updown")
 restore
 
